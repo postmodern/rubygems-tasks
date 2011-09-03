@@ -1,0 +1,17 @@
+name: project-tasks
+version: 0.0.0
+summary: Rake tasks for managing and releasing Ruby projects.
+description:
+  Simple Rake tasks for managing and releasing Ruby projects.
+
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: http://github.com/postmodern/project-tasks
+has_yard: true
+
+runtime_dependencies:
+  scm: ~> 0.1.0.pre2
+
+development_dependencies:
+  rspec: ~> 2.4
+  yard: ~> 0.7
