@@ -1,57 +1,54 @@
-# project-tasks
+# rubygems-tasks
 
-* [Source](http://github.com/ruby-ore/project-tasks)
-* [Issues](http://github.com/ruby-ore/project-tasks/issues)
+* [Source](https://github.com/ruby-ore/rubygems-tasks)
+* [Issues](https://github.com/ruby-ore/rubygems-tasks/issues)
 * [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
-Project Tasks provides simple Rake tasks for managing and releasing RubyGem
-projects.
+Tasks provides simple Rake tasks for managing and releasing RubyGem projects.
 
 ## Features
 
 * Provides tasks to build, install and push Gems to
-  [rubygems.org](http://rubygems.org/).
+  [rubygems.org](https://rubygems.org/).
 * Supports Git, Mercurial and SubVersion.
 * Provides the `console` task for jumping right into your code.
 * **Does not** automatically modify or commit changes to your code.
 
 ## Requirements
 
-* [scm](http://github.com/postmodern/scm) ~> 0.1.0
+* [scm](https://github.com/postmodern/scm) ~> 0.1.0
 
 ## Install
 
-    $ gem install project-tasks
+    $ gem install rubygems-tasks
 
 ## Examples
 
-    require 'project/tasks'
-    Project::Tasks.new
+    require 'rubygems/tasks'
+    Gem::Tasks.new
 
 Enable pushing gems to an in-house
-[gemcutter](http://github.com/rubygems/gemcutter#readme) server:
+[gemcutter](https://github.com/rubygems/gemcutter#readme) server:
 
-    Project::Tasks.new(:gemcutter => 'internal.example.com')
+    Gem::Tasks.new(:gemcutter => 'internal.example.com')
 
 Disable pushing gems:
 
-    Project::Tasks.new(:gemcutter => false)
+    Gem::Tasks.new(:gemcutter => false)
 
 ## Synopsis
 
-    rake build            # Builds project-tasks-0.1.0
+    rake build            # Builds project-0.1.0
     rake console[script]  # Start IRB with all runtime dependencies loaded
-    rake install          # Installs project-tasks-0.1.0
+    rake install          # Installs project-0.1.0
     rake install:deps     # Installs missing dependencies
-    rake release          # Releases project-tasks-0.1.0
-    rake spec             # Run RSpec code examples
+    rake release          # Releases project-0.1.0
     rake version          # Displays the current version
-    rake yard             # Generate YARD Documentation
 
 ## Copyright
 
-Copyright (c) 2011 Hal Brodigan
+Copyright (c) 2011-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for details.

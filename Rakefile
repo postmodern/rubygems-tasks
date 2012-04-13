@@ -4,8 +4,8 @@ require 'rake'
 lib_dir = File.expand_path('lib',File.dirname(__FILE__))
 $LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
 
-require 'project/tasks'
-Project::Tasks.new
+require 'rubygems/tasks'
+Gem::Tasks.new
 
 begin
   gem 'rspec', '~> 2.4'

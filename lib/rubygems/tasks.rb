@@ -4,7 +4,7 @@ require 'rake/tasklib'
 require 'digest/sha1'
 require 'set'
 
-module Project
+module Gem
   #
   # Defines basic Rake tasks for managing and releasing projects.
   #

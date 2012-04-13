@@ -1,4 +1,4 @@
-name: project-tasks
+name: rubygems-tasks
 version: 0.0.0
 summary: Rake tasks for managing and releasing Ruby projects.
 description:
@@ -6,7 +6,7 @@ description:
 
 authors: Postmodern
 email: postmodern.mod3@gmail.com
-homepage: http://github.com/postmodern/project-tasks
+homepage: http://github.com/postmodern/rubygems-tasks
 has_yard: true
 
 runtime_dependencies:
