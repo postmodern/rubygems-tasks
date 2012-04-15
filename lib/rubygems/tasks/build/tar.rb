@@ -7,7 +7,7 @@ module Gem
 
         FLAGS = {
           :bz2 => 'j',
-          :gz  => 'x',
+          :gz  => 'z',
           :xz  => 'J',
           nil  => ''
         }
@@ -28,13 +28,16 @@ module Gem
           @format = options.fetch(:format,:bz2)
 
           yield self if block_given?
+          define
+        end
 
-          @flag = FLAGS[@format]
-
-          extname = 'tar'
-          extname << ".#{@format}" if @format
-
-          define :tar, extname
+        def define
+          if @format
+            build_task "tar:#{@format}", "tar.#{@format}"
+            task 'build:tar' => "build:tar:#{@format}"
+          else
+            build_task :tar
+          end
         end
 
         def build(path,gemspec)

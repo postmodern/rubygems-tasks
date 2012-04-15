@@ -11,14 +11,14 @@ module Gem
           super()
 
           yield self if block_given?
-          define :gem
+          define
         end
 
-        def define(name)
-          super(name)
+        def define
+          build_task :gem
 
           # backwards compatibility for Gem::PackageTask
-          task :gem     => 'build:gem'
+          task :gem => 'build:gem'
 
           # backwards compatibility for Hoe
           task :package => 'build:gem'

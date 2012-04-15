@@ -9,7 +9,11 @@ module Gem
           super()
 
           yield self if block_given?
-          define :zip
+          define
+        end
+
+        def define
+          build_task :zip
         end
 
         def build(path,gemspec)

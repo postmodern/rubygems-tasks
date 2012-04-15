@@ -7,7 +7,9 @@ module Gem
     module Build
       class Task < Tasks::Task
 
-        def define(name,extname=name)
+        protected
+
+        def build_task(name,extname=name)
           directory Project::PKG_DIR
 
           namespace :build do
