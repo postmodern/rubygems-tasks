@@ -71,8 +71,16 @@ module Gem
           when :git then sh 'git', 'tag', name
           when :hg  then sh 'hg', 'tag', name
           when :svn
-            tags_dir = File.join('..','tags')
-            tag_dir  = File.join(tag_dirs,name)
+            branch   = File.basename(@project.root)
+            tags_dir = if branch == 'trunk'
+                         # we are in trunk/
+                         File.join('..','tags')
+                       else
+                         # must be within branches/$name/
+                         File.join('..','..','tags')
+                       end
+
+            tag_dir = File.join(tag_dirs,name)
 
             mkdir_p tags_dir
             cp_r    '.', tag_dir
