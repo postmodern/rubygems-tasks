@@ -76,9 +76,12 @@ module Gem
       # Defines the `checksum` task.
       #
       def define
-        checksum_task :gem            if Rake.application['build:gem']
-        checksum_task :tar, 'tar{.*}' if Rake.application['build:tar']
-        checksum_task :zip            if Rake.application['build:zip']
+        checksum_task :gem                 if task_defined?('build:gem')
+        checksum_task :tar                 if task_defined?('build:tar')
+        checksum_task 'tar:gz',  'tar.gz'  if task_defined?('build:tar:gz')
+        checksum_task 'tar:bz2', 'tar.bz2' if task_defined?('build:tar:bz2')
+        checksum_task 'tar:xz',  'tar.xz'  if task_defined?('build:tar:xz')
+        checksum_task :zip                 if task_defined?('build:zip')
       end
 
       protected
@@ -95,17 +98,15 @@ module Gem
       def checksum_task(name,extname=name)
         namespace :checksum do
           namespace(name) do
-            @project.each_package(extname) do |build,pattern|
+            @project.each_package(extname) do |build,path|
               task build => "build:#{name}" do
-                Dir.glob(pattern) do |path|
-                  puts File.basename(path) + ':'
-                  puts
-                  puts "  md5:    #{Digest::MD5.file(path)}"    if @md5
-                  puts "  sha1:   #{Digest::SHA1.file(path)}"   if @sha1
-                  puts "  sha2:   #{Digest::SHA2.file(path)}"   if @sha2
-                  puts "  sha512: #{Digest::SHA512.file(path)}" if @sha512
-                  puts
-                end
+                puts File.basename(path) + ':'
+                puts
+                puts "  md5:    #{Digest::MD5.file(path)}"    if @md5
+                puts "  sha1:   #{Digest::SHA1.file(path)}"   if @sha1
+                puts "  sha2:   #{Digest::SHA2.file(path)}"   if @sha2
+                puts "  sha512: #{Digest::SHA512.file(path)}" if @sha512
+                puts
               end
             end
           end
