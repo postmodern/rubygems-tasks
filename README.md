@@ -28,20 +28,21 @@ Tasks provides simple Rake tasks for managing and releasing RubyGem projects.
 Enable pushing gems to an in-house
 [gemcutter](https://github.com/rubygems/gemcutter#readme) server:
 
-    Gem::Tasks.new(:gemcutter => 'internal.example.com')
+    Gem::Tasks.new(:push => {:host => 'internal.example.com'})
 
-Disable pushing gems:
+Disable the `push` task:
 
-    Gem::Tasks.new(:gemcutter => false)
+    Gem::Tasks.new(:push => false)
 
 ## Synopsis
 
-    rake build            # Builds project-0.1.0
-    rake console[script]  # Start IRB with all runtime dependencies loaded
-    rake install          # Installs project-0.1.0
-    rake install:deps     # Installs missing dependencies
-    rake release          # Releases project-0.1.0
-    rake version          # Displays the current version
+    rake build:gem[name]  # Builds all gem packages
+    rake build:tar[name]  # Builds all tar.bz2 packages
+    rake build:zip[name]  # Builds all zip packages
+    rake console[name]    # Spawns an Interactive Ruby Console (irb)
+    rake install[name]    # Installs all built gem packages
+    rake push[name]       # Pushes all gems
+    rake release          # Performs a release
 
 ## Copyright
 
