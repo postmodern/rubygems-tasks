@@ -62,7 +62,7 @@ module Gem
           raise("could not find gemspec: #{build.dump}")
         end
 
-        return File.join(PKG_DIR,"#{gemspec.name}-#{gemspec.version}.#{format}")
+        return File.join(PKG_DIR,"#{gemspec.full_name}.#{format}")
       end
 
       def each_package(format)
