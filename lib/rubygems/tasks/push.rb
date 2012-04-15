@@ -24,7 +24,7 @@ module Gem
               arguments = []
               arguments << '--host' << @host if @host
 
-              sh 'gem', 'push', @gem, *arguments
+              sh 'gem', 'push', path, *arguments
             end
           end
         end
