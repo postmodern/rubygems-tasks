@@ -5,6 +5,9 @@ module Gem
     module Build
       class Tar < Task
 
+        # Allow formats
+        FORMATS = Set[:gz, :bz2, :xz]
+
         FLAGS = {
           :bz2 => 'j',
           :gz  => 'z',
@@ -28,6 +31,11 @@ module Gem
           @format = options.fetch(:format,:bz2)
 
           yield self if block_given?
+
+          unless FORMATS.include?(@format)
+            raise(ArgumentError,"invalid tar format: #{@format}")
+          end
+
           define
         end
 
