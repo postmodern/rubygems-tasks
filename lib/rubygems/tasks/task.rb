@@ -35,6 +35,10 @@ module Gem
         sh 'bundler', command, *arguments
       end
 
+      def task_defined?(name)
+        Rake::Task.task_defined?(name)
+      end
+
       #
       # Defines a task that will invoke one or all of the specifies tasks
       # within the namespace.
