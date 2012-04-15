@@ -10,6 +10,16 @@ module Gem
         @project = Project.directories[Dir.pwd]
       end
 
+      #
+      # The task name for the class.
+      #
+      # @return [String]
+      #   The task name for the class.
+      #
+      def self.task_name
+        @task_name ||= name.split('::').last.downcase
+      end
+
       protected
 
       #
