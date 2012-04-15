@@ -13,89 +13,6 @@ module Gem
   #
   class Tasks < Rake::TaskLib
 
-    TASKS = [
-      [:console,    Console,     true],
-      [:build_gem,  Build::Gem,  true],
-      [:build_tar,  Build::Tar,  true],
-      [:build_zip,  Build::Zip,  true],
-      [:install,    Install,     true],
-      [:scm_status, SCM::Status, true],
-      [:scm_tag,    SCM::Tag,    true],
-      [:scm_push,   SCM::Push,   true],
-      [:push,       Push,        true],
-      [:checksum,   Checksum,    true]
-    ]
-
-    #
-    # The `console` task.
-    #
-    # @return [Console]
-    #
-    attr_reader :console
-
-    #
-    # The `build:gem` task.
-    #
-    # @return [Build::Gem]
-    #
-    attr_reader :build_gem
-
-    #
-    # The `build:tar` task.
-    #
-    # @return [Build::Tar]
-    #
-    attr_reader :build_tar
-
-    #
-    # The `build:zip` task.
-    #
-    # @return [Build::Zip]
-    #
-    attr_reader :build_zip
-
-    #
-    # The `install` task.
-    #
-    # @return [Install]
-    #
-    attr_reader :install
-
-    #
-    # The `scm:status` task/
-    #
-    # @return [SCM::Status]
-    #
-    attr_reader :scm_status
-
-    #
-    # The `scm:tag` task.
-    #
-    # @return [SCM::Tag]
-    #
-    attr_reader :scm_tag
-
-    #
-    # The `scm:push` task.
-    #
-    # @return [SCM::Push]
-    #
-    attr_reader :scm_push
-
-    #
-    # The `push` task.
-    #
-    # @return [Push]
-    #
-    attr_reader :push
-
-    #
-    # The `checksum` task.
-    #
-    # @return [Checksum]
-    #
-    attr_reader :checksum
-
     #
     # Initializes the project tasks.
     #
@@ -199,6 +116,7 @@ module Gem
     register :scm_push,   SCM::Push,   true
     register :push,       Push,        true
     register :checksum,   Checksum
+    register :pgp,        PGP
 
     #
     # Defines the dependencies between the enabled tasks.
