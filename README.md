@@ -16,10 +16,6 @@ Tasks provides simple Rake tasks for managing and releasing RubyGem projects.
 * Provides the `console` task for jumping right into your code.
 * **Does not** automatically modify or commit changes to your code.
 
-## Requirements
-
-* [scm](https://github.com/postmodern/scm) ~> 0.1.0
-
 ## Install
 
     $ gem install rubygems-tasks
