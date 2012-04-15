@@ -13,9 +13,9 @@ module Gem
         def define
           sign_task :gem
           sign_task :tar
-          sign_task 'tar:gz',  'tar.gz'
-          sign_task 'tar:bz2', 'tar.bz2'
-          sign_task 'tar:xz',  'tar.xz'
+          sign_task 'tar_gz',  'tar.gz'
+          sign_task 'tar_bz2', 'tar.bz2'
+          sign_task 'tar_xz',  'tar.xz'
           sign_task :zip
         end
 

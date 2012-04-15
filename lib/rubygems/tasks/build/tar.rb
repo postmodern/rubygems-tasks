@@ -43,7 +43,7 @@ module Gem
 
         def define
           if @format
-            build_task "tar:#{@format}", "tar.#{@format}"
+            build_task "tar_#{@format}", "tar.#{@format}"
           else
             build_task :tar
           end
