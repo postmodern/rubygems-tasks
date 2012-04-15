@@ -50,18 +50,6 @@ module Gem
         end
 
         #
-        # @return [Array<String>]
-        #
-        def tags
-          case @project.scm
-          when :git then `git tag`.split($/)
-          when :hg  then `hg tags`.split($/)
-          when :svn then Dir['tags/*/'].map { |dir| File.dirname(dir) }
-          else           []
-          end
-        end
-
-        #
         # @param [String] name
         #
         # @return [Boolean]
