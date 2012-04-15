@@ -3,6 +3,7 @@ require 'rubygems/tasks/build'
 require 'rubygems/tasks/install'
 require 'rubygems/tasks/scm'
 require 'rubygems/tasks/push'
+require 'rubygems/tasks/checksum'
 
 require 'rake/tasklib'
 
@@ -13,15 +14,16 @@ module Gem
   class Tasks < Rake::TaskLib
 
     TASKS = [
-      [:console,    Console],
-      [:build_gem,  Build::Gem],
-      [:build_tar,  Build::Tar],
-      [:build_zip,  Build::Zip],
-      [:install,    Install],
-      [:scm_status, SCM::Status],
-      [:scm_tag,    SCM::Tag],
-      [:scm_push,   SCM::Push],
-      [:push,       Push]
+      [:console,    Console,     true],
+      [:build_gem,  Build::Gem,  true],
+      [:build_tar,  Build::Tar,  true],
+      [:build_zip,  Build::Zip,  true],
+      [:install,    Install,     true],
+      [:scm_status, SCM::Status, true],
+      [:scm_tag,    SCM::Tag,    true],
+      [:scm_push,   SCM::Push,   true],
+      [:push,       Push,        true],
+      [:checksum,   Checksum,    true]
     ]
 
     #
@@ -88,6 +90,13 @@ module Gem
     attr_reader :push
 
     #
+    # The `checksum` task.
+    #
+    # @return [Checksum]
+    #
+    attr_reader :checksum
+
+    #
     # Initializes the project tasks.
     #
     # @param [Hash{Symbol => Hash}] options
@@ -120,6 +129,9 @@ module Gem
     # @option options [Hash] :push
     #   Options for the {Push push} task.
     #
+    # @option options [Hash] :checksum
+    #   Options for the {Checksum checksum} task.
+    #
     # @yield [tasks]
     #   If a block is given, it will be passed the newly created tasks,
     #   before they are fully defined.
@@ -128,10 +140,12 @@ module Gem
     #   The newly created tasks.
     #
     def initialize(options={})
-      TASKS.each do |name,task_class|
+      Tasks.registered.each do |name,task_class,enabled|
         task = case (task_options = options[name])
-               when true, nil
+               when true
                  task_class.new
+               when nil
+                 task_class.new if enabled
                when Hash
                  task_class.new(task_options)
                when false
@@ -146,6 +160,45 @@ module Gem
       yield self if block_given?
       define
     end
+
+    #
+    # The registered Tasks.
+    #
+    # @return [Array<(Symbol, Class, Boolean)>]
+    #   The registered tasks, including name, class and whether the task is
+    #   enabled by default.
+    #
+    def Tasks.registered
+      @@registered ||= []
+    end
+
+    #
+    # Registers a Task.
+    #
+    # @param [Symbol] name
+    #   The variable name for the Task.
+    #
+    # @param [#initialize(Hash)] task_class
+    #   The Task class.
+    #
+    # @param [Boolean] enabled
+    #   Specifies whether the Task is enabled by default.
+    #
+    def Tasks.register(name,task_class,enabled=false)
+      registered << [name, task_class, enabled]
+      attr_reader name
+    end
+
+    register :console,    Console,     true
+    register :build_gem,  Build::Gem,  true
+    register :build_tar,  Build::Tar,  true
+    register :build_zip,  Build::Zip,  true
+    register :install,    Install,     true
+    register :scm_status, SCM::Status, true
+    register :scm_tag,    SCM::Tag,    true
+    register :scm_push,   SCM::Push,   true
+    register :push,       Push,        true
+    register :checksum,   Checksum
 
     #
     # Defines the dependencies between the enabled tasks.
@@ -164,7 +217,7 @@ module Gem
 
       desc "Performs a release"
       task :release => [
-        :build, 'scm:tag', 'scm:push', :push
+        :build, 'scm:tag', 'scm:push', :push, :checksum
       ].select { |name| task?(name) }
     end
 
