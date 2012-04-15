@@ -99,7 +99,7 @@ module Gem
         namespace :checksum do
           namespace(name) do
             @project.each_package(extname) do |build,path|
-              task build => "build:#{name}" do
+              task build => path do
                 puts File.basename(path) + ':'
                 puts
                 puts "  md5:    #{Digest::MD5.file(path)}"    if @md5
