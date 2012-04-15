@@ -31,6 +31,9 @@ module Gem
 
         desc "Pushes all gems"
         multi_task 'push', @project.builds
+
+        # backwards compatibility for Hoe
+        task :publish => :push
       end
 
     end

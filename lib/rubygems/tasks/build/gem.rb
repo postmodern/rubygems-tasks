@@ -17,7 +17,11 @@ module Gem
         def define(name)
           super(name)
 
-          task :gem   => 'build:gem' # backwards compatibility for Hoe
+          # backwards compatibility for Gem::PackageTask
+          task :gem     => 'build:gem'
+
+          # backwards compatibility for Hoe
+          task :package => 'build:gem'
         end
 
         def build(path,gemspec)
