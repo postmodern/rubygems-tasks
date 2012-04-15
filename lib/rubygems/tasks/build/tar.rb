@@ -8,7 +8,8 @@ module Gem
         FLAGS = {
           :bz2 => 'j',
           :gz  => 'x',
-          :xz  => 'J'
+          :xz  => 'J',
+          nil  => ''
         }
 
         attr_accessor :format
