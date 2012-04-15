@@ -67,7 +67,7 @@ module Gem
                   end
 
         Dir.chdir(@root) do
-          @gemspecs = Hash[glob('*.gemspec').map { |path|
+          @gemspecs = Hash[Dir['*.gemspec'].map { |path|
             [File.basename(path).chomp('.gemspec'), Specification.load(path)]
           }]
         end
@@ -95,21 +95,6 @@ module Gem
         @@directories ||= Hash.new do |hash,key|
           hash[key] = new(key)
         end
-      end
-
-      #
-      # Searches for paths within the project.
-      #
-      # @param [String] pattern
-      # 
-      # @yield [path]
-      #
-      # @yieldparam [String] path
-      #
-      # @return [Array<String>]
-      #
-      def glob(pattern,&block)
-        Dir.glob(File.join(@root,pattern),&block)
       end
 
       #
