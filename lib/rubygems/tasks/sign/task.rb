@@ -11,47 +11,31 @@ module Gem
         # Defines signing tasks for the various packages.
         #
         def define
-          sign_task :gem
-          sign_task :tar
-          sign_task 'tar_gz',  'tar.gz'
-          sign_task 'tar_bz2', 'tar.bz2'
-          sign_task 'tar_xz',  'tar.xz'
-          sign_task :zip
-        end
-
-        protected
-
-        #
-        # Defines the signing task.
-        #
-        # @param [Symbol, String] package
-        #   The package format to sign.
-        #
-        # @param [String] extname
-        #   The file extension for the package format.
-        #
-        def sign_task(package,extname=package)
           name = self.class.task_name
 
-          if task_defined?("build:#{package}")
-            namespace :sign do
-              namespace name do
-                namespace package do
-                  @project.each_package(extname) do |build,path|
+          @project.builds.each do |build,packages|
+            packages.each do |format,path|
+              format = format.to_s.tr('.','_').to_sym
+
+              namespace :sign do
+                namespace name do 
+                  namespace format do
                     task build => path do
                       sign(path)
                     end
                   end
                 end
               end
+
+              multi_task "sign:#{name}:#{format}", @project.builds.keys
+
+              task "sign:#{name}" => "sign:#{name}:#{format}"
+              task :sign          => "sign:#{name}:#{format}"
             end
-
-            multi_task "sign:#{name}:#{package}", @project.builds
-
-            task "sign:#{name}" => "sign:#{name}:#{package}"
-            task :sign          => "sign:#{name}:#{package}"
           end
         end
+
+        protected
 
         #
         # Signs a package.

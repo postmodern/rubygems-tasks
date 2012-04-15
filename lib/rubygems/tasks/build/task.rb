@@ -14,8 +14,9 @@ module Gem
 
           namespace :build do
             namespace name do
-              @project.each_package(extname) do |build,path|
+              @project.builds.each do |build,packages|
                 gemspec = @project.gemspecs[build]
+                path    = packages[extname]
 
                 # define file tasks, so the packages are not needless re-built
                 file(path => [Project::PKG_DIR, *gemspec.files]) do
@@ -28,7 +29,7 @@ module Gem
           end
 
           desc "Builds all #{extname} packages"
-          multi_task "build:#{name}", @project.builds
+          multi_task "build:#{name}", @project.builds.keys
 
           task :build => "build:#{name}"
         end

@@ -13,7 +13,9 @@ module Gem
 
       def define
         namespace :install do
-          @project.each_package(:gem) do |build,path|
+          @project.builds.each do |build,packages|
+            path = packages[:gem]
+
             task build => path do
               sh 'gem', 'install', path
             end
@@ -21,7 +23,7 @@ module Gem
         end
 
         desc "Installs all built gem packages"
-        multi_task 'install', @project.builds
+        multi_task 'install', @project.builds.keys
 
         task :install_gem => :install # backwards compatibility with Hoe
       end

@@ -19,7 +19,9 @@ module Gem
 
       def define
         namespace :push do
-          @project.each_package(:gem) do |build,path|
+          @project.builds.each do |build,packages|
+            path = packages[:gem]
+
             task build => path do
               arguments = []
               arguments << '--host' << @host if @host
@@ -29,7 +31,7 @@ module Gem
           end
         end
 
-        multi_task 'push', @project.builds
+        multi_task 'push', @project.builds.keys
 
         # backwards compatibility for Hoe
         task :publish => :push
