@@ -71,10 +71,11 @@ module Gem
           when :git then sh 'git', 'tag', name
           when :hg  then sh 'hg', 'tag', name
           when :svn
-            tag_dir = File.join('tags',name)
+            tags_dir = File.join('..','tags')
+            tag_dir  = File.join(tag_dirs,name)
 
-            mkdir_p 'tags'
-            cp_r    'trunk', tag_dir
+            mkdir_p tags_dir
+            cp_r    '.', tag_dir
 
             return sh 'svn', 'add', tag_dir
           else
