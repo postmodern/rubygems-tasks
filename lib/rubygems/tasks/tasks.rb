@@ -128,10 +128,19 @@ module Gem
     #   The newly created tasks.
     #
     def initialize(options={})
-      TASKS.each do |name,task|
-        unless options[name] == false
-          instance_variable_set("@#{name}",task.new(options.fetch(name,{})))
-        end
+      TASKS.each do |name,task_class|
+        task = case (task_options = options[name])
+               when true, nil
+                 task_class.new
+               when Hash
+                 task_class.new(task_options)
+               when false
+                 nil
+               else
+                 raise(ArgumentError,"invalid :#{name} options: #{task_options.inspect}")
+               end
+
+        instance_variable_set("@#{name}",task)
       end
 
       yield self if block_given?
