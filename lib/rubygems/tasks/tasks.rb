@@ -3,7 +3,7 @@ require 'rubygems/tasks/build'
 require 'rubygems/tasks/install'
 require 'rubygems/tasks/scm'
 require 'rubygems/tasks/push'
-require 'rubygems/tasks/checksum'
+require 'rubygems/tasks/sign'
 
 require 'rake/tasklib'
 
@@ -115,8 +115,9 @@ module Gem
     register :scm_tag,    SCM::Tag,    true
     register :scm_push,   SCM::Push,   true
     register :push,       Push,        true
-    register :checksum,   Checksum
-    register :pgp,        PGP
+
+    register :sign_checksum,   Sign::Checksum
+    register :sign_pgp,        Sign::PGP
 
     #
     # Defines the dependencies between the enabled tasks.
