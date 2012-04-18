@@ -6,10 +6,8 @@ $LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
 
 require 'rubygems/tasks'
 Gem::Tasks.new(
-  :checksum  => true,
-  :build_tar => {:format => :gz},
-  :sign_checksum => true,
-  :sign_pgp  => true
+  :build => {:gem => true, :tar => true},
+  :sign  => {:checksum => true, :pgp => true}
 )
 
 begin
