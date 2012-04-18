@@ -14,9 +14,11 @@ module Gem
 
         def define
           namespace :scm do
-            task :push do |t,args|
+            task :push do
+              status "Pushing commits ..."
+
               unless push!
-                abort "Could not push commits"
+                error "Could not push commits"
               end
             end
           end
@@ -27,8 +29,8 @@ module Gem
         #
         def push!
           case @project.scm
-          when :git then sh 'git', 'push', '--tags'
-          when :hg  then sh 'hg', 'push'
+          when :git then run 'git', 'push', '--tags'
+          when :hg  then run 'hg', 'push'
           else           true
           end
         end

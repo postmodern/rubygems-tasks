@@ -24,9 +24,16 @@ module Gem
 
             task build => path do
               arguments = []
-              arguments << '--host' << @host if @host
 
-              sh 'gem', 'push', path, *arguments
+              if @host
+                arguments << '--host' << @host
+
+                status "Pushing #{File.basename(path)} to #{@host} ..."
+              else
+                status "Pushing #{File.basename(path)} ..."
+              end
+
+              run 'gem', 'push', path, *arguments
             end
           end
         end

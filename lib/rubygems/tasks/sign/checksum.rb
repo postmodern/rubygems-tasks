@@ -91,7 +91,8 @@ module Gem
         #   The path to the package.
         #
         def sign(path)
-          puts File.basename(path) + ':'
+          status "Checksums for #{File.basename(path)}:"
+
           puts
           puts "  md5:    #{Digest::MD5.file(path)}"    if @md5
           puts "  sha1:   #{Digest::SHA1.file(path)}"   if @sha1

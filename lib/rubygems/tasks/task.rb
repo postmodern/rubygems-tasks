@@ -1,10 +1,13 @@
 require 'rubygems/tasks/project'
+require 'rubygems/tasks/printing'
 
 require 'rake/tasklib'
 
 module Gem
   class Tasks
     class Task < Rake::TaskLib
+
+      include Printing
 
       def initialize
         @project = Project.directories[Dir.pwd]
@@ -22,12 +25,25 @@ module Gem
 
       protected
 
+      def run(command,*arguments)
+        show_command = [command, *arguments].join(' ')
+
+        debug show_command
+
+        unless system(command,*arguments)
+          error "Command failed: #{show_command}"
+          abort
+        end
+
+        return true
+      end
+
       def gem(command,*arguments)
-        sh 'gem', command, *arguments
+        run 'gem', command, *arguments
       end
 
       def bundle(command,*arguments)
-        sh 'bundler', command, *arguments
+        run 'bundler', command, *arguments
       end
 
       def task?(name)

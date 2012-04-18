@@ -17,7 +17,9 @@ module Gem
             path = packages[:gem]
 
             task build => path do
-              sh 'gem', 'install', path
+              status "Installing #{File.basename(path)} ..."
+
+              run 'gem', 'install', '-q', path
             end
           end
         end

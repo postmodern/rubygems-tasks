@@ -28,8 +28,10 @@ module Gem
                       version_tag(gemspec.version)
                     end
 
+              status "Tagging #{tag} ..."
+
               unless tag!(tag)
-                abort "Could not create tag #{tag}"
+                error "Could not create tag #{tag}"
               end
             end
           end
@@ -56,8 +58,8 @@ module Gem
         #
         def tag!(name)
           case @project.scm
-          when :git then sh 'git', 'tag', name
-          when :hg  then sh 'hg', 'tag', name
+          when :git then run 'git', 'tag', name
+          when :hg  then run 'hg', 'tag', name
           when :svn
             branch   = File.basename(@project.root)
             tags_dir = if branch == 'trunk'
@@ -73,7 +75,7 @@ module Gem
             mkdir_p tags_dir
             cp_r    '.', tag_dir
 
-            return sh 'svn', 'add', tag_dir
+            return run('svn', 'add', tag_dir)
           else
             true
           end

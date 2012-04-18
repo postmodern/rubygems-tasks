@@ -17,7 +17,7 @@ module Gem
         end
 
         def build(path,gemspec)
-          sh 'zip', '-q', path, *gemspec.files
+          run 'zip', '-q', path, *gemspec.files
         end
 
       end

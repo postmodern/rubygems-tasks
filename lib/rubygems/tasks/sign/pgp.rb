@@ -36,7 +36,9 @@ module Gem
         #   The path to the package.
         #
         def sign(path)
-          sh 'gpg', '--sign', path
+          status "Signing #{File.basename(path)} ..."
+
+          run 'gpg', '--sign', path
         end
 
       end

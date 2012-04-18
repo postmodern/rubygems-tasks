@@ -20,7 +20,7 @@ module Gem
         end
 
         def build(path,gemspec)
-          sh 'tar', 'czf', path, *gemspec.files
+          run 'tar', 'czf', path, *gemspec.files
         end
 
       end

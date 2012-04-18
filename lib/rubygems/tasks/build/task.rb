@@ -20,6 +20,8 @@ module Gem
 
                 # define file tasks, so the packages are not needless re-built
                 file(path => [Project::PKG_DIR, *gemspec.files]) do
+                  status "Building #{File.basename(path)} ..."
+
                   build(path,gemspec)
                 end
 

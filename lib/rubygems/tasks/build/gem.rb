@@ -1,6 +1,7 @@
 require 'rubygems/tasks/build/task'
 
 require 'rubygems/builder'
+require 'fileutils'
 
 module Gem
   class Tasks
@@ -27,7 +28,7 @@ module Gem
         def build(path,gemspec)
           builder = ::Gem::Builder.new(gemspec)
 
-          mv builder.build, Project::PKG_DIR
+          FileUtils.mv builder.build, Project::PKG_DIR
         end
 
       end
