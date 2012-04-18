@@ -32,21 +32,27 @@ module Gem
       end
 
       def define
-        desc "Spawns an Interactive Ruby Console (#{@command})"
-        task :console, [:gemspec] do |t,args|
-          load_paths = gemspec(args.gemspec).require_paths
-          arguments  = [@command] + load_paths.map { |dir| "-I#{dir}" }
+        @project.gemspecs.each do |name,gemspec|
+          namespace :console do
+            task name do |t,args|
+              load_paths = gemspec.require_paths
+              arguments  = [@command] + load_paths.map { |dir| "-I#{dir}" }
 
-          if @project.bundler?
-            if @command == DEFAULT_CONSOLE
-              system 'bundle', 'console'
-            else
-              system 'bundle', 'exec', *arguments
+              if @project.bundler?
+                if @command == DEFAULT_CONSOLE
+                  system 'bundle', 'console'
+                else
+                  system 'bundle', 'exec', *arguments
+                end
+              else
+                system *arguments
+              end
             end
-          else
-            system *arguments
           end
         end
+
+        desc "Spawns an Interactive Ruby Console (#{@command})"
+        task :console => "console:#{@project.gemspecs.keys.first}"
       end
 
     end
