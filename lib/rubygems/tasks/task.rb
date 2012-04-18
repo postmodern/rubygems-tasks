@@ -63,15 +63,7 @@ module Gem
       #   gemspec_tasks 'pkg:tar'
       #
       def gemspec_tasks(prefix)
-        task(prefix, :gemspec) do |t,args|
-          if args.gemspec
-            Rake::Task["#{prefix}:#{args.gemspec}"].invoke
-          else
-            @project.gemspecs.each_key do |name|
-              Rake::Task["#{prefix}:#{name}"].invoke
-            end
-          end
-        end
+        task prefix => @project.gemspecs.keys.map { |name| "#{prefix}:#{name}" }
       end
 
     end
