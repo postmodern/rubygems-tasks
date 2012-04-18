@@ -28,8 +28,9 @@ module Gem
 
             multi_task "sign:#{name}:#{build}", packages.keys
 
-            task "sign:#{name}" => "sign:#{name}:#{build}"
-            task :sign          => "sign:#{name}:#{build}"
+            task "sign:#{name}"  => "sign:#{name}:#{build}"
+            task "sign:#{build}" => "sign:#{name}:#{build}"
+            task :sign           => "sign:#{name}:#{build}"
           end
         end
 
