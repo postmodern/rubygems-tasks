@@ -12,9 +12,9 @@ module Gem
         def build_task(name,extname=name)
           directory Project::PKG_DIR
 
-          namespace :build do
-            namespace name do
-              @project.builds.each do |build,packages|
+          @project.builds.each do |build,packages|
+            namespace :build do
+              namespace name do
                 gemspec = @project.gemspecs[build]
                 path    = packages[extname]
 
@@ -26,6 +26,8 @@ module Gem
                 task build => path
               end
             end
+
+            task "build:#{build}" => "build:#{name}:#{build}"
           end
 
           gemspec_tasks "build:#{name}"
