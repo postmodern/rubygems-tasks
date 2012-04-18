@@ -28,10 +28,10 @@ module Gem
             end
           end
 
-          multi_task "build:#{name}", @project.builds.keys
+          gemspec_tasks "build:#{name}"
 
           desc "Builds all packages"
-          task :build, [:name] => "build:#{name}"
+          task :build, [:gemspec] => "build:#{name}"
         end
 
         #

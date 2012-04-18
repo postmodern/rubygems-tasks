@@ -31,7 +31,7 @@ module Gem
           end
         end
 
-        multi_task 'push', @project.builds.keys
+        gemspec_tasks :push
 
         # backwards compatibility for Hoe
         task :publish => :push

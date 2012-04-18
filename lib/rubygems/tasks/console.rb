@@ -33,8 +33,8 @@ module Gem
 
       def define
         desc "Spawns an Interactive Ruby Console (#{@command})"
-        task :console, [:name] do |t,args|
-          load_paths = gemspec(args.name).require_paths
+        task :console, [:gemspec] do |t,args|
+          load_paths = gemspec(args.gemspec).require_paths
           arguments  = [@command] + load_paths.map { |dir| "-I#{dir}" }
 
           if @project.bundler?

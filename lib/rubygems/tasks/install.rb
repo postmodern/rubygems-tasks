@@ -23,7 +23,7 @@ module Gem
         end
 
         desc "Installs all built gem packages"
-        multi_task 'install', @project.builds.keys
+        gemspec_tasks :install
 
         task :install_gem => :install # backwards compatibility with Hoe
       end

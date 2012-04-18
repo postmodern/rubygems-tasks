@@ -27,7 +27,7 @@ module Gem
                 end
               end
 
-              multi_task "sign:#{name}:#{format}", @project.builds.keys
+              gemspec_tasks "sign:#{name}:#{format}"
 
               task "sign:#{name}" => "sign:#{name}:#{format}"
               task :sign          => "sign:#{name}:#{format}"

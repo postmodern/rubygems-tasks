@@ -60,15 +60,15 @@ module Gem
       #   The names of the sub-tasks.
       #
       # @example
-      #   multi_task 'pkg:tar', @project.gemspecs.keys
+      #   gemspec_tasks 'pkg:tar'
       #
-      def multi_task(namespace,names)
-        task(namespace, :name) do |t,args|
-          if args.name
-            Rake::Task["#{namespace}:#{args.name}"].invoke
+      def gemspec_tasks(prefix)
+        task(prefix, :gemspec) do |t,args|
+          if args.gemspec
+            Rake::Task["#{prefix}:#{args.gemspec}"].invoke
           else
-            names.each do |name|
-              Rake::Task["#{namespace}:#{name}"].invoke
+            @project.gemspecs.each_key do |name|
+              Rake::Task["#{prefix}:#{name}"].invoke
             end
           end
         end
