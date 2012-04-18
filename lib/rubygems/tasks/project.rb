@@ -74,8 +74,8 @@ module Gem
 
         @builds = {}
 
-        @gemspecs.each do |build,gemspec|
-          @builds[build] = Hash.new do |packages,format|
+        @gemspecs.each do |name,gemspec|
+          @builds[name] = Hash.new do |packages,format|
             packages[format] = File.join(PKG_DIR,"#{gemspec.full_name}.#{format}")
           end
         end
