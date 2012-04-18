@@ -33,7 +33,7 @@ module Gem
           gemspec_tasks "build:#{name}"
 
           desc "Builds all packages"
-          task :build, "build:#{name}"
+          task :build => "build:#{name}"
         end
 
         #
