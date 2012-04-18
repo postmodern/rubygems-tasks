@@ -15,23 +15,21 @@ module Gem
 
           @project.builds.each do |build,packages|
             packages.each do |format,path|
-              format = format.to_s.tr('.','_').to_sym
-
               namespace :sign do
                 namespace name do 
-                  namespace format do
-                    task build => path do
+                  namespace build do
+                    task format => path do
                       sign(path)
                     end
                   end
                 end
               end
-
-              gemspec_tasks "sign:#{name}:#{format}"
-
-              task "sign:#{name}" => "sign:#{name}:#{format}"
-              task :sign          => "sign:#{name}:#{format}"
             end
+
+            multi_task "sign:#{name}:#{build}", packages.keys
+
+            task "sign:#{name}" => "sign:#{name}:#{build}"
+            task :sign          => "sign:#{name}:#{build}"
           end
         end
 
