@@ -6,48 +6,82 @@ require 'rubygems/tasks/push'
 require 'rubygems/tasks/sign'
 
 require 'rake/tasklib'
+require 'ostruct'
 
 module Gem
   #
-  # Defines basic Rake tasks for managing and releasing projects.
+  # Defines basic Rake tasks for managing and releasing projects:
+  #
+  # * {Build::Gem build:gem}
+  # * {Build::Tar build:tar}
+  # * {Build::Zip build:zip}
+  # * {SCM::Status scm:status}
+  # * {SCM::Push scm:push}
+  # * {SCM::Tag scm:tag}
+  # * {Console console}
+  # * {Install install}
+  # * {Push push}
+  # * {Sign::Checksum sign:checksum}
+  # * {Sign::PGP sign:pgp}
   #
   class Tasks < Rake::TaskLib
+
+    #
+    # The `build` tasks.
+    #
+    # @return [OpenStruct]
+    #   The collection of `build` tasks.
+    #
+    attr_reader :build
+
+    #
+    # The `scm` tasks.
+    #
+    # @return [OpenStruct]
+    #   The collection of `scm` tasks.
+    #
+    attr_reader :scm
+
+    #
+    # The `sign` tasks.
+    #
+    # @return [OpenStruct]
+    #   The collection of `sign` tasks.
+    #
+    attr_reader :sign
+
+    # The {Console console} task.
+    attr_reader :console
+
+    # The {Install install} task.
+    attr_reader :install
+
+    # The {Push push} task.
+    attr_reader :push
 
     #
     # Initializes the project tasks.
     #
     # @param [Hash{Symbol => Hash}] options
-    #   Additional options for each task.
+    #   Enables or disables individual tasks.
     #
-    # @option options [Hash] :console
-    #   Options for the {Console console} task.
+    # @option options [Hash{Symbol => Boolean}] :build
+    #   Enables or disables the `build` tasks.
     #
-    # @option options [Hash] :build_gem
-    #   Options for the {Build::Gem build:gem} task.
+    # @option options [Hash{Symbol => Boolean}] :scm
+    #   Enables or disables the `scm` tasks.
     #
-    # @option options [Hash] :build_tar
-    #   Options for the {Build::Tar build:tar} task.
+    # @option options [Boolean] :console
+    #   Enables or disables the {Console console} task.
     #
-    # @option options [Hash] :build_zip
-    #   Options for the {Build::Zip build:zip} task.
+    # @option options [Boolean] :install
+    #   Enables or disables the {Install install} task.
     #
-    # @option options [Hash] :install
-    #   Options for the {Install install} task.
+    # @option options [Boolean] :push
+    #   Enables or disables the {Push push} task.
     #
-    # @option options [Hash] :scm_status
-    #   Options for the {SCM::Status scm:status} task.
-    #
-    # @option options [Hash] :scm_tag
-    #   Options for the {SCM::Tag scm:tag} task.
-    #
-    # @option options [Hash] :scm_push
-    #   Options for the {SCM::Push scm:push} task.
-    #
-    # @option options [Hash] :push
-    #   Options for the {Push push} task.
-    #
-    # @option options [Hash] :checksum
-    #   Options for the {Checksum checksum} task.
+    # @option options [Hash{Symbol => Boolean}] :sign
+    #   Enables or disables the `sign` tasks.
     #
     # @yield [tasks]
     #   If a block is given, it will be passed the newly created tasks,
@@ -56,68 +90,50 @@ module Gem
     # @yieldparam [Tasks] tasks
     #   The newly created tasks.
     #
+    # @example Enables building of `.gem` and `.tar.gz` packages:
+    #   Gem::Tasks.new(:build => {:gem => true, :tar => true})
+    #
+    # @example Disables pushing `.gem` packages to [rubygems.org](rubygems.org):
+    #   Gem::Tasks.new(:push => false)
+    #
+    # @example Configures the version tag format:
+    #   Gem::Tasks.new do |tasks|
+    #     tasks.scm.tag.format = "release-%s"
+    #   end
+    #
     def initialize(options={})
-      Tasks.registered.each do |name,task_class,enabled|
-        task = case (task_options = options[name])
-               when true
-                 task_class.new
-               when nil
-                 task_class.new if enabled
-               when Hash
-                 task_class.new(task_options)
-               when false
-                 nil
-               else
-                 raise(ArgumentError,"invalid :#{name} options: #{task_options.inspect}")
-               end
+      build_options = options.fetch(:build,{})
+      scm_options   = options.fetch(:scm,{})
+      sign_options  = options.fetch(:sign,{})
 
-        instance_variable_set("@#{name}",task)
+      @scm   = OpenStruct.new
+      @build = OpenStruct.new
+      @sign  = OpenStruct.new
+
+      if build_options
+        @build.gem = Build::Gem.new if build_options.fetch(:gem,true)
+        @build.tar = Build::Tar.new if build_options[:tar]
+        @build.zip = Build::Zip.new if build_options[:zip]
       end
+
+      if scm_options
+        @scm.status = SCM::Status.new if scm_options.fetch(:status,true)
+        @scm.tag    = SCM::Status.new if scm_options.fetch(:tag,true)
+        @scm.push   = SCM::Status.new if scm_options.fetch(:push,true)
+      end
+
+      if sign_options
+        @sign.checksum = Sign::Checksum.new if sign_options[:checksum]
+        @sign.pgp      = Sign::PGP.new      if sign_options[:pgp]
+      end
+
+      @console = Console.new if options.fetch(:console,true)
+      @install = Install.new if options.fetch(:install,true)
+      @push = Push.new       if options.fetch(:push,true)
 
       yield self if block_given?
       define
     end
-
-    #
-    # The registered Tasks.
-    #
-    # @return [Array<(Symbol, Class, Boolean)>]
-    #   The registered tasks, including name, class and whether the task is
-    #   enabled by default.
-    #
-    def Tasks.registered
-      @@registered ||= []
-    end
-
-    #
-    # Registers a Task.
-    #
-    # @param [Symbol] name
-    #   The variable name for the Task.
-    #
-    # @param [#initialize(Hash)] task_class
-    #   The Task class.
-    #
-    # @param [Boolean] enabled
-    #   Specifies whether the Task is enabled by default.
-    #
-    def Tasks.register(name,task_class,enabled=false)
-      registered << [name, task_class, enabled]
-      attr_reader name
-    end
-
-    register :console,    Console,     true
-    register :build_gem,  Build::Gem,  true
-    register :build_tar,  Build::Tar,  true
-    register :build_zip,  Build::Zip,  true
-    register :install,    Install,     true
-    register :scm_status, SCM::Status, true
-    register :scm_tag,    SCM::Tag,    true
-    register :scm_push,   SCM::Push,   true
-    register :push,       Push,        true
-
-    register :sign_checksum,   Sign::Checksum
-    register :sign_pgp,        Sign::PGP
 
     #
     # Defines the dependencies between the enabled tasks.
