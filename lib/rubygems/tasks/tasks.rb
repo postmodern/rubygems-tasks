@@ -141,17 +141,6 @@ module Gem
     # Defines the dependencies between the enabled tasks.
     #
     def define
-      if task?('scm:status')
-        # do not allow tagging releases when the repository is dirty
-        task 'scm:tag' => 'scm:status' if task?('scm:tag')
-
-        # do not allow pushing commits when the repository is dirty
-        task 'scm:push' => 'scm:status' if task?('scm:push')
-
-        # do not allow pushing gems when the repository is dirty
-        task :push => 'scm:status' if task?(:push)
-      end
-
       desc "Performs a release"
       task :release => [
         :build, 'scm:tag', 'scm:push', :push, :sign
