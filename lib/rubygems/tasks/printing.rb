@@ -9,16 +9,16 @@ module Gem
       ANSI_BRIGHT = "\e[1m"
 
       # ANSI 'clear' color code
-      ANSI_CLEAR  = "\e[0m"
+      ANSI_CLEAR = "\e[0m"
 
       # ANSI 'green' color code
-      ANSI_GREEN  = "\e[32m"
+      ANSI_GREEN = "\e[32m"
 
       # ANSI 'yellow' color code
       ANSI_YELLOW = "\e[33m"
 
       # ANSI 'red' color code
-      ANSI_RED    = "\e[31m"
+      ANSI_RED = "\e[31m"
 
       # Prefix for all status messages
       STATUS_PREFIX = if $stdout.tty?
