@@ -37,7 +37,7 @@ Disable the `push` task:
 ## Synopsis
 
     rake build:gem[name]  # Builds all gem packages
-    rake build:tar[name]  # Builds all tar.bz2 packages
+    rake build:tar[name]  # Builds all tar.gz packages
     rake build:zip[name]  # Builds all zip packages
     rake console[name]    # Spawns an Interactive Ruby Console (irb)
     rake install[name]    # Installs all built gem packages
