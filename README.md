@@ -36,6 +36,10 @@ Disable the `push` task:
 
     Gem::Tasks.new(:push => false)
 
+Enable Checksums and PGP signatures of built packages:
+
+    Gem::Tasks.new(:sign => {:checksum => true, :pgp => true})
+
 Selectively define tasks:
 
     Gem::SCM::Status.new
