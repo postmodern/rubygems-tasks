@@ -12,7 +12,7 @@ Tasks provides simple Rake tasks for managing and releasing RubyGem projects.
 
 * Provides tasks to build, install and push Gems to
   [rubygems.org](https://rubygems.org/).
-* Supports Git, Mercurial and SubVersion.
+* Supports Git (`git`), Mercurial (`hg`) and SubVersion (`svn).
 * Provides the `console` task for jumping right into your code.
 * **Does not** automatically modify or commit changes to your code.
 
@@ -28,17 +28,25 @@ Tasks provides simple Rake tasks for managing and releasing RubyGem projects.
 Enable pushing gems to an in-house
 [gemcutter](https://github.com/rubygems/gemcutter#readme) server:
 
-    Gem::Tasks.new(:push => {:host => 'internal.example.com'})
+    Gem::Tasks.new do |tasks|
+      tasks.push.host = 'gems.company.come'
+    end
 
 Disable the `push` task:
 
     Gem::Tasks.new(:push => false)
 
+Selectively define tasks:
+
+    Gem::SCM::Status.new
+    Gem::SCM::Tag.new(:format => 'REL-%s')
+    Gem::Build::Tar.new
+    Gem::Sign::Checksum.new
+    Gem::Console.new
+
 ## Synopsis
 
     rake build:gem[name]  # Builds all gem packages
-    rake build:tar[name]  # Builds all tar.gz packages
-    rake build:zip[name]  # Builds all zip packages
     rake console[name]    # Spawns an Interactive Ruby Console (irb)
     rake install[name]    # Installs all built gem packages
     rake push[name]       # Pushes all gems
