@@ -62,8 +62,12 @@ module Gem
       # @example
       #   gemspec_tasks 'pkg:tar'
       #
+      def multi_task(prefix,names)
+        task prefix => names.map { |name| "#{prefix}:#{name}" }
+      end
+
       def gemspec_tasks(prefix)
-        task prefix => @project.gemspecs.keys.map { |name| "#{prefix}:#{name}" }
+        multi_task prefix, @project.gemspecs.keys
       end
 
     end
