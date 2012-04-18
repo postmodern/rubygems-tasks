@@ -78,14 +78,17 @@ module Gem
     # @option options [Hash{Symbol => Boolean}] :scm
     #   Enables or disables the `scm` tasks.
     #
-    # @option options [Boolean] :console
+    # @option options [Boolean] :console (true)
     #   Enables or disables the {Console console} task.
     #
-    # @option options [Boolean] :install
+    # @option options [Boolean] :install (true)
     #   Enables or disables the {Install install} task.
     #
-    # @option options [Boolean] :push
+    # @option options [Boolean] :push (true)
     #   Enables or disables the {Push push} task.
+    #
+    # @option options [Boolean] :release (true)
+    #   Enables or disables the {Release release} task.
     #
     # @option options [Hash{Symbol => Boolean}] :sign
     #   Enables or disables the `sign` tasks.
