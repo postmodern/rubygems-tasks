@@ -45,7 +45,7 @@ module Gem
         sh 'bundler', command, *arguments
       end
 
-      def task_defined?(name)
+      def task?(name)
         Rake::Task.task_defined?(name)
       end
 
