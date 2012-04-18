@@ -154,7 +154,7 @@ module Gem
 
       desc "Performs a release"
       task :release => [
-        :build, 'scm:tag', 'scm:push', :push, :checksum
+        :build, 'scm:tag', 'scm:push', :push, :sign
       ].select { |name| task?(name) }
     end
 
