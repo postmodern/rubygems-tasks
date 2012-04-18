@@ -15,7 +15,7 @@ module Gem
                       end
 
       DEBUG_PREFIX = if $stderr.tty?
-                        "#{ANSI_GREEN}#{ANSI_BRIGHT}>>>#{ANSI_CLEAR}"
+                        "#{ANSI_YELLOW}#{ANSI_BRIGHT}>>>#{ANSI_CLEAR}"
                      else
                        ">>>"
                      end
