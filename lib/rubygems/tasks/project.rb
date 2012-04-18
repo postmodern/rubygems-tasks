@@ -3,7 +3,7 @@ require 'rake/tasklib'
 require 'set'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     class Project
 
       SCM_DIRS = {

@@ -3,7 +3,7 @@ require 'rubygems/tasks/sign/task'
 require 'digest'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Sign
       class Checksum < Task
 

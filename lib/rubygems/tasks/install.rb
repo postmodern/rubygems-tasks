@@ -1,7 +1,7 @@
 require 'rubygems/tasks/task'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     class Install < Task
 
       def initialize(options={})

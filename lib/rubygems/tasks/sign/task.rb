@@ -3,7 +3,7 @@ require 'rubygems/tasks/task'
 require 'digest'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Sign
       class Task < Tasks::Task
 

@@ -3,7 +3,7 @@ require 'rubygems/tasks/build/task'
 require 'set'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Build
       class Tar < Task
 

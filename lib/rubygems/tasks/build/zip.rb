@@ -1,7 +1,7 @@
 require 'rubygems/tasks/build/task'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Build
       class Zip < Task
 

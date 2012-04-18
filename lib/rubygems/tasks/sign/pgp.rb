@@ -1,7 +1,7 @@
 require 'rubygems/tasks/sign/task'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Sign
       class PGP < Task
 

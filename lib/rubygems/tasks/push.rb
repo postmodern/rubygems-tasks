@@ -1,7 +1,7 @@
 require 'rubygems/tasks/task'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     class Push < Task
 
       PKG_DIR = 'pkg'

@@ -3,7 +3,7 @@ require 'rubygems/tasks/build/task'
 require 'rubygems/builder'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     module Build
       class Gem < Task
 

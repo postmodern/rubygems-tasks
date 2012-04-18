@@ -3,7 +3,7 @@ require 'rubygems/tasks/project'
 require 'rake/tasklib'
 
 module Gem
-  class Tasks < Rake::TaskLib
+  class Tasks
     class Task < Rake::TaskLib
 
       def initialize

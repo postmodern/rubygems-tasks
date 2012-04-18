@@ -24,7 +24,9 @@ module Gem
   # * {Sign::Checksum sign:checksum}
   # * {Sign::PGP sign:pgp}
   #
-  class Tasks < Rake::TaskLib
+  class Tasks
+
+    include Rake::DSL
 
     #
     # The `build` tasks.
