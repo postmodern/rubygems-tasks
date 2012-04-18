@@ -22,21 +22,6 @@ module Gem
 
       protected
 
-      #
-      # @param [String] name
-      #
-      # @return [Gem::Specification]
-      #
-      def gemspec(name=nil)
-        name ||= @project.name
-
-        unless (gemspec = @project.gemspecs[name])
-          fail "could not find gemspec: #{name.dump}"
-        end
-
-        return gemspec
-      end
-
       def gem(command,*arguments)
         sh 'gem', command, *arguments
       end
