@@ -3,6 +3,7 @@ require 'rubygems/tasks/build'
 require 'rubygems/tasks/install'
 require 'rubygems/tasks/scm'
 require 'rubygems/tasks/push'
+require 'rubygems/tasks/release'
 require 'rubygems/tasks/sign'
 
 require 'rake/tasklib'
@@ -21,6 +22,7 @@ module Gem
   # * {Console console}
   # * {Install install}
   # * {Push push}
+  # * {Release release}
   # * {Sign::Checksum sign:checksum}
   # * {Sign::PGP sign:pgp}
   #
@@ -60,6 +62,9 @@ module Gem
 
     # The {Push push} task.
     attr_reader :push
+
+    # The {Release release} task.
+    attr_reader :release
 
     #
     # Initializes the project tasks.
@@ -131,20 +136,10 @@ module Gem
 
       @console = Console.new if options.fetch(:console,true)
       @install = Install.new if options.fetch(:install,true)
-      @push = Push.new       if options.fetch(:push,true)
+      @push    = Push.new    if options.fetch(:push,true)
+      @release = Release.new if options.fetch(:release,true)
 
       yield self if block_given?
-      define
-    end
-
-    #
-    # Defines the dependencies between the enabled tasks.
-    #
-    def define
-      desc "Performs a release"
-      task :release => [
-        :build, 'scm:tag', 'scm:push', :push, :sign
-      ].select { |name| task?(name) }
     end
 
     #
