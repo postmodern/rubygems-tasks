@@ -50,11 +50,11 @@ Selectively define tasks:
 
 ## Synopsis
 
-    rake build:gem[name]  # Builds all gem packages
-    rake console[name]    # Spawns an Interactive Ruby Console (irb)
-    rake install[name]    # Installs all built gem packages
-    rake push[name]       # Pushes all gems
-    rake release          # Performs a release
+    rake build[name]    # Builds all packages
+    rake console[name]  # Spawns an Interactive Ruby Console (irb)
+    rake install[name]  # Installs all built gem packages
+    rake push[name]     # Pushes all gems
+    rake release        # Performs a release
 
 ## Copyright
 
