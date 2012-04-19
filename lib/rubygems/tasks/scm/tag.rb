@@ -45,7 +45,7 @@ module Gem
               tag = if args.name
                       args.name
                     else
-                      version_tag(gemspec.version)
+                      version_tag(@project.gemspecs.values.first.version)
                     end
 
               status "Tagging #{tag} ..."
