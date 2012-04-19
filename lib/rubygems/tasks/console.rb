@@ -45,27 +45,57 @@ module Gem
       # Defines the `console` task.
       #
       def define
-        @project.gemspecs.each do |name,gemspec|
+        @project.gemspecs.each_key do |name|
           namespace :console do
             task name do |t,args|
-              arguments  = [@command, *@options]
-              arguments += gemspec.require_paths.map { |dir| "-I#{dir}" }
-
-              if @project.bundler?
-                if @command == DEFAULT_CONSOLE
-                  run 'bundle', 'console'
-                else
-                  run 'bundle', 'exec', *arguments
-                end
-              else
-                run *arguments
-              end
+              console(name)
             end
           end
         end
 
         desc "Spawns an Interactive Ruby Console"
         task :console => "console:#{@project.gemspecs.keys.first}"
+      end
+
+      #
+      # Builds the complete arguments for the console command.
+      #
+      # @param [Symbol, String] name
+      #   The name of the gemspec to load.
+      #
+      # @return [Array<String>]
+      #   The arguments for the console command.
+      #
+      def arguments(name=@project.gemspecs.keys.first)
+        unless (gemspec = @project.gemspecs[name.to_s])
+          raise(ArgumentError,"unknown gemspec name: #{name}")
+        end
+
+        arguments  = [@command, *@options]
+        arguments += gemspec.require_paths.map { |dir| "-I#{dir}" }
+
+        if @project.bundler?
+          arguments = if @command == DEFAULT_CONSOLE
+                        ['bundle', 'console']
+                      else
+                        ['bundle', 'exec', *arguments]
+                      end
+        end
+
+        return arguments
+      end
+
+      #
+      # Runs the console command.
+      #
+      # @param [Symbol, String] name
+      #   The name of the gemspec to load.
+      #
+      # @return [Array<String>]
+      #   The arguments to run the console command.
+      #
+      def console(name=@project.gemspecs.keys.first)
+        run(*arguments(name))
       end
 
     end
