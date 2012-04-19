@@ -121,26 +121,26 @@ module Gem
       @sign  = OpenStruct.new
 
       if build_options
-        @build.gem = Build::Gem.new if build_options.fetch(:gem,true)
-        @build.tar = Build::Tar.new if build_options[:tar]
-        @build.zip = Build::Zip.new if build_options[:zip]
+        @build.gem = (Build::Gem.new if build_options.fetch(:gem,true))
+        @build.tar = (Build::Tar.new if build_options[:tar])
+        @build.zip = (Build::Zip.new if build_options[:zip])
       end
 
       if scm_options
-        @scm.status = SCM::Status.new if scm_options.fetch(:status,true)
-        @scm.tag    = SCM::Tag.new    if scm_options.fetch(:tag,true)
-        @scm.push   = SCM::Push.new   if scm_options.fetch(:push,true)
+        @scm.status = (SCM::Status.new if scm_options.fetch(:status,true))
+        @scm.tag    = (SCM::Tag.new    if scm_options.fetch(:tag,true))
+        @scm.push   = (SCM::Push.new   if scm_options.fetch(:push,true))
       end
 
       if sign_options
-        @sign.checksum = Sign::Checksum.new if sign_options[:checksum]
-        @sign.pgp      = Sign::PGP.new      if sign_options[:pgp]
+        @sign.checksum = (Sign::Checksum.new if sign_options[:checksum])
+        @sign.pgp      = (Sign::PGP.new      if sign_options[:pgp])
       end
 
-      @console = Console.new if options.fetch(:console,true)
-      @install = Install.new if options.fetch(:install,true)
-      @push    = Push.new    if options.fetch(:push,true)
-      @release = Release.new if options.fetch(:release,true)
+      @console = (Console.new if options.fetch(:console,true))
+      @install = (Install.new if options.fetch(:install,true))
+      @push    = (Push.new    if options.fetch(:push,true))
+      @release = (Release.new if options.fetch(:release,true))
 
       yield self if block_given?
     end
