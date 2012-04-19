@@ -8,11 +8,25 @@ module Gem
       class Task < Tasks::Task
 
         #
+        # Signs a package.
+        #
+        # @param [String] path
+        #   The path to the package.
+        #
+        # @abstract
+        #
+        def sign(path)
+        end
+
+        protected
+
+        #
         # Defines signing tasks for the various packages.
         #
-        def define
-          name = self.class.task_name
-
+        # @param [Symbol] name
+        #   The name for the `sign:` task.
+        #
+        def sign_task(name)
           @project.builds.each do |build,packages|
             packages.each do |format,path|
               namespace :sign do
@@ -30,19 +44,10 @@ module Gem
 
             task "sign:#{name}"  => "sign:#{name}:#{build}"
             task "sign:#{build}" => "sign:#{name}:#{build}"
+
+            desc "Signs all packages" unless task?(:sign)
             task :sign           => "sign:#{name}:#{build}"
           end
-        end
-
-        #
-        # Signs a package.
-        #
-        # @param [String] path
-        #   The path to the package.
-        #
-        # @abstract
-        #
-        def sign(path)
         end
 
       end

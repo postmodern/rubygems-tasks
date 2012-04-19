@@ -25,7 +25,7 @@ module Gem
         # Defines the `sign:pgp` task.
         #
         def define
-          super
+          sign_task :pgp
 
           task :pgp => 'sign:pgp'
         end

@@ -34,7 +34,7 @@ module Gem
 
           gemspec_tasks "build:#{name}"
 
-          desc "Builds all packages"
+          desc "Builds all packages" unless task?(:build)
           task :build => "build:#{name}"
         end
 

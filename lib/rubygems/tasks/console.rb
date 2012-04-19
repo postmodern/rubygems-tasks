@@ -57,7 +57,7 @@ module Gem
           end
         end
 
-        desc "Spawns an Interactive Ruby Console (#{@command})"
+        desc "Spawns an Interactive Ruby Console"
         task :console => "console:#{@project.gemspecs.keys.first}"
       end
 
