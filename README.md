@@ -11,18 +11,18 @@ Gem::Tasks provides simple Rake tasks for managing and releasing Ruby gems.
 ## Features
 
 * Provides tasks to build, install and push gems to
-  [rubygems.org](https://rubygems.org/).
-  * Supports pushing gems to alternate [RubyGems](https://github.com/rubygems/rubygems.org#readme)
-    servers.
+  [rubygems.org][1].
+  * Supports pushing gems to alternate [RubyGems][2] servers.
 * Supports optionally building `.tar.gz` and `.zip` archives.
-* Supports Git (`git`), Mercurial (`hg`) and SubVersion (`svn`)
-  Source-Code-Managers (SCMs).
+  * `build:tar`
+  * `build:zip`
+* Supports [Git][3], [Mercurial][4] and [SubVersion][5] Source-Code-Managers
+  (SCMs).
 * Provides optional `sign` tasks for package integrity:
   * `sign:checksum`
   * `sign:pgp`
 * Provides a `console` task, for jumping right into your code.
-* Defines task aliases for users coming from [Jeweler](https://github.com/technicalpickles/jeweler#readme)
-  or [Hoe](https://github.com/seattlerb/hoe#readme).
+* Defines task aliases for users coming from [Jeweler][6] or [Hoe][7].
 * ANSI coloured messages!
 
 ## Anti-Features
@@ -47,8 +47,7 @@ Specifying an alternate Ruby Console to run:
       tasks.console.command = 'pry'
     end
 
-Enable pushing gems to an in-house
-[RubyGems](https://github.com/rubygems/rubygems.org#readme) server:
+Enable pushing gems to an in-house [RubyGems][2] server:
 
     Gem::Tasks.new do |tasks|
       tasks.push.host = 'gems.company.come'
@@ -82,3 +81,11 @@ Selectively defining tasks:
 Copyright (c) 2011-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
+
+[1]: https://rubygems.org/
+[2]: https://github.com/rubygems/rubygems.org#readme
+[3]: http://git-scm.com/
+[4]: http://mercurial.selenic.com/
+[5]: http://subversion.tigris.org/
+[6]: https://github.com/technicalpickles/jeweler#readme
+[7]: https://github.com/seattlerb/hoe#readme
