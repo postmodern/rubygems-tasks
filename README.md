@@ -14,17 +14,17 @@ Ruby gems.
 
 ## Philosophy
 
-The rake tasks which you use to manage a Ruby project _should not_ be coupled
+The Rake tasks which you use to manage a Ruby project _should not_ be coupled
 to the project generator which you used to create the project.
-Project generators have nothing to do with the Rake tasks used build, install
-and release a Ruby project.
+Project generators have _nothing_ to do with the Rake tasks used to build,
+install and release a Ruby project.
 
 Each project generator (Hoe, Jeweler, Bundler, etc) having their
-own set of Rake tasks creates differing functionality between projects,
-and factions between developers. Ruby Developers should not be factionalized
-by their project generator or Rake tasks. Ruby Developers should have a common
-set of Rake tasks that they can use in any project. This is what rubygems-tasks
-seeks to accomplish.
+own set of Rake tasks introduces differing functionality between projects,
+and creates factions between developers. Ruby Developers should not be
+factionalized by their project generator or Rake tasks. Ruby Developers should
+have a common set of Rake tasks that they can use in any project.
+This is what rubygems-tasks seeks to accomplish.
 
 ## Features
 
