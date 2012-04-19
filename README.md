@@ -6,7 +6,8 @@
 
 ## Description
 
-Gem::Tasks provides simple Rake tasks for managing and releasing Ruby gems.
+Gem::Tasks provides simple Rake tasks for building, installing and releasing
+Ruby gems.
 
     require 'rubygems/tasks'
     Gem::Tasks.new
