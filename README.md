@@ -50,8 +50,8 @@ Selectively define tasks:
 
 ## Synopsis
 
-    rake build    # Builds all packages / Builds all packages
-    rake console  # Spawns an Interactive Ruby Console (irb)
+    rake build    # Builds all packages
+    rake console  # Spawns an Interactive Ruby Console
     rake install  # Installs all built gem packages
     rake release  # Performs a release
 
