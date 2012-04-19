@@ -8,10 +8,10 @@ describe Gem::Tasks do
     context "default options" do
       include_context "rake"
 
-      its(:build) { should be_kind_of(OpenStruct) }
+      its(:build)      { should be_kind_of(OpenStruct)             }
       its('build.gem') { should be_kind_of(Gem::Tasks::Build::Gem) }
-      its('build.tar') { should be_nil }
-      its('build.zip') { should be_nil }
+      its('build.tar') { should be_nil                             }
+      its('build.zip') { should be_nil                             }
 
       its(:scm)         { should be_kind_of(OpenStruct)              }
       its('scm.status') { should be_kind_of(Gem::Tasks::SCM::Status) }
