@@ -13,8 +13,7 @@ Gem::Tasks provides simple Rake tasks for managing and releasing Ruby gems.
 
 ## Features
 
-* Provides tasks to build, install and push gems to
-  [rubygems.org][1].
+* Provides tasks to build, install and push gems to [rubygems.org][1].
   * Loads all project metadata from the `.gemspec` file.
   * Supports loading multiple `.gemspec` files.
   * Supports pushing gems to alternate [RubyGems][2] servers.
