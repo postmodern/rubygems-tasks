@@ -3,6 +3,9 @@ require 'rubygems/tasks/task'
 module Gem
   class Tasks
     module SCM
+      #
+      # The `scm:status` task.
+      #
       class Status < Task
 
         #

@@ -5,14 +5,21 @@ require 'digest'
 module Gem
   class Tasks
     module Sign
+      #
+      # The `sign:checksum` task.
+      #
       class Checksum < Task
 
+        # Enables or disables MD5 checksums.
         attr_writer :md5
 
+        # Enables or disables SHA1 checksums.
         attr_writer :sha1
 
+        # Enables or disables SHA2 checksums.
         attr_writer :sha2
 
+        # Enables or disables SHA512 checksums.
         attr_writer :sha512
 
         #
@@ -81,8 +88,6 @@ module Gem
 
           task :checksum => 'sign:checksum'
         end
-
-        protected
 
         #
         # Prints the checksums of a package.

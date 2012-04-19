@@ -3,6 +3,9 @@ require 'rubygems/tasks/sign/task'
 module Gem
   class Tasks
     module Sign
+      #
+      # The `sign:pgp` task.
+      #
       class PGP < Task
 
         #
@@ -26,8 +29,6 @@ module Gem
 
           task :pgp => 'sign:pgp'
         end
-
-        protected
 
         #
         # PGP signs a package.

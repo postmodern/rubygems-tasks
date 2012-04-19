@@ -2,8 +2,17 @@ require 'rubygems/tasks/task'
 
 module Gem
   class Tasks
+    #
+    # The `install` task.
+    #
     class Install < Task
 
+      #
+      # Initializes the `install` task.
+      #
+      # @param [Hash] options
+      #   Additional options.
+      #
       def initialize(options={})
         super()
 
@@ -11,6 +20,9 @@ module Gem
         define
       end
 
+      #
+      # Defines the `install` task.
+      #
       def define
         namespace :install do
           @project.builds.each do |build,packages|

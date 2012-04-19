@@ -34,8 +34,6 @@ module Gem
           end
         end
 
-        protected
-
         #
         # Signs a package.
         #

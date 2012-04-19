@@ -6,8 +6,17 @@ require 'fileutils'
 module Gem
   class Tasks
     module Build
+      #
+      # The `build:gem` task.
+      #
       class Gem < Task
 
+        #
+        # Initializes the `build:gem` task.
+        #
+        # @param [Hash] options
+        #   Additional options.
+        #
         def initialize(options={})
           super()
 
@@ -15,6 +24,9 @@ module Gem
           define
         end
 
+        #
+        # Defines the `build:gem` task.
+        #
         def define
           build_task :gem
 
@@ -25,6 +37,15 @@ module Gem
           task :package => 'build:gem'
         end
 
+        #
+        # Builds the `.gem` package.
+        #
+        # @param [String] path
+        #   The path for the `.gem` package.
+        #
+        # @param [Gem::Specification] gemspec
+        #   The gemspec to build the `.gem` package from.
+        #
         def build(path,gemspec)
           builder = ::Gem::Builder.new(gemspec)
 

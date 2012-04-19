@@ -3,8 +3,17 @@ require 'rubygems/tasks/task'
 module Gem
   class Tasks
     module SCM
+      #
+      # The `scm:push` task.
+      #
       class Push < Task
 
+        #
+        # Initializes the `scm:push` task.
+        #
+        # @param [Hash] options
+        #   Additional options.
+        #
         def initialize(options={})
           super()
 
@@ -12,6 +21,9 @@ module Gem
           define
         end
 
+        #
+        # Defines the `scm:push` task.
+        #
         def define
           namespace :scm do
             task :push do
@@ -25,7 +37,10 @@ module Gem
         end
 
         #
+        # Pushes commits.
+        #
         # @return [Boolean]
+        #   Specifies whether the commits were successfully pushed.
         #
         def push!
           case @project.scm

@@ -2,6 +2,9 @@ require 'rubygems/tasks/task'
 
 module Gem
   class Tasks
+    #
+    # The `console` task.
+    #
     class Console < Task
 
       # The default Interactive Ruby Console
@@ -31,6 +34,9 @@ module Gem
         define
       end
 
+      #
+      # Defines the `console` task.
+      #
       def define
         @project.gemspecs.each do |name,gemspec|
           namespace :console do

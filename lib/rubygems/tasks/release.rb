@@ -2,6 +2,9 @@ require 'rubygems/tasks/task'
 
 module Gem
   class Tasks
+    #
+    # The `release` task.
+    #
     class Release < Task
 
       #

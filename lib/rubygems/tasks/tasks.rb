@@ -145,14 +145,5 @@ module Gem
       yield self if block_given?
     end
 
-    #
-    # @param [Symbol] name
-    #
-    # @return [Boolean]
-    #
-    def task?(name)
-      Rake::Task.task_defined?(name)
-    end
-
   end
 end

@@ -6,12 +6,14 @@ module Gem
   class Tasks
     class Project
 
+      # Supported SCMs and their control directories.
       SCM_DIRS = {
         :git => '.git',
         :hg  => '.hg',
         :svn => '.svn'
       }
 
+      # The `pkg/` directory.
       PKG_DIR = 'pkg'
 
       #
@@ -97,6 +99,8 @@ module Gem
         end
       end
 
+      #
+      # Specifies whether the project uses Bundler.
       #
       # @return [Boolean]
       #

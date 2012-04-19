@@ -3,13 +3,30 @@ require 'rubygems/tasks/task'
 module Gem
   class Tasks
     module SCM
+      #
+      # The `scm:tag` task.
+      #
       class Tag < Task
 
         # Default format for versions
         DEFAULT_FORMAT = '%s'
 
+        # The format for version tags.
+        #
+        # @return [String, Proc]
+        #   The format String or Proc.
+        #
         attr_accessor :format
 
+        #
+        # Initializes the `scm:tag` task.
+        #
+        # @param [Hash] options
+        #   Additional options.
+        #
+        # @option options [String, Proc] :format (DEFAULT_FORMAT)
+        #   The format String or Proc for version tags.
+        #
         def initialize(options={})
           super()
 
@@ -19,6 +36,9 @@ module Gem
           define
         end
 
+        #
+        # Defines the `scm:tag` task.
+        #
         def define
           namespace :scm do
             task :tag, [:name] do |t,args|
@@ -38,7 +58,16 @@ module Gem
         end
 
         #
+        # Formats the version into a version tag.
+        #
+        # @param [String] version
+        #   The version to be formatted.
+        #
+        # @return [String]
+        #   The tag for the version.
+        #
         # @raise [TypeError]
+        #   {#format} was not a String or a Proc.
         #
         def version_tag(version)
           case @format
@@ -52,9 +81,13 @@ module Gem
         end
 
         #
+        # Creates a tag.
+        #
         # @param [String] name
+        #   The name of the tag.
         #
         # @return [Boolean]
+        #   Specifies whether the tag was successfully created.
         #
         def tag!(name)
           case @project.scm
