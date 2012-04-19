@@ -128,8 +128,8 @@ module Gem
 
       if scm_options
         @scm.status = SCM::Status.new if scm_options.fetch(:status,true)
-        @scm.tag    = SCM::Status.new if scm_options.fetch(:tag,true)
-        @scm.push   = SCM::Status.new if scm_options.fetch(:push,true)
+        @scm.tag    = SCM::Tag.new    if scm_options.fetch(:tag,true)
+        @scm.push   = SCM::Push.new   if scm_options.fetch(:push,true)
       end
 
       if sign_options
