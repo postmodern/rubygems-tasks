@@ -6,7 +6,7 @@ description:
 
 authors: Postmodern
 email: postmodern.mod3@gmail.com
-homepage: http://github.com/postmodern/rubygems-tasks
+homepage: https://github.com/postmodern/rubygems-tasks
 has_yard: true
 
 development_dependencies:
