@@ -46,12 +46,12 @@ module Gem
 
               if @project.bundler?
                 if @command == DEFAULT_CONSOLE
-                  system 'bundle', 'console'
+                  run 'bundle', 'console'
                 else
-                  system 'bundle', 'exec', *arguments
+                  run 'bundle', 'exec', *arguments
                 end
               else
-                system *arguments
+                run *arguments
               end
             end
           end
