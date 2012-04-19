@@ -29,6 +29,7 @@ Gem::Tasks provides simple Rake tasks for managing and releasing Ruby gems.
 
 ## Anti-Features
 
+* **Does not** parse project metadata from the README or the ChangeLog.
 * **Does not** generate or modify code.
 * **Does not** automatically commit changes.
 * **Does not** inject dependencies into gems.
