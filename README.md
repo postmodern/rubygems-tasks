@@ -19,12 +19,12 @@ to the project generator which you used to create the project.
 Project generators have _nothing_ to do with the Rake tasks used to build,
 install and release a Ruby project.
 
-Each project generator (Hoe, Jeweler, Bundler, etc) having their
-own set of Rake tasks introduces differing functionality between projects,
-and creates factions between developers. Ruby Developers should not be
-factionalized by their project generator or Rake tasks. Ruby Developers should
-have a common set of Rake tasks that they can use in any project.
-This is what rubygems-tasks seeks to accomplish.
+Recently, many Ruby Developers began creating Ruby projects by hand,
+building/releasing RubyGems using `gem build` / `gem push`. Sometimes this
+resulted in RubyGems being released with uncommitted changes, or the developer
+forgetting to tag the release. Ruby Developers should have access to
+Project generator _agnostic_ and _unobtrusive_ Rake tasks, to _automate_
+the release process. This is what rubygems-tasks seeks to provide.
 
 ## Features
 
