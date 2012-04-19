@@ -16,6 +16,9 @@ module Gem
       # The Ruby Console command
       attr_accessor :command
 
+      # Additional options for the Ruby Console
+      attr_accessor :options
+
       #
       # Initializes the `console` task.
       #
@@ -25,10 +28,14 @@ module Gem
       # @option options [String, Array] :command (DEFAULT_COMMAND)
       #   The Ruby Console command to run.
       #
+      # @option options [Array] :options
+      #   Additional options for the Ruby Console.
+      #
       def initialize(options={})
         super()
 
         @command = options.fetch(:command,DEFAULT_COMMAND)
+        @options = Array(options[:options])
 
         yield self if block_given?
         define
@@ -41,8 +48,8 @@ module Gem
         @project.gemspecs.each do |name,gemspec|
           namespace :console do
             task name do |t,args|
-              load_paths = gemspec.require_paths
-              arguments  = [@command] + load_paths.map { |dir| "-I#{dir}" }
+              arguments  = [@command, *@options]
+              arguments += gemspec.require_paths.map { |dir| "-I#{dir}" }
 
               if @project.bundler?
                 if @command == DEFAULT_CONSOLE
