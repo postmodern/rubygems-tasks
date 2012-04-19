@@ -54,7 +54,7 @@ module Gem
         #
         def status
           case @project.scm
-          when :git then `git status`
+          when :git then `git status --porcelain`
           when :hg  then `hg status`
           when :svn then `svn status`
           else            ''
