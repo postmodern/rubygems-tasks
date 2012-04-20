@@ -31,7 +31,7 @@ module Gem
             task build => path do
               status "Installing #{File.basename(path)} ..."
 
-              run 'gem', 'install', '-q', path
+              run(path)
             end
           end
         end
@@ -40,6 +40,32 @@ module Gem
         gemspec_tasks :install
 
         task :install_gem => :install # backwards compatibility with Hoe
+      end
+
+      #
+      # Command arguments for installing the gem.
+      #
+      # @param [String] path
+      #   The path to the `.gem` to push.
+      #
+      # @return [Array<String>]
+      #   Command arguments.
+      #
+      def arguments(path)
+        ['gem', 'install', '-q', path]
+      end
+
+      #
+      # Pushes the gem by running `gem install`.
+      #
+      # @param [String] path
+      #   The path to the `.gem` file.
+      #
+      # @return [Boolean]
+      #   Specifies whether `gem install` was successfull or not.
+      #
+      def run(path)
+        super(*arguments(path))
       end
 
     end
