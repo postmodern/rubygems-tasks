@@ -55,6 +55,22 @@ module Gem
       attr_reader :builds
 
       #
+      # The name of the primary gemspec.
+      #
+      # @return [String]
+      #   The gemspec name.
+      #
+      attr_reader :primary_gemspec_name
+
+      #
+      # The primary gemspec for the project.
+      #
+      # @return [Gem::Specification]
+      #   The primary gemspec.
+      #
+      attr_reader :primary_gemspec
+
+      #
       # Initializes the project.
       #
       # @param [String] root
@@ -82,7 +98,41 @@ module Gem
           end
         end
 
+        @primary_gemspec_name, @primary_gemspec = if @gemspecs.has_key?(@name)
+                                                    [@name, @gemspecs[@name]]
+                                                  else
+                                                    @gemspecs.first
+                                                  end
+
         @bundler = File.file?(File.join(@root,'Gemfile'))
+      end
+
+      #
+      # The primary build name for the project.
+      #
+      # @return [String]
+      #   The primary build name.
+      #
+      # @api semipublic
+      #
+      def primary_build
+        if @builds.has_key?(@name)
+          @name
+        else
+          @builds.keys.first
+        end
+      end
+
+      #
+      # The primary gemspec for the project.
+      #
+      # @return [Gem::Specification]
+      #   The primary gemspec.
+      #
+      # @api semipublic
+      #
+      def primary_gemspec
+        @gemspecs[primary_build]
       end
 
       #
