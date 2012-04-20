@@ -105,8 +105,8 @@ module Gem
 
             tag_dir = File.join(tag_dirs,name)
 
-            mkdir_p tags_dir
-            cp_r    '.', tag_dir
+            FileUtils.mkdir_p tags_dir
+            FileUtils.cp_r '.', tag_dir
 
             return run('svn', 'add', tag_dir)
           else
