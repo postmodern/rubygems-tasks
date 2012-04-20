@@ -47,9 +47,7 @@ module Gem
       def define
         @project.gemspecs.each_key do |name|
           namespace :console do
-            task name do |t,args|
-              console(name)
-            end
+            task(name) { run(name) }
           end
         end
 
@@ -100,8 +98,8 @@ module Gem
       # @return [Array<String>]
       #   The arguments to run the console command.
       #
-      def console(name=@project.primary_gemspec_name)
-        run(*arguments(name))
+      def run(name=@project.primary_gemspec_name)
+        super(*arguments(name))
       end
 
     end
