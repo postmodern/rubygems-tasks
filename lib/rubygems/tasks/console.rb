@@ -76,7 +76,7 @@ module Gem
         arguments += @options
 
         if @project.bundler?
-          arguments = if @command == DEFAULT_CONSOLE
+          arguments = if (@command == DEFAULT_CONSOLE && @options.empty?)
                         ['bundle', 'console']
                       else
                         ['bundle', 'exec', *arguments]
