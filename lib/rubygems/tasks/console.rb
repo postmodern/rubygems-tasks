@@ -71,8 +71,9 @@ module Gem
           raise(ArgumentError,"unknown gemspec name: #{name}")
         end
 
-        arguments  = [@command, *@options]
+        arguments  = [@command]
         arguments += gemspec.require_paths.map { |dir| "-I#{dir}" }
+        arguments += @options
 
         if @project.bundler?
           arguments = if @command == DEFAULT_CONSOLE
