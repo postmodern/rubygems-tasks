@@ -37,17 +37,13 @@ module Gem
             path = packages[:gem]
 
             task build => path do
-              arguments = []
-
               if @host
-                arguments << '--host' << @host
-
                 status "Pushing #{File.basename(path)} to #{@host} ..."
               else
                 status "Pushing #{File.basename(path)} ..."
               end
 
-              run 'gem', 'push', path, *arguments
+              run(path)
             end
           end
         end
@@ -56,6 +52,35 @@ module Gem
 
         # backwards compatibility for Hoe
         task :publish => :push
+      end
+
+      #
+      # Command arguments for pushing the gem.
+      #
+      # @param [String] path
+      #   The path to the `.gem` to push.
+      #
+      # @return [Array<String>]
+      #   Command arguments.
+      #
+      def arguments(path)
+        arguments = ['gem', 'push', path]
+        arguments.unshift('--host', @host) if @host
+
+        return arguments
+      end
+
+      #
+      # Pushes the gem by running `gem push`.
+      #
+      # @param [String] path
+      #   The path to the `.gem` file.
+      #
+      # @return [Boolean]
+      #   Specifies whether `gem push` was successfull or not.
+      #
+      def run(path)
+        super(*arguments(path))
       end
 
     end
