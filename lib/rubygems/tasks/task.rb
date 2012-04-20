@@ -9,6 +9,16 @@ module Gem
 
       include Printing
 
+      #
+      # Project metadata.
+      #
+      # @return [Project]
+      #
+      attr_reader :project
+
+      #
+      # Initializes the task.
+      #
       def initialize
         @project = Project.directories[Dir.pwd]
       end
