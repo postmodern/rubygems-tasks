@@ -54,7 +54,7 @@ module Gem
         end
 
         desc "Spawns an Interactive Ruby Console"
-        task :console => "console:#{@project.gemspecs.keys.first}"
+        task :console => "console:#{@project.primary_gemspec_name}"
       end
 
       #
@@ -66,7 +66,7 @@ module Gem
       # @return [Array<String>]
       #   The arguments for the console command.
       #
-      def arguments(name=@project.gemspecs.keys.first)
+      def arguments(name=@project.primary_gemspec_name)
         unless (gemspec = @project.gemspecs[name.to_s])
           raise(ArgumentError,"unknown gemspec name: #{name}")
         end
@@ -95,7 +95,7 @@ module Gem
       # @return [Array<String>]
       #   The arguments to run the console command.
       #
-      def console(name=@project.gemspecs.keys.first)
+      def console(name=@project.primary_gemspec_name)
         run(*arguments(name))
       end
 
