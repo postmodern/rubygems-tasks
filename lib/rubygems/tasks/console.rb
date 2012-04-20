@@ -71,11 +71,16 @@ module Gem
           raise(ArgumentError,"unknown gemspec name: #{name}")
         end
 
-        arguments  = [@command]
-        arguments += gemspec.require_paths.map { |dir| "-I#{dir}" }
-        arguments += @options
+        arguments = [@command]
+
+        # add -I options for lib/ or ext/ directories
+        arguments.push(*gemspec.require_paths.map { |dir| "-I#{dir}" })
+
+        # push on additional options
+        arguments.push(*@options)
 
         if @project.bundler?
+          # use `bundle console` unless were were using custom command/options
           if (@command == DEFAULT_CONSOLE && @options.empty?)
             arguments = ['bundle', 'console']
           else
