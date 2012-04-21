@@ -30,8 +30,9 @@ module Gem
               status = self.status
 
               unless status.strip.empty?
+                error "Project has uncommitted changes!"
                 puts status
-                fail "Project has uncommitted changes!"
+                abort
               end
             end
           end
