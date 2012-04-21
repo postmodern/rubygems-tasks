@@ -47,7 +47,7 @@ module Gem
       def define
         @project.gemspecs.each_key do |name|
           namespace :console do
-            task(name) { run(name) }
+            task(name) { console(name) }
           end
         end
 
@@ -64,7 +64,7 @@ module Gem
       # @return [Array<String>]
       #   The arguments for the console command.
       #
-      def arguments(name=@project.primary_gemspec_name)
+      def console(name=@project.primary_gemspec_name)
         unless (gemspec = @project.gemspecs[name.to_s])
           raise(ArgumentError,"unknown gemspec name: #{name}")
         end
@@ -86,20 +86,7 @@ module Gem
           end
         end
 
-        return arguments
-      end
-
-      #
-      # Runs the console command.
-      #
-      # @param [Symbol, String] name
-      #   The name of the gemspec to load.
-      #
-      # @return [Array<String>]
-      #   The arguments to run the console command.
-      #
-      def run(name=@project.primary_gemspec_name)
-        super(*arguments(name))
+        return run(*arguments)
       end
 
     end

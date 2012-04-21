@@ -43,7 +43,7 @@ module Gem
                 status "Pushing #{File.basename(path)} ..."
               end
 
-              run(path)
+              push(path)
             end
           end
         end
@@ -55,22 +55,6 @@ module Gem
       end
 
       #
-      # Command arguments for pushing the gem.
-      #
-      # @param [String] path
-      #   The path to the `.gem` to push.
-      #
-      # @return [Array<String>]
-      #   Command arguments.
-      #
-      def arguments(path)
-        arguments = ['gem', 'push', path]
-        arguments.unshift('--host', @host) if @host
-
-        return arguments
-      end
-
-      #
       # Pushes the gem by running `gem push`.
       #
       # @param [String] path
@@ -79,8 +63,11 @@ module Gem
       # @return [Boolean]
       #   Specifies whether `gem push` was successfull or not.
       #
-      def run(path)
-        super(*arguments(path))
+      def push(path)
+        arguments = ['gem', 'push', path]
+        arguments.push('--host', @host) if @host
+
+        return run(*arguments)
       end
 
     end

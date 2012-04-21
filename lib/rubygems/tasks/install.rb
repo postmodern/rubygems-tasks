@@ -31,7 +31,7 @@ module Gem
             task build => path do
               status "Installing #{File.basename(path)} ..."
 
-              run(path)
+              install(path)
             end
           end
         end
@@ -43,19 +43,6 @@ module Gem
       end
 
       #
-      # Command arguments for installing the gem.
-      #
-      # @param [String] path
-      #   The path to the `.gem` to push.
-      #
-      # @return [Array<String>]
-      #   Command arguments.
-      #
-      def arguments(path)
-        ['gem', 'install', '-q', path]
-      end
-
-      #
       # Pushes the gem by running `gem install`.
       #
       # @param [String] path
@@ -64,8 +51,8 @@ module Gem
       # @return [Boolean]
       #   Specifies whether `gem install` was successfull or not.
       #
-      def run(path)
-        super(*arguments(path))
+      def install(path)
+        run 'gem', 'install', '-q', path
       end
 
     end

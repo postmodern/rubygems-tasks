@@ -4,19 +4,13 @@ require 'rake_context'
 require 'rubygems/tasks/install'
 
 describe Gem::Tasks::Install do
-  describe "#arguments" do
+  describe "#install" do
     let(:path) { 'pkg/foo-1.2.3.gem' }
 
-    it "should use `gem install`" do
-      subject.arguments(path)[0,2].should == %w[gem install]
-    end
+    it "should use `gem install -q`" do
+      subject.should_receive(:run).with('gem', 'install', '-q', path)
 
-    it "should include -q" do
-      subject.arguments(path).should include('-q')
-    end
-
-    it "should include the path" do
-      subject.arguments(path).last.should == path
+      subject.install(path)
     end
   end
 end

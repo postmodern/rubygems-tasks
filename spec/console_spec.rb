@@ -4,70 +4,63 @@ require 'rake_context'
 require 'rubygems/tasks/console'
 
 describe Gem::Tasks::Console do
-  describe "#arguments" do
+  describe "#console" do
+    include_context "rake"
+
     let(:command) { 'ripl'             }
     let(:options) { %w[-Ivendor -rfoo] }
 
     context "defaults" do
-      include_context "rake"
+      it "should run `irb`" do
+        subject.should_receive(:run).with('irb','-Ilib')
 
-      it "should run irb" do
-        subject.arguments.first.should == 'irb'
-      end
-
-      it "should include -I options" do
-        subject.arguments.should include('-Ilib')
+        subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle console`" do
           subject.project.stub!(:bundler?).and_return(true)
+          subject.should_receive(:run).with('bundle', 'console')
 
-          subject.arguments.should == %w[bundle console]
+          subject.console
         end
       end
     end
 
     context "with custom command" do
-      include_context "rake"
-
       subject { described_class.new(:command => command) }
 
       it "should run the custom console" do
-        subject.arguments.first.should == command
-      end
+        subject.should_receive(:run).with(command, '-Ilib')
 
-      it "should still include -I options" do
-        subject.arguments.should include('-Ilib')
+        subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle exec`" do
           subject.project.stub!(:bundler?).and_return(true)
+          subject.should_receive(:run).with('bundle', 'exec', command, '-Ilib')
 
-          subject.arguments[0,2].should == %w[bundle exec]
+          subject.console
         end
       end
     end
 
     context "with custom options" do
-      include_context "rake"
-
       subject { described_class.new(:options => options) }
 
-      it "should include the custom options" do
-        subject.arguments.should include(*options)
-      end
+      it "should pass custom options to `irb`" do
+        subject.should_receive(:run).with('irb', '-Ilib', *options)
 
-      it "should still include -I options" do
-        subject.arguments.should include('-Ilib')
+        subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle exec ...`" do
           subject.project.stub!(:bundler?).and_return(true)
+          subject.should_receive(:run).with('bundle', 'exec', 'irb', '-Ilib', *options)
 
-          subject.arguments[0,2].should == %w[bundle exec]
+          subject.console
         end
       end
     end
