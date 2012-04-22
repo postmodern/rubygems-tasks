@@ -6,8 +6,8 @@
 
 ## Description
 
-rubygems-tasks provides simple Rake tasks for building, installing and releasing
-Ruby gems.
+rubygems-tasks provides unobtrusive Rake tasks for building, installing and
+releasing Ruby Gems.
 
     require 'rubygems/tasks'
     Gem::Tasks.new
