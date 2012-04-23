@@ -109,22 +109,6 @@ module Gem
       end
 
       #
-      # The primary build name for the project.
-      #
-      # @return [String]
-      #   The primary build name.
-      #
-      # @api semipublic
-      #
-      def primary_build
-        if @builds.has_key?(@name)
-          @name
-        else
-          @builds.keys.first
-        end
-      end
-
-      #
       # The primary gemspec for the project.
       #
       # @return [Gem::Specification]
