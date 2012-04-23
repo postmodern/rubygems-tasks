@@ -63,14 +63,6 @@ module Gem
       attr_reader :primary_gemspec_name
 
       #
-      # The primary gemspec for the project.
-      #
-      # @return [Gem::Specification]
-      #   The primary gemspec.
-      #
-      attr_reader :primary_gemspec
-
-      #
       # Initializes the project.
       #
       # @param [String] root
@@ -103,7 +95,6 @@ module Gem
                                 else
                                   @gemspecs.keys.sort.first
                                 end
-        @primary_gemspec = @gemspecs[@primary_gemspec_name]
 
         @bundler = File.file?(File.join(@root,'Gemfile'))
       end
@@ -117,7 +108,7 @@ module Gem
       # @api semipublic
       #
       def primary_gemspec
-        @gemspecs[primary_build]
+        @gemspecs[@primary_gemspec_name]
       end
 
       #
