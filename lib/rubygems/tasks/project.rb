@@ -82,6 +82,12 @@ module Gem
           }]
         end
 
+        @primary_gemspec_name = if @gemspecs.has_key?(@name)
+                                  @name
+                                else
+                                  @gemspecs.keys.sort.first
+                                end
+
         @builds = {}
 
         @gemspecs.each do |name,gemspec|
@@ -89,12 +95,6 @@ module Gem
             packages[format] = File.join(PKG_DIR,"#{gemspec.full_name}.#{format}")
           end
         end
-
-        @primary_gemspec_name = if @gemspecs.has_key?(@name)
-                                  @name
-                                else
-                                  @gemspecs.keys.sort.first
-                                end
 
         @bundler = File.file?(File.join(@root,'Gemfile'))
       end
