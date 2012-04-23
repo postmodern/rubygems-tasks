@@ -60,7 +60,7 @@ module Gem
       # @return [String]
       #   The gemspec name.
       #
-      attr_reader :primary_gemspec_name
+      attr_reader :primary_gemspec
 
       #
       # Initializes the project.
@@ -82,11 +82,11 @@ module Gem
           }]
         end
 
-        @primary_gemspec_name = if @gemspecs.has_key?(@name)
-                                  @name
-                                else
-                                  @gemspecs.keys.sort.first
-                                end
+        @primary_gemspec = if @gemspecs.has_key?(@name)
+                             @name
+                           else
+                             @gemspecs.keys.sort.first
+                           end
 
         @builds = {}
 
@@ -107,8 +107,8 @@ module Gem
       #
       # @api semipublic
       #
-      def primary_gemspec
-        @gemspecs[@primary_gemspec_name]
+      def gemspec
+        @gemspecs[@primary_gemspec]
       end
 
       #
