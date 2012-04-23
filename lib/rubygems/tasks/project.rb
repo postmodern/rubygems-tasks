@@ -100,15 +100,18 @@ module Gem
       end
 
       #
-      # The primary gemspec for the project.
+      # Retrieves a gemspec for the project.
+      #
+      # @param [String] name (@primary_gemspec)
+      #   The gemspec name to retrieve.
       #
       # @return [Gem::Specification]
-      #   The primary gemspec.
+      #   The requested gemspec.
       #
       # @api semipublic
       #
-      def gemspec
-        @gemspecs[@primary_gemspec]
+      def gemspec(name=nil)
+        @gemspecs[name || @primary_gemspec]
       end
 
       #
