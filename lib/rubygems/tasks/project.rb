@@ -98,11 +98,12 @@ module Gem
           end
         end
 
-        @primary_gemspec_name, @primary_gemspec = if @gemspecs.has_key?(@name)
-                                                    [@name, @gemspecs[@name]]
-                                                  else
-                                                    @gemspecs.first
-                                                  end
+        @primary_gemspec_name = if @gemspecs.has_key?(@name)
+                                  @name
+                                else
+                                  @gemspecs.keys.sort.first
+                                end
+        @primary_gemspec = @gemspecs[@primary_gemspec_name]
 
         @bundler = File.file?(File.join(@root,'Gemfile'))
       end
