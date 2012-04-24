@@ -111,7 +111,13 @@ module Gem
       # @api semipublic
       #
       def gemspec(name=nil)
-        @gemspecs[name || @primary_gemspec]
+        name ||= @primary_gemspec
+
+        unless @gemspecs.has_key?(name)
+          raise(ArgumentError,"unknown gemspec: #{name}")
+        end
+
+        return @gemspecs[name]
       end
 
       #

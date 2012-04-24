@@ -86,8 +86,8 @@ describe Gem::Tasks::Project do
         subject.gemspec.name.should == subject.name
       end
 
-      it "should return nil for unknown gemspec names" do
-        subject.gemspec('foo').should be_nil
+      it "should raise an ArgumentError for unknown gemspec names" do
+        lambda { subject.gemspec('foo') }.should raise_error(ArgumentError)
       end
     end
 

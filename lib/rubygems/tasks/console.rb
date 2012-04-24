@@ -64,10 +64,8 @@ module Gem
       # @return [Array<String>]
       #   The arguments for the console command.
       #
-      def console(name=@project.primary_gemspec)
-        unless (gemspec = @project.gemspecs[name.to_s])
-          raise(ArgumentError,"unknown gemspec name: #{name}")
-        end
+      def console(name=nil)
+        gemspec = @project.gemspec(name)
 
         arguments = [@command]
 
