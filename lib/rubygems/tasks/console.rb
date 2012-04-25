@@ -75,6 +75,9 @@ module Gem
         # add -I options for lib/ or ext/ directories
         arguments.push(*require_paths.map { |dir| "-I#{dir}" })
 
+        # add a -rrubygems to explicitly load rubygems on Ruby 1.8
+        arguments.push('-rrubygems') if RUBY_VERSION < '1.9'
+
         # add an -r option to require the library
         arguments.push('-r' + require_file.sub('lib/','')) if require_file
 

@@ -7,9 +7,14 @@ describe Gem::Tasks::Console do
   describe "#console" do
     include_context "rake"
 
-    let(:command)         { 'ripl'                        }
-    let(:default_options) { %w[-Ilib -rrubygems/tasks.rb] }
-    let(:custom_options)  { %w[-Ivendor -rfoo]            }
+    if RUBY_VERSION < '1.9'
+      let(:default_options) { %w[-Ilib -rrubygems -rrubygems/tasks.rb] }
+    else
+      let(:default_options) { %w[-Ilib -rrubygems/tasks.rb]            }
+    end
+
+    let(:custom_command)  { 'ripl'             }
+    let(:custom_options)  { %w[-Ivendor -rfoo] }
 
     context "defaults" do
       it "should run `irb`" do
@@ -29,10 +34,10 @@ describe Gem::Tasks::Console do
     end
 
     context "with custom command" do
-      subject { described_class.new(:command => command) }
+      subject { described_class.new(:command => custom_command) }
 
       it "should run the custom console" do
-        subject.should_receive(:run).with(command,*default_options)
+        subject.should_receive(:run).with(custom_command,*default_options)
 
         subject.console
       end
@@ -40,7 +45,9 @@ describe Gem::Tasks::Console do
       context "when project.bundler? == true" do
         it "should use `bundle exec`" do
           subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with('bundle', 'exec', command, *default_options)
+          subject.should_receive(:run).with(
+            'bundle', 'exec', custom_command, *default_options
+          )
 
           subject.console
         end
