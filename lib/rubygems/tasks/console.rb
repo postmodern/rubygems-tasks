@@ -67,10 +67,16 @@ module Gem
       def console(name=nil)
         gemspec = @project.gemspec(name)
 
+        require_paths = gemspec.require_paths
+        require_file  = gemspec.files.find { |path| path.start_with?('lib/') }
+
         arguments = [@command]
 
         # add -I options for lib/ or ext/ directories
-        arguments.push(*gemspec.require_paths.map { |dir| "-I#{dir}" })
+        arguments.push(*require_paths.map { |dir| "-I#{dir}" })
+
+        # add an -r option to require the library
+        arguments.push('-r' + require_file.sub('lib/','')) if require_file
 
         # push on additional options
         arguments.push(*@options)
