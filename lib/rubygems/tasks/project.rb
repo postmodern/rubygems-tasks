@@ -1,5 +1,3 @@
-require 'rake/tasklib'
-
 require 'set'
 
 module Gem
