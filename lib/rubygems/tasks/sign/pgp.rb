@@ -39,7 +39,7 @@ module Gem
         def sign(path)
           status "Signing #{File.basename(path)} ..."
 
-          run 'gpg', '--sign', path
+          run 'gpg', '-a', '--sign', path
         end
 
       end
