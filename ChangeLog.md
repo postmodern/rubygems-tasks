@@ -1,4 +1,4 @@
-### 0.1.0 / 2011-08-30
+### 0.1.0 / 2012-04-24
 
 * Initial release:
   * Added {Gem::Tasks::Project}.
