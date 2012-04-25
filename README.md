@@ -6,8 +6,8 @@
 
 ## Description
 
-rubygems-tasks provides unobtrusive Rake tasks for building, installing and
-releasing Ruby Gems.
+rubygems-tasks provides agnostic and unobtrusive Rake tasks for building,
+installing and releasing Ruby Gems.
 
     require 'rubygems/tasks'
     Gem::Tasks.new
@@ -23,8 +23,8 @@ Recently, many Ruby Developers began creating Ruby projects by hand,
 building/releasing RubyGems using `gem build` / `gem push`. Sometimes this
 resulted in RubyGems being released with uncommitted changes, or the developer
 forgetting to tag the release. Ruby Developers should have access to
-Project generator _agnostic_ and _unobtrusive_ Rake tasks, to _automate_
-the release process. This is what rubygems-tasks seeks to provide.
+_agnostic_ and _unobtrusive_ Rake tasks, to _automate_ the release process.
+This is what rubygems-tasks seeks to provide.
 
 ## Features
 

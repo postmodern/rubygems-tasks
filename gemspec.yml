@@ -2,7 +2,7 @@ name: rubygems-tasks
 version: 0.1.0.pre3
 summary: Rake tasks for managing and releasing Ruby Gems.
 description:
-  Unobtrusive Rake tasks for managing and releasing Ruby Gems.
+  Agnostic and unobtrusive Rake tasks for managing and releasing Ruby Gems.
 
 authors: Postmodern
 email: postmodern.mod3@gmail.com
