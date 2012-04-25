@@ -7,12 +7,13 @@ describe Gem::Tasks::Console do
   describe "#console" do
     include_context "rake"
 
-    let(:command) { 'ripl'             }
-    let(:options) { %w[-Ivendor -rfoo] }
+    let(:command)         { 'ripl'                        }
+    let(:default_options) { %w[-Ilib -rrubygems/tasks.rb] }
+    let(:custom_options)  { %w[-Ivendor -rfoo]            }
 
     context "defaults" do
       it "should run `irb`" do
-        subject.should_receive(:run).with('irb','-Ilib')
+        subject.should_receive(:run).with('irb',*default_options)
 
         subject.console
       end
@@ -31,7 +32,7 @@ describe Gem::Tasks::Console do
       subject { described_class.new(:command => command) }
 
       it "should run the custom console" do
-        subject.should_receive(:run).with(command, '-Ilib')
+        subject.should_receive(:run).with(command,*default_options)
 
         subject.console
       end
@@ -39,7 +40,7 @@ describe Gem::Tasks::Console do
       context "when project.bundler? == true" do
         it "should use `bundle exec`" do
           subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with('bundle', 'exec', command, '-Ilib')
+          subject.should_receive(:run).with('bundle', 'exec', command, *default_options)
 
           subject.console
         end
@@ -47,10 +48,10 @@ describe Gem::Tasks::Console do
     end
 
     context "with custom options" do
-      subject { described_class.new(:options => options) }
+      subject { described_class.new(:options => custom_options) }
 
       it "should pass custom options to `irb`" do
-        subject.should_receive(:run).with('irb', '-Ilib', *options)
+        subject.should_receive(:run).with('irb', *(default_options + custom_options))
 
         subject.console
       end
@@ -58,7 +59,7 @@ describe Gem::Tasks::Console do
       context "when project.bundler? == true" do
         it "should use `bundle exec ...`" do
           subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with('bundle', 'exec', 'irb', '-Ilib', *options)
+          subject.should_receive(:run).with('bundle', 'exec', 'irb', *(default_options + custom_options))
 
           subject.console
         end
