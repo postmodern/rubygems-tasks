@@ -90,9 +90,11 @@ module Gem
         #   Specifies whether the tag was successfully created.
         #
         def tag!(name)
+          message = "Tagging #{name}"
+
           case @project.scm
-          when :git then run 'git', 'tag', name
-          when :hg  then run 'hg', 'tag', name
+          when :git then run 'git', 'tag', '-m', message, name
+          when :hg  then run 'hg', 'tag', '-m', message, name
           when :svn
             branch   = File.basename(@project.root)
             tags_dir = if branch == 'trunk'
