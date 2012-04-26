@@ -44,9 +44,12 @@ module Gem
         #
         def push!
           case @project.scm
-          when :git then run 'git', 'push', '--tags'
-          when :hg  then run 'hg', 'push'
-          else           true
+          when :git
+            run('git', 'push') && run('git', 'push', '--tags')
+          when :hg 
+            run 'hg', 'push'
+          else
+            true
           end
         end
 
