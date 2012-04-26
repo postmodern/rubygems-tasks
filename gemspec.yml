@@ -1,5 +1,5 @@
 name: rubygems-tasks
-version: 0.1.1
+version: 0.1.2
 summary: Rake tasks for managing and releasing Ruby Gems.
 description:
   Agnostic and unobtrusive Rake tasks for managing and releasing Ruby Gems.
