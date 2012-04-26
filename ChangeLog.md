@@ -1,3 +1,7 @@
+### 0.1.2 / 2012-04-26
+
+* {Gem::Tasks::SCM::Push} now runs `git push` then `git push --tags`.
+
 ### 0.1.1 / 2012-04-26
 
 * {Gem::Tasks::Sign::PGP} now creates ASCII armored signatures.
