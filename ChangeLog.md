@@ -1,3 +1,10 @@
+### 0.1.1 / 2012-04-26
+
+* {Gem::Tasks::Sign::PGP} now creates ASCII armored signatures.
+* {Gem::Tasks::Console}
+  * require `rubygems` on Ruby 1.8.
+  * require the first `lib/` file to load the project.
+
 ### 0.1.0 / 2012-04-24
 
 * Initial release:
