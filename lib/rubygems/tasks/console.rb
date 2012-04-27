@@ -25,7 +25,7 @@ module Gem
       # @param [Hash] options
       #   Additional options.
       #
-      # @option options [String, Array] :command (DEFAULT_COMMAND)
+      # @option options [String] :command (DEFAULT_COMMAND)
       #   The Ruby Console command to run.
       #
       # @option options [Array] :options
