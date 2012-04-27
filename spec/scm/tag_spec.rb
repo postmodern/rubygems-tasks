@@ -47,9 +47,26 @@ describe Gem::Tasks::SCM::Tag do
 
       it "should run `git tag`" do
         subject.project.stub!(:scm).and_return(:git)
-        subject.should_receive(:run).with('git', 'tag', '-m', message, name)
+
+        subject.should_receive(:run).with(
+          'git', 'tag', '-m', message, name
+        )
 
         subject.tag!(name)
+      end
+
+      context "signing" do
+        subject { described_class.new(:sign => true) }
+
+        it "should run `git tag -s`" do
+          subject.project.stub!(:scm).and_return(:git)
+
+          subject.should_receive(:run).with(
+            'git', 'tag', '-m', message, '-s', name
+          )
+
+          subject.tag!(name)
+        end
       end
     end
 
@@ -58,9 +75,29 @@ describe Gem::Tasks::SCM::Tag do
 
       it "should run `hg tag`" do
         subject.project.stub!(:scm).and_return(:hg)
-        subject.should_receive(:run).with('hg', 'tag', '-m', message, name)
+
+        subject.should_receive(:run).with(
+          'hg', 'tag', '-m', message, name
+        )
 
         subject.tag!(name)
+      end
+
+      context "signing" do
+        subject { described_class.new(:sign => true) }
+
+        it "should run `hg sign` then `hg tag`" do
+          subject.project.stub!(:scm).and_return(:hg)
+
+          subject.should_receive(:run).with(
+            'hg', 'sign', '-m', "Signing #{name}"
+          )
+          subject.should_receive(:run).with(
+            'hg', 'tag', '-m', message, name
+          )
+
+          subject.tag!(name)
+        end
       end
     end
   end

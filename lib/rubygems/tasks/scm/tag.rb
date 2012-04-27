@@ -18,6 +18,15 @@ module Gem
         #
         attr_accessor :format
 
+        # Enables or disables PGP signing of tags.
+        # 
+        # @param [Boolean] value
+        #   The new value.
+        #
+        # @since 0.2.0
+        #
+        attr_writer :sign
+
         #
         # Initializes the `scm:tag` task.
         #
@@ -27,13 +36,29 @@ module Gem
         # @option options [String, Proc] :format (DEFAULT_FORMAT)
         #   The format String or Proc for version tags.
         #
+        # @option options [Boolean] :sign
+        #   Enables PGP signing of tags.
+        #
         def initialize(options={})
           super()
 
           @format = options.fetch(:format,DEFAULT_FORMAT)
+          @sign   = options[:sign]
 
           yield self if block_given?
           define
+        end
+
+        #
+        # Indicates whether new tags will be signed.
+        #
+        # @return [Boolean]
+        #   Specifies whether new tags will be signed.
+        #
+        # @since 0.2.0
+        #
+        def sign?
+          @sign == true
         end
 
         #
@@ -93,8 +118,19 @@ module Gem
           message = "Tagging #{name}"
 
           case @project.scm
-          when :git then run 'git', 'tag', '-m', message, name
-          when :hg  then run 'hg', 'tag', '-m', message, name
+          when :git then
+            arguments = ['-m', message]
+            arguments << '-s' if sign?
+            arguments << name
+
+            run 'git', 'tag', *arguments
+          when :hg  then
+            if sign?
+              # sign the change-set, then tag the release
+              run 'hg', 'sign', '-m', "Signing #{name}"
+            end
+
+            run 'hg', 'tag', '-m', message, name
           when :svn
             branch   = File.basename(@project.root)
             tags_dir = if branch == 'trunk'
