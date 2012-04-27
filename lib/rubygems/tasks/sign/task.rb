@@ -26,6 +26,8 @@ module Gem
         # @param [Symbol] name
         #   The name for the `sign:` task.
         #
+        # @api semipublic
+        #
         def sign_task(name)
           @project.builds.each do |build,packages|
             packages.each do |format,path|

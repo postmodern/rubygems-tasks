@@ -3,6 +3,8 @@ module Gem
     #
     # Provides helper methods for printing messages.
     #
+    # @api semipublic
+    #
     module Printing
 
       # ANSI 'bright' color code

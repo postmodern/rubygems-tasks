@@ -2,6 +2,9 @@ require 'set'
 
 module Gem
   class Tasks
+    #
+    # @api semipublic
+    #
     class Project
 
       # Supported SCMs and their control directories.
@@ -106,8 +109,6 @@ module Gem
       # @return [Gem::Specification]
       #   The requested gemspec.
       #
-      # @api semipublic
-      #
       def gemspec(name=nil)
         name ||= @primary_gemspec
 
@@ -123,8 +124,6 @@ module Gem
       #
       # @return [Hash{String => Project}]
       #   Project directories and project objects.
-      #
-      # @api semipublic
       #
       def self.directories
         @@directories ||= Hash.new do |hash,key|

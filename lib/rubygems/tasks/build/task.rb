@@ -7,8 +7,21 @@ module Gem
     module Build
       class Task < Tasks::Task
 
+        #
+        # @param [String] path
+        #
+        # @param [Gem::Specification] gemspec
+        #
+        # @abstract
+        #
+        def build(path,gemspec)
+        end
+
         protected
 
+        #
+        # @api semipublic
+        #
         def build_task(name,extname=name)
           directory Project::PKG_DIR
 
@@ -36,16 +49,6 @@ module Gem
 
           desc "Builds all packages" unless task?(:build)
           task :build => "build:#{name}"
-        end
-
-        #
-        # @param [String] path
-        #
-        # @param [Gem::Specification] gemspec
-        #
-        # @abstract
-        #
-        def build(path,gemspec)
         end
 
       end
