@@ -37,6 +37,7 @@ This is what rubygems-tasks seeks to provide.
   * `build:zip`
 * Supports [Git][3], [Mercurial][4] and [SubVersion][5] Source-Code-Managers
   (SCMs).
+  * Supports creating PGP signed Git/Mercurial tags.
 * Provides optional `sign` tasks for package integrity:
   * `sign:checksum`
   * `sign:pgp`
