@@ -20,6 +20,14 @@ module Gem
         protected
 
         #
+        # Defines build task(s) for file type.
+        #
+        # @param [Symbol] name
+        #   The name for the task(s).
+        #
+        # @param [String, Symbol] extname
+        #   The file extension for the resulting files.
+        #
         # @api semipublic
         #
         def build_task(name,extname=name)
