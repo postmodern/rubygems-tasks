@@ -50,18 +50,6 @@ module Gem
         end
 
         #
-        # Indicates whether new tags will be signed.
-        #
-        # @return [Boolean]
-        #   Specifies whether new tags will be signed.
-        #
-        # @since 0.2.0
-        #
-        def sign?
-          @sign == true
-        end
-
-        #
         # Defines the `scm:tag` task.
         #
         def define
@@ -103,6 +91,29 @@ module Gem
           else
             raise(TypeError,"tag format must be a String or Proc")
           end
+        end
+
+        #
+        # Indicates whether new tags will be signed.
+        #
+        # @return [Boolean]
+        #   Specifies whether new tags will be signed.
+        #
+        # @since 0.2.0
+        #
+        def sign?
+          if @sign.nil?
+            @sign = case @project.scm
+                    when :git
+                      !`git config user.signingkey`.chomp.empty?
+                    when :hg
+                      !`hg showconfig extensions hgext gpg`.chomp.empty?
+                    else
+                      false
+                    end
+          end
+
+          return @sign
         end
 
         #
