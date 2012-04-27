@@ -107,10 +107,9 @@ module Gem
 
             tag_dir = File.join(tag_dirs,name)
 
-            FileUtils.mkdir_p tags_dir
-            FileUtils.cp_r '.', tag_dir
-
-            return run('svn', 'add', tag_dir)
+            run 'svn', 'mkdir', '--parents', tag_dir
+            run 'svn', 'cp', '*', tag_dir
+            run 'svn', 'commit', '-m', message, tag_dir
           else
             true
           end
