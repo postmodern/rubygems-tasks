@@ -8,9 +8,5 @@ unless File.directory?(PROJECTS_DIR)
   abort "Please run `rake data:projects` before running the specs!"
 end
 
-RSpec.configure do |spec|
-  spec.before(:suite) do
-    # clear the $RUBYCONSOLE env variable
-    ENV['RUBYCONSOLE'] = nil
-  end
-end
+# clear the $RUBYCONSOLE env variable
+ENV['RUBYCONSOLE'] = nil
