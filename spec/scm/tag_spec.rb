@@ -43,19 +43,25 @@ describe Gem::Tasks::SCM::Tag do
     let(:message) { "Tagging #{name}"    }
 
     context "git" do
-      include_context "rake"
+      context "without signing" do
+        include_context "rake"
 
-      it "should run `git tag`" do
-        subject.project.stub!(:scm).and_return(:git)
+        subject { described_class.new(:sign => false) }
 
-        subject.should_receive(:run).with(
-          'git', 'tag', '-m', message, name
-        )
+        it "should run `git tag`" do
+          subject.project.stub!(:scm).and_return(:git)
 
-        subject.tag!(name)
+          subject.should_receive(:run).with(
+            'git', 'tag', '-m', message, name
+          )
+
+          subject.tag!(name)
+        end
       end
 
       context "signing" do
+        include_context "rake"
+
         subject { described_class.new(:sign => true) }
 
         it "should run `git tag -s`" do
@@ -71,19 +77,25 @@ describe Gem::Tasks::SCM::Tag do
     end
 
     context "hg" do
-      include_context "rake"
+      context "without signing" do
+        include_context "rake"
 
-      it "should run `hg tag`" do
-        subject.project.stub!(:scm).and_return(:hg)
+        subject { described_class.new(:sign => false) }
 
-        subject.should_receive(:run).with(
-          'hg', 'tag', '-m', message, name
-        )
+        it "should run `hg tag`" do
+          subject.project.stub!(:scm).and_return(:hg)
 
-        subject.tag!(name)
+          subject.should_receive(:run).with(
+            'hg', 'tag', '-m', message, name
+          )
+
+          subject.tag!(name)
+        end
       end
 
-      context "signing" do
+      context "with signing" do
+        include_context "rake"
+
         subject { described_class.new(:sign => true) }
 
         it "should run `hg sign` then `hg tag`" do
