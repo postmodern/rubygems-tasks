@@ -4,26 +4,26 @@ require 'rake_context'
 require 'rubygems/tasks/scm/tag'
 
 describe Gem::Tasks::SCM::Tag do
-  let(:version) { '1.2.3'              }
+  let(:version) { '1.2.3' }
 
   describe "#version_tag" do
     context "defaults" do
       include_context "rake"
 
-      it "should not have a prefix or suffix" do
-        subject.version_tag(version).should == version
+      it "should have a 'v' prefix" do
+        subject.version_tag(version).should == "v#{version}"
       end
     end
 
     context "with format String" do
       include_context "rake"
 
-      let(:format) { 'v%s' }
+      let(:format) { 'release-%s' }
 
       subject { described_class.new(:format => format) }
 
       it "should apply the format String to the version" do
-        subject.version_tag(version).should == "v#{version}"
+        subject.version_tag(version).should == "release-#{version}"
       end
     end
 

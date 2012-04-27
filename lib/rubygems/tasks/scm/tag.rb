@@ -9,7 +9,7 @@ module Gem
       class Tag < Task
 
         # Default format for versions
-        DEFAULT_FORMAT = '%s'
+        DEFAULT_FORMAT = 'v%s'
 
         # The format for version tags.
         #
