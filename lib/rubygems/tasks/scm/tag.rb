@@ -99,6 +99,13 @@ module Gem
         # @return [Boolean]
         #   Specifies whether new tags will be signed.
         #
+        # @note
+        #   If {#sign=} has not been set, {#sign?} will determine if tag signing
+        #   has been enabled globally by calling the following commands:
+        #
+        #   * Git: `git config user.signingkey`
+        #   * Mercurial: `hg showconfig extensions hgext gpg`
+        #
         # @since 0.2.0
         #
         def sign?
