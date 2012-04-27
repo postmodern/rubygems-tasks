@@ -8,6 +8,7 @@ describe Gem::Tasks::SCM::Push do
     context "git" do
       it "should run `git push --tags`" do
         subject.project.stub!(:scm).and_return(:git)
+        subject.should_receive(:run).with('git', 'push')
         subject.should_receive(:run).with('git', 'push', '--tags')
 
         subject.push!
