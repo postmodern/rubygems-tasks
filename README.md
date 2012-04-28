@@ -85,9 +85,9 @@ Enable Checksums and PGP signatures for built packages:
 
 Selectively defining tasks:
 
+    Gem::Build::Tar.new
     Gem::SCM::Status.new
     Gem::SCM::Tag.new(:format => 'REL-%s')
-    Gem::Build::Tar.new
     Gem::Sign::Checksum.new
     Gem::Console.new
 
