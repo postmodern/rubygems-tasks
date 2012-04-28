@@ -68,7 +68,7 @@ Specifying an alternate Ruby Console to run:
 Enable pushing gems to an in-house [RubyGems][2] server:
 
     Gem::Tasks.new do |tasks|
-      tasks.push.host = 'gems.company.come'
+      tasks.push.host = 'gems.company.com'
     end
 
 Disable the `push` task:
