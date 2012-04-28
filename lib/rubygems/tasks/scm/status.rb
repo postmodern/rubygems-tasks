@@ -37,6 +37,9 @@ module Gem
             end
           end
 
+          # do not allow building packages when the repository is dirty
+          task 'build' => 'scm:status'
+
           # do not allow tagging releases when the repository is dirty
           task 'scm:tag' => 'scm:status'
 
