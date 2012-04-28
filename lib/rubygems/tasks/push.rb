@@ -61,7 +61,7 @@ module Gem
       #   The path to the `.gem` file.
       #
       # @return [Boolean]
-      #   Specifies whether `gem push` was successfull or not.
+      #   Specifies whether `gem push` was successful or not.
       #
       def push(path)
         arguments = ['gem', 'push', path]

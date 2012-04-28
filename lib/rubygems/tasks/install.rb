@@ -49,7 +49,7 @@ module Gem
       #   The path to the `.gem` file.
       #
       # @return [Boolean]
-      #   Specifies whether `gem install` was successfull or not.
+      #   Specifies whether `gem install` was successful or not.
       #
       def install(path)
         run 'gem', 'install', '-q', path
