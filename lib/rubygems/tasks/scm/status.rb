@@ -37,14 +37,18 @@ module Gem
             end
           end
 
+          # do not allow building any package when the repository is dirty
+          @project.builds.each_value do |packages|
+            packages.each_value do |path|
+              task path => 'scm:status'
+            end
+          end
+
           # do not allow tagging releases when the repository is dirty
           task 'scm:tag' => 'scm:status'
 
           # do not allow pushing commits when the repository is dirty
           task 'scm:push' => 'scm:status'
-
-          # do not allow building packages when the repository is dirty
-          task :build => 'scm:status'
 
           # do not allow pushing gems when the repository is dirty
           task :push => 'scm:status'
