@@ -1,3 +1,12 @@
+### 0.2.0 / 2012-04-27
+
+* {Gem::Tasks::SCM::Status} now ignores untracked files.
+* {Gem::Tasks::SCM::Status} will prevent any packages from being built,
+  if the repository is dirty.
+* {Gem::Tasks::SCM::Tag} now supports creating PGP signed Git/Mercurial tags.
+* Added {Gem::Tasks::SCM::Tag#sign?} and {Gem::Tasks::SCM::Tag#sign=}.
+* {Gem::Tasks::SCM::Tag#initialize} now accepts the `:sign` option.
+
 ### 0.1.2 / 2012-04-26
 
 * {Gem::Tasks::SCM::Push} now runs `git push` then `git push --tags`.
