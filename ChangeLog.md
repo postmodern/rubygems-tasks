@@ -1,22 +1,36 @@
 ### 0.2.0 / 2012-04-27
 
-* {Gem::Tasks::SCM::Status} now ignores untracked files.
-* {Gem::Tasks::SCM::Status} will prevent any packages from being built,
-  if the repository is dirty.
-* {Gem::Tasks::SCM::Tag} now supports creating PGP signed Git/Mercurial tags.
+* Removed `Gem::Tasks::Task.task_name`.
+
+#### scm:status
+
+* Now ignores untracked files.
+* Will prevent any packages from being built, if the repository is dirty.
+
+#### scm:tag
+
+* Now create `v` prefixed version tags by default.
+* Now supports creating PGP signed Git/Mercurial tags.
+* {Gem::Tasks::SCM::Tag#initialize} now accepts the `:sign` option,
+  for enabling/disabling tag signing on a per-project basis.
 * Added {Gem::Tasks::SCM::Tag#sign?} and {Gem::Tasks::SCM::Tag#sign=}.
-* {Gem::Tasks::SCM::Tag#initialize} now accepts the `:sign` option.
 
 ### 0.1.2 / 2012-04-26
 
-* {Gem::Tasks::SCM::Push} now runs `git push` then `git push --tags`.
+#### scm:push
+
+* Now runs `git push` then `git push --tags`.
 
 ### 0.1.1 / 2012-04-26
 
-* {Gem::Tasks::Sign::PGP} now creates ASCII armored signatures.
-* {Gem::Tasks::Console}
-  * require `rubygems` on Ruby 1.8.
-  * require the first `lib/` file to load the project.
+#### console
+
+* require `rubygems` on Ruby 1.8.
+* require the first `lib/` file to load the project.
+
+#### sign:pgp
+
+* Now creates ASCII armored signatures.
 
 ### 0.1.0 / 2012-04-24
 
