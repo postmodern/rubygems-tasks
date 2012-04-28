@@ -58,9 +58,9 @@ module Gem
         #
         def status
           case @project.scm
-          when :git then `git status --short`
-          when :hg  then `hg status`
-          when :svn then `svn status`
+          when :git then `git status --short --untracked-files=no`
+          when :hg  then `hg status --quiet`
+          when :svn then `svn status --quiet`
           else            ''
           end
         end
