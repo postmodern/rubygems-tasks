@@ -55,6 +55,8 @@ module Gem
         # @return [Boolean]
         #   Specifies whether the repository is dirty.
         #
+        # @api semipublic
+        #
         # @since 0.3.0
         #
         def dirty?
