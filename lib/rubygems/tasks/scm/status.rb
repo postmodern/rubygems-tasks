@@ -27,11 +27,10 @@ module Gem
         def define
           namespace :scm do
             task :status do
-              status = self.status
-
-              unless status.strip.empty?
+              if dirty?
                 error "Project has uncommitted changes!"
-                puts status
+
+                status
                 abort
               end
             end
@@ -53,17 +52,32 @@ module Gem
         #
         # Checks the status of the project repository.
         #
-        # @return [String]
-        #   The status of the project repository.
+        # @return [Boolean]
+        #   Specifies whether the repository is dirty.
+        #
+        # @since 0.3.0
+        #
+        def dirty?
+          status = case @project.scm
+                   when :git then `git status --porcelain --untracked-files=no`
+                   when :hg  then `hg status --quiet`
+                   when :svn then `svn status --quiet`
+                   else            ''
+                   end
+
+          return !status.chomp.empty?
+        end
+
+        #
+        # Displays the status of the project repository.
         #
         # @api semipublic
         #
         def status
           case @project.scm
-          when :git then `git status --short --untracked-files=no`
-          when :hg  then `hg status --quiet`
-          when :svn then `svn status --quiet`
-          else            ''
+          when :git then run 'git', 'status', '--untracked-files=no'
+          when :hg  then run 'hg', 'status', '--quiet'
+          when :svn then run 'svn', 'status', '--quiet'
           end
         end
 
