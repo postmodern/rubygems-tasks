@@ -36,8 +36,8 @@ module Gem
             end
           end
 
-          # alias the `check` task to scm:status
-          task :check => 'scm:status'
+          # alias the `validate` task to scm:status
+          task :validate => 'scm:status'
 
           # do not allow tagging releases when the repository is dirty
           task 'scm:tag' => 'scm:status'
