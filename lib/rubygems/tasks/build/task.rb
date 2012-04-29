@@ -33,6 +33,9 @@ module Gem
         def build_task(name,extname=name)
           directory Project::PKG_DIR
 
+          # place holder for the `check` task
+          task :check
+
           @project.builds.each do |build,packages|
             namespace :build do
               namespace name do
@@ -40,7 +43,7 @@ module Gem
                 path    = packages[extname]
 
                 # define file tasks, so the packages are not needless re-built
-                file(path => [Project::PKG_DIR, *gemspec.files]) do
+                file(path => [:check, Project::PKG_DIR, *gemspec.files]) do
                   status "Building #{File.basename(path)} ..."
 
                   build(path,gemspec)

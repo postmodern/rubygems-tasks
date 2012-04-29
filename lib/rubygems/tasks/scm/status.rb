@@ -37,12 +37,8 @@ module Gem
             end
           end
 
-          # do not allow building any package when the repository is dirty
-          @project.builds.each_value do |packages|
-            packages.each_value do |path|
-              task path => 'scm:status'
-            end
-          end
+          # alias the `check` task to scm:status
+          task :check => 'scm:status'
 
           # do not allow tagging releases when the repository is dirty
           task 'scm:tag' => 'scm:status'
