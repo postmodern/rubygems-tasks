@@ -57,7 +57,7 @@ module Gem
         #
         # @api semipublic
         #
-        # @since 0.3.0
+        # @since 0.2.1
         #
         def dirty?
           status = case @project.scm
