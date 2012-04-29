@@ -63,6 +63,8 @@ module Gem
       # @return [Boolean]
       #   Specifies whether `gem push` was successful or not.
       #
+      # @api semipublic
+      #
       def push(path)
         arguments = ['gem', 'push', path]
         arguments.push('--host', @host) if @host

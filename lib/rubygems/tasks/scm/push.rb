@@ -42,6 +42,8 @@ module Gem
         # @return [Boolean]
         #   Specifies whether the commits were successfully pushed.
         #
+        # @api semipublic
+        #
         def push!
           case @project.scm
           when :git

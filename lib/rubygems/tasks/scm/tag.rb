@@ -82,6 +82,8 @@ module Gem
         # @raise [TypeError]
         #   {#format} was not a String or a Proc.
         #
+        # @api semipublic
+        #
         def version_tag(version)
           case @format
           when String
@@ -105,6 +107,8 @@ module Gem
         #
         #   * Git: `git config user.signingkey`
         #   * Mercurial: `hg showconfig extensions hgext gpg`
+        #
+        # @api semipublic
         #
         # @since 0.2.0
         #
@@ -131,6 +135,8 @@ module Gem
         #
         # @return [Boolean]
         #   Specifies whether the tag was successfully created.
+        #
+        # @api semipublic
         #
         def tag!(name)
           message = "Tagging #{name}"

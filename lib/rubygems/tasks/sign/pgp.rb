@@ -36,6 +36,8 @@ module Gem
         # @param [String] path
         #   The path to the package.
         #
+        # @api semipublic
+        #
         def sign(path)
           status "Signing #{File.basename(path)} ..."
 

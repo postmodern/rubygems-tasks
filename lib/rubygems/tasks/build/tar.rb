@@ -39,6 +39,8 @@ module Gem
         # @param [Gem::Specification] gemspec
         #   The gemspec to generate the archive from.
         #
+        # @api semipublic
+        #
         def build(path,gemspec)
           run 'tar', 'czf', path, *gemspec.files
         end

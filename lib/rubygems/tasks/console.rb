@@ -64,6 +64,8 @@ module Gem
       # @return [Array<String>]
       #   The arguments for the console command.
       #
+      # @api semipublic
+      #
       def console(name=nil)
         gemspec = @project.gemspec(name)
 

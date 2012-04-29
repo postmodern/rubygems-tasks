@@ -51,6 +51,8 @@ module Gem
       # @return [Boolean]
       #   Specifies whether `gem install` was successful or not.
       #
+      # @api semipublic
+      #
       def install(path)
         run 'gem', 'install', '-q', path
       end

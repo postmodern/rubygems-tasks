@@ -56,6 +56,8 @@ module Gem
         # @return [String]
         #   The status of the project repository.
         #
+        # @api semipublic
+        #
         def status
           case @project.scm
           when :git then `git status --short --untracked-files=no`

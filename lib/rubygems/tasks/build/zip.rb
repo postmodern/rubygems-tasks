@@ -37,6 +37,8 @@ module Gem
         # @param [Gem::Specification] gemspec
         #   The gemspec to build the archive from.
         #
+        # @api semipublic
+        #
         def build(path,gemspec)
           run 'zip', '-q', path, *gemspec.files
         end

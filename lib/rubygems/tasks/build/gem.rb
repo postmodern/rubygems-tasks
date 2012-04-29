@@ -46,6 +46,8 @@ module Gem
         # @param [Gem::Specification] gemspec
         #   The gemspec to build the `.gem` package from.
         #
+        # @api semipublic
+        #
         def build(path,gemspec)
           builder = ::Gem::Builder.new(gemspec)
 
