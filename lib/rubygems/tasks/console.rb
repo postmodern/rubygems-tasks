@@ -70,7 +70,7 @@ module Gem
         gemspec = @project.gemspec(name)
 
         require_paths = gemspec.require_paths
-        require_file  = gemspec.files.find { |path| path.start_with?('lib/') }
+        require_file  = gemspec.name.gsub('-',File::SEPARATOR)
 
         arguments = [@command]
 

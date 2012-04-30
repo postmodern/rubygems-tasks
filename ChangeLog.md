@@ -7,6 +7,7 @@
 
 #### console
 
+* Infer the primary file to require from the gemspec name.
 * No longer run `bundle console`, since it is not the same as running
   `bundle exec irb -Ilib -rfoo/bar.rb`.
 

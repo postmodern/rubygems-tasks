@@ -8,7 +8,7 @@ describe Gem::Tasks::Console do
     include_context "rake"
 
     if RUBY_VERSION < '1.9'
-      let(:default_options) { %w[-Ilib -rrubygems -rrubygems/tasks.rb] }
+      let(:default_options) { %w[-Ilib -rrubygems -rrubygems/tasks] }
     else
       let(:default_options) { %w[-Ilib -rrubygems/tasks.rb]            }
     end
