@@ -1,5 +1,7 @@
 ### 0.2.1 / 2012-04-29
 
+* Overrode the `FileUtils.fu_output_message` to call
+  {Gem::Tasks::Printing#debug}.
 * Added `@api semipublic` tags to mark the semi-public API.
 * Fixed a spelling error.
 

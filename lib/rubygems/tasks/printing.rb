@@ -77,6 +77,20 @@ module Gem
         $stderr.puts "#{ERROR_PREFIX} #{message}"
       end
 
+      private
+
+      #
+      # The FileUtils output method.
+      #
+      # @param [String] message
+      #   The FileUtils message to print.
+      #
+      # @since 0.2.1
+      #
+      def fu_output_message(message)
+        debug(message)
+      end
+
     end
   end
 end
