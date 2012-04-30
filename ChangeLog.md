@@ -4,8 +4,9 @@
 
 #### build:*
 
-* Explicitly invoke the `validate` task, once a package file task has been
-  invoked.
+* Explicitly invoke the `validate` task from within package file tasks.
+  This prevents package file tasks from always being triggered, due to the
+  dependency on `validate`.
 
 ### 0.2.1 / 2012-04-29
 
