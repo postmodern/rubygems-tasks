@@ -110,7 +110,7 @@ describe Gem::Tasks::Project do
     subject { rubygems_multi_project }
 
     it "should group builds by gemspec name" do
-      subject.builds.keys.should == subject.gemspecs.keys
+      subject.builds.keys.should =~ subject.gemspecs.keys
     end
 
     it "should map a package format to a pkg/ path" do
