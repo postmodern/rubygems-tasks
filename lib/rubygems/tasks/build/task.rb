@@ -33,7 +33,6 @@ module Gem
         def build_task(name,extname=name)
           directory Project::PKG_DIR
 
-          # place holder for the `validate` task
           task :validate
 
           @project.builds.each do |build,packages|
