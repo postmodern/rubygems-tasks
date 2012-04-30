@@ -1,3 +1,12 @@
+### 0.2.2 / 2012-04-29
+
+* Added {Gem::Tasks::Task#invoke}.
+
+#### build:*
+
+* Explicitly invoke the `validate` task, once a package file task has been
+  invoked.
+
 ### 0.2.1 / 2012-04-29
 
 * Overrode the `FileUtils.fu_output_message` to call
