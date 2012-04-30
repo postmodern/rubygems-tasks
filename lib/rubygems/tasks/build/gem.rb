@@ -51,7 +51,7 @@ module Gem
         def build(path,gemspec)
           builder = ::Gem::Builder.new(gemspec)
 
-          FileUtils.mv builder.build, Project::PKG_DIR
+          mv builder.build, Project::PKG_DIR
         end
 
       end
