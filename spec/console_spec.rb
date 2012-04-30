@@ -10,7 +10,7 @@ describe Gem::Tasks::Console do
     if RUBY_VERSION < '1.9'
       let(:default_options) { %w[-Ilib -rrubygems -rrubygems/tasks] }
     else
-      let(:default_options) { %w[-Ilib -rrubygems/tasks.rb]            }
+      let(:default_options) { %w[-Ilib -rrubygems/tasks]            }
     end
 
     let(:custom_command)  { 'ripl'             }
