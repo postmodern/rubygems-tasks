@@ -24,9 +24,11 @@ describe Gem::Tasks::Console do
       end
 
       context "when project.bundler? == true" do
-        it "should use `bundle console`" do
+        it "should use `bundle exec`" do
           subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with('bundle', 'console')
+          subject.should_receive(:run).with(
+            'bundle', 'exec', 'irb', *default_options
+          )
 
           subject.console
         end

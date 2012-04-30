@@ -5,6 +5,11 @@
 * Added `@api semipublic` tags to mark the semi-public API.
 * Fixed a spelling error.
 
+#### console
+
+* No longer run `bundle console`, since it is not the same as running
+  `bundle exec irb -Ilib -rfoo/bar.rb`.
+
 #### scm:status
 
 * Will display the human-readable status, if the repository is dirty.
