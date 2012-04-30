@@ -38,15 +38,6 @@ module Gem
 
           # alias the `validate` task to scm:status
           task :validate => 'scm:status'
-
-          # do not allow tagging releases when the repository is dirty
-          task 'scm:tag' => 'scm:status'
-
-          # do not allow pushing commits when the repository is dirty
-          task 'scm:push' => 'scm:status'
-
-          # do not allow pushing gems when the repository is dirty
-          task :push => 'scm:status'
         end
 
         #

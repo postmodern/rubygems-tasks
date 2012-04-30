@@ -32,11 +32,13 @@ module Gem
       # Defines the `push` task.
       #
       def define
+        task :validate
+
         namespace :push do
           @project.builds.each do |build,packages|
             path = packages[:gem]
 
-            task build => path do
+            task build => [:validate, path] do
               if @host
                 status "Pushing #{File.basename(path)} to #{@host} ..."
               else

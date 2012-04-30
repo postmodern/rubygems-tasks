@@ -10,10 +10,21 @@
 * Will display the human-readable status, if the repository is dirty.
 * Hooks into the `validate` task.
 
-### build:*
+#### scm:push
 
-* All `build:*` tasks now depend on the `validate` task, to ensure no package
-  is created from a dirty repository.
+* Depends on the `validate` task.
+
+#### scm:tag
+
+* Depends on the `validate` task.
+
+#### build:*
+
+* All `build:*` tasks now depend on the `validate` task.
+
+#### push
+
+* Depends on the `validate` task.
 
 ### 0.2.0 / 2012-04-27
 

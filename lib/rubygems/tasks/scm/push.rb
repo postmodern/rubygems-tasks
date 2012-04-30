@@ -25,8 +25,10 @@ module Gem
         # Defines the `scm:push` task.
         #
         def define
+          task :validate
+
           namespace :scm do
-            task :push do
+            task :push => :validate do
               status "Pushing commits ..."
 
               unless push!

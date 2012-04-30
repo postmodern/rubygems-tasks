@@ -53,8 +53,10 @@ module Gem
         # Defines the `scm:tag` task.
         #
         def define
+          task :validate
+
           namespace :scm do
-            task :tag, [:name] do |t,args|
+            task :tag, [:name] => :validate do |t,args|
               tag = if args.name
                       args.name
                     else
