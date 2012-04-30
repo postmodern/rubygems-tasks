@@ -81,7 +81,7 @@ module Gem
         arguments.push('-rrubygems') if RUBY_VERSION < '1.9'
 
         # add an -r option to require the library
-        arguments.push('-r' + require_file.sub('lib/','')) if require_file
+        arguments.push('-r' + require_file)
 
         # push on additional options
         arguments.push(*@options)
