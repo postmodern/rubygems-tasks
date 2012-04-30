@@ -52,7 +52,9 @@ module Gem
       #   The message to print.
       #
       def status(message)
-        $stdout.puts "#{STATUS_PREFIX} #{message}"
+        if Rake.verbose
+          $stdout.puts "#{STATUS_PREFIX} #{message}"
+        end
       end
 
       #
@@ -62,7 +64,7 @@ module Gem
       #   The message to print.
       #
       def debug(message)
-        if Rake.application.options.trace
+        if (Rake.verbose && Rake.application.options.trace)
           $stderr.puts "#{DEBUG_PREFIX} #{message}"
         end
       end
