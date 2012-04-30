@@ -1,3 +1,12 @@
+### 0.2.3 / 2012-04-29
+
+* {Gem::Tasks::Printing#status} and {Gem::Tasks::Printing#debug} will not
+  produce output if `Rake.verbose` is false.
+
+#### sign:pgp
+
+* Generate detached PGP signatures using `--detach-sign`.
+
 ### 0.2.2 / 2012-04-29
 
 * Added {Gem::Tasks::Task#invoke}.
