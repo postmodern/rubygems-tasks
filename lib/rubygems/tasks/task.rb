@@ -104,6 +104,20 @@ module Gem
       end
 
       #
+      # Explicitly invokes a task.
+      #
+      # @param [Symbol, String] name
+      #   The name of the task.
+      #
+      # @api semipublic
+      #
+      # @since 0.2.2
+      #
+      def invoke(name)
+        Rake.application[name].invoke
+      end
+
+      #
       # Defines a task that will invoke one or all of the specifies tasks
       # within the namespace.
       #

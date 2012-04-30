@@ -42,7 +42,9 @@ module Gem
                 path    = packages[extname]
 
                 # define file tasks, so the packages are not needless re-built
-                file(path => [:validate, Project::PKG_DIR, *gemspec.files]) do
+                file(path => [Project::PKG_DIR, *gemspec.files]) do
+                  invoke :validate
+
                   status "Building #{File.basename(path)} ..."
 
                   build(path,gemspec)
