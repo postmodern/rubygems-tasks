@@ -1,3 +1,18 @@
+### 0.2.1 / 2012-04-29
+
+* Added `@api semipublic` tags to mark the semi-public API.
+* Fixed a spelling error.
+
+#### scm:status
+
+* Will display the human-readable status, if the repository is dirty.
+* Hooks into the `validate` task.
+
+### build:*
+
+* All `build:*` tasks now depend on the `validate` task, to ensure no package
+  is created from a dirty repository.
+
 ### 0.2.0 / 2012-04-27
 
 * Removed `Gem::Tasks::Task.task_name`.
