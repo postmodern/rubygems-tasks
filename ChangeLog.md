@@ -1,7 +1,8 @@
-### 0.2.3 / 2012-04-29
+### 0.2.3 / 2012-04-30
 
 * {Gem::Tasks::Printing#status} and {Gem::Tasks::Printing#debug} will not
   produce output if `Rake.verbose` is false.
+* Added specs for {Gem::Tasks::Sign::PGP}.
 
 #### sign:pgp
 
