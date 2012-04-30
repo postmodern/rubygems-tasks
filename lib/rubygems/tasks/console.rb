@@ -87,10 +87,11 @@ module Gem
         arguments.push(*@options)
 
         if @project.bundler?
-          # use `bundle console` unless were were using custom command/options
           if (@command == DEFAULT_CONSOLE && @options.empty?)
+            # use `bundle console` unless were were using custom command/options
             arguments = ['bundle', 'console']
           else
+            # run under `bundle exec`
             arguments.unshift('bundle', 'exec')
           end
         end
