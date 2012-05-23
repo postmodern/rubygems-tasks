@@ -65,7 +65,7 @@ Specifying an alternate Ruby Console to run:
       tasks.console.command = 'pry'
     end
 
-Enable pushing gems to an in-house [Gemcutter][2] server:
+Enable pushing gems to an in-house [Gemcutter] server:
 
     Gem::Tasks.new do |tasks|
       tasks.push.host = 'gems.company.com'
