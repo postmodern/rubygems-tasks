@@ -28,21 +28,21 @@ This is what rubygems-tasks seeks to provide.
 
 ## Features
 
-* Provides tasks to build, install and push gems to [rubygems.org][1].
+* Provides tasks to build, install and push gems to [rubygems.org].
   * Loads all project metadata from the `.gemspec` file.
   * Supports loading multiple `.gemspec` files.
-  * Supports pushing gems to alternate [RubyGems][2] servers.
+  * Supports pushing gems to alternate [Gemcutter] servers.
 * Supports optionally building `.tar.gz` and `.zip` archives.
   * `build:tar`
   * `build:zip`
-* Supports [Git][3], [Mercurial][4] and [SubVersion][5] Source-Code-Managers
+* Supports [Git], [Mercurial] and [SubVersion] Source-Code-Managers
   (SCMs).
   * Supports creating PGP signed Git/Mercurial tags.
 * Provides optional `sign` tasks for package integrity:
   * `sign:checksum`
   * `sign:pgp`
 * Provides a `console` task, for jumping right into your code.
-* Defines task aliases for users coming from [Jeweler][6] or [Hoe][7].
+* Defines task aliases for users coming from [Jeweler] or [Hoe].
 * ANSI coloured messages!
 
 ## Anti-Features
@@ -65,7 +65,7 @@ Specifying an alternate Ruby Console to run:
       tasks.console.command = 'pry'
     end
 
-Enable pushing gems to an in-house [RubyGems][2] server:
+Enable pushing gems to an in-house [Gemcutter][2] server:
 
     Gem::Tasks.new do |tasks|
       tasks.push.host = 'gems.company.com'
@@ -104,10 +104,12 @@ Copyright (c) 2011-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
-[1]: https://rubygems.org/
-[2]: https://github.com/rubygems/rubygems.org#readme
-[3]: http://git-scm.com/
-[4]: http://mercurial.selenic.com/
-[5]: http://subversion.tigris.org/
-[6]: https://github.com/technicalpickles/jeweler#readme
-[7]: https://github.com/seattlerb/hoe#readme
+[Git]: http://git-scm.com/
+[Mercurial]: http://mercurial.selenic.com/
+[SubVersion]: http://subversion.tigris.org/
+
+[Jeweler]: https://github.com/technicalpickles/jeweler#readme
+[Hoe]: https://github.com/seattlerb/hoe#readme
+
+[rubygems.org]: https://rubygems.org/
+[Gemcutter]: https://github.com/rubygems/rubygems.org#readme
