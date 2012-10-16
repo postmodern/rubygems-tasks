@@ -28,8 +28,6 @@ module Gem
   #
   class Tasks
 
-    include Rake::DSL
-
     #
     # The `build` tasks.
     #
