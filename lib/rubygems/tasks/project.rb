@@ -79,7 +79,7 @@ module Gem
 
         Dir.chdir(@root) do
           @gemspecs = Hash[Dir['*.gemspec'].map { |path|
-            [File.basename(path).chomp('.gemspec'), Specification.load(path)]
+            [File.basename(path,'.gemspec'), Specification.load(path)]
           }]
         end
 
