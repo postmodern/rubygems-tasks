@@ -57,11 +57,7 @@ module Gem
 
           namespace :scm do
             task :tag, [:name] => :validate do |t,args|
-              tag = if args.name
-                      args.name
-                    else
-                      version_tag(@project.gemspec.version)
-                    end
+              tag = (args.name || version_tag(@project.gemspec.version))
 
               status "Tagging #{tag} ..."
 
