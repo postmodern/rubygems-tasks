@@ -1,7 +1,10 @@
 require 'rubygems/tasks/build/task'
 
-require 'rubygems/builder'
 require 'fileutils'
+
+if Gem::VERSION > '2.' then require 'rubygems/package'
+else                        require 'rubygems/builder'
+end
 
 module Gem
   class Tasks
@@ -49,7 +52,9 @@ module Gem
         # @api semipublic
         #
         def build(path,gemspec)
-          builder = ::Gem::Builder.new(gemspec)
+          builder = if Gem::VERSION > '2.' then ::Gem::Package.new(gemspec)
+                    else                        ::Gem::Builder.new(gemspec)
+                    end
 
           mv builder.build, Project::PKG_DIR
         end
