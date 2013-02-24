@@ -1,7 +1,5 @@
 require 'rubygems/tasks/task'
 
-require 'rubygems/builder'
-
 module Gem
   class Tasks
     module Build
