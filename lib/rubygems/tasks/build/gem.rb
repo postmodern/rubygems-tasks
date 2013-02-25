@@ -52,8 +52,8 @@ module Gem
         # @api semipublic
         #
         def build(path,gemspec)
-          builder = if Gem::VERSION > '2.' then ::Gem::Package.new(gemspec)
-                    else                        ::Gem::Builder.new(gemspec)
+          builder = if ::Gem::VERSION > '2.' then ::Gem::Package.new(gemspec)
+                    else                          ::Gem::Builder.new(gemspec)
                     end
 
           mv builder.build, Project::PKG_DIR
