@@ -52,11 +52,13 @@ module Gem
         # @api semipublic
         #
         def build(path,gemspec)
-          builder = if ::Gem::VERSION > '2.' then ::Gem::Package.new(gemspec)
-                    else                          ::Gem::Builder.new(gemspec)
-                    end
+          gem = if ::Gem::VERSION > '2.'
+                  ::Gem::Package.build(gemspec)
+                else
+                  ::Gem::Builder.new(gemspec).build
+                end
 
-          mv builder.build, Project::PKG_DIR
+          mv gem, Project::PKG_DIR
         end
 
       end
