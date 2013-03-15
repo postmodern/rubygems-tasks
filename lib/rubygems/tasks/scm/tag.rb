@@ -116,7 +116,7 @@ module Gem
                     when :git
                       !`git config user.signingkey`.chomp.empty?
                     when :hg
-                      !`hg showconfig extensions hgext gpg`.chomp.empty?
+                      !`hg showconfig extensions.hgext.gpg`.empty?
                     else
                       false
                     end
