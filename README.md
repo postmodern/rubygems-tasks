@@ -24,7 +24,9 @@ building/releasing RubyGems using `gem build` / `gem push`. Sometimes this
 resulted in RubyGems being released with uncommitted changes, or the developer
 forgetting to tag the release. Ruby Developers should have access to
 **agnostic** and **unobtrusive** Rake tasks, to **automate** the release
-process. This is what rubygems-tasks seeks to provide.
+process.
+
+This is what rubygems-tasks seeks to provide.
 
 ## Features
 
