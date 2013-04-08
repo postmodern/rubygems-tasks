@@ -58,7 +58,7 @@ module Gem
       # @param [String] command
       #   The `gem` command to run.
       #
-      # @param [Array<String>] command
+      # @param [Array<String>] arguments
       #   Additional arguments for the command.
       #
       # @return [Boolean]
@@ -121,7 +121,7 @@ module Gem
       # Defines a task that will invoke one or all of the specifies tasks
       # within the namespace.
       #
-      # @param [String] namespace
+      # @param [String] prefix
       #   The namespace of the sub-tasks to call.
       #
       # @param [Array<Symbol>] names
