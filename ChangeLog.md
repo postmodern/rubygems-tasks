@@ -1,3 +1,9 @@
+### 0.2.4 / 2013-04-8
+
+* Use the new `Gem::Package` class when running under Ruby 2.0.0.
+* Fix `hg showconfig extensions hgext gpg` empty test by ignoring the trailing
+  new-line (thanks @wrzasa).
+
 ### 0.2.3 / 2012-04-30
 
 * {Gem::Tasks::Printing#status} and {Gem::Tasks::Printing#debug} will not
