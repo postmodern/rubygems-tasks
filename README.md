@@ -104,7 +104,7 @@ Selectively defining tasks:
 
 Copyright (c) 2011-2013 Hal Brodigan
 
-See {file:LICENSE.txt} for details.
+See [LICENSE.txt](LICENSE.txt) for details.
 
 [Git]: http://git-scm.com/
 [Mercurial]: http://mercurial.selenic.com/
