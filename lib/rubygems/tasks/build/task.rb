@@ -34,25 +34,20 @@ module Gem
           task :validate
 
           @project.builds.each do |build,packages|
-            namespace :build do
-              namespace name do
-                gemspec = @project.gemspecs[build]
-                path    = packages[extname]
+            gemspec = @project.gemspecs[build]
+            path    = packages[extname]
 
-                # define file tasks, so the packages are not needless re-built
-                file(path => [Project::PKG_DIR, *gemspec.files]) do
-                  invoke :validate
+            # define file tasks, so the packages are not needless re-built
+            file(path => [Project::PKG_DIR, *gemspec.files]) do
+              invoke :validate
 
-                  status "Building #{File.basename(path)} ..."
+              status "Building #{File.basename(path)} ..."
 
-                  build(path,gemspec)
-                end
-
-                task build => path
-              end
+              build(path,gemspec)
             end
 
-            task "build:#{build}" => "build:#{name}:#{build}"
+            task "build:#{name}:#{build}" => path
+            task "build:#{build}"         => "build:#{name}:#{build}"
           end
 
           gemspec_tasks "build:#{name}"
