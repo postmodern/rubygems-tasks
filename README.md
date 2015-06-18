@@ -35,7 +35,7 @@ This is what rubygems-tasks seeks to provide.
 * Provides tasks to build, install and push gems to [rubygems.org].
   * Loads all project metadata from the `.gemspec` file.
   * Supports loading multiple `.gemspec` files.
-  * Supports pushing gems to alternate [Gemcutter] servers.
+  * Supports pushing gems to alternate [gem server]s.
 * Supports optionally building `.tar.gz` and `.zip` archives.
   * `build:tar`
   * `build:zip`
@@ -69,7 +69,7 @@ Specifying an alternate Ruby Console to run:
       tasks.console.command = 'pry'
     end
 
-Enable pushing gems to an in-house [Gemcutter] server:
+Enable pushing gems to an in-house [gem server]:
 
     Gem::Tasks.new do |tasks|
       tasks.push.host = 'gems.company.com'
@@ -116,4 +116,4 @@ See {file:LICENSE.txt} for details.
 [Hoe]: https://github.com/seattlerb/hoe#readme
 
 [rubygems.org]: https://rubygems.org/
-[Gemcutter]: https://github.com/rubygems/rubygems.org#readme
+[gem server]: https://github.com/rubygems/rubygems.org#readme
