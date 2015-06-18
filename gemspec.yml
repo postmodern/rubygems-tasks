@@ -12,4 +12,4 @@ has_yard: true
 
 development_dependencies:
   rspec: ~> 3.0
-  yard: ~> 0.7
+  yard: ~> 0.8

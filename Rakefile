@@ -11,7 +11,7 @@ Gem::Tasks.new(
 )
 
 begin
-  gem 'rspec', '~> 2.4'
+  gem 'rspec', '~> 3.0'
   require 'rspec/core/rake_task'
   
   RSpec::Core::RakeTask.new
@@ -24,7 +24,7 @@ task :test => :spec
 task :default => :spec
 
 begin
-  gem 'yard', '~> 0.7'
+  gem 'yard', '~> 0.8'
   require 'yard'
 
   YARD::Rake::YardocTask.new  
