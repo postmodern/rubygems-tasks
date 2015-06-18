@@ -1,6 +1,7 @@
 language: ruby
 before_install:
   - sudo apt-get install git subversion mercurial
+  - gem install rspec -v "~> 3.0"
 rvm:
   - 1.8.7
   - 1.9.3
