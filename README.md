@@ -4,6 +4,8 @@
 * [Issues](https://github.com/postmodern/rubygems-tasks/issues)
 * [Email](mailto:postmodern.mod3 at gmail.com)
 
+[![Build Status](https://secure.travis-ci.org/postmodern/rubygems-tasks.png?branch=master)](https://travis-ci.org/postmodern/rubygems-tasks)
+
 ## Description
 
 rubygems-tasks provides agnostic and unobtrusive Rake tasks for building,
