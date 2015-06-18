@@ -11,6 +11,8 @@ RSpec.configure do |rspec|
     Dir[File.join(PROJECTS_DIR,'*')].each do |dir|
       Dir.chdir(dir) do
         system 'git init'
+        system 'git config --local user.email test@example.com'
+        system 'git config --local user.name Test'
         system 'git add .'
         system 'git commit -q -m "Initial commit"'
       end
