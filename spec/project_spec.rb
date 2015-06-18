@@ -19,7 +19,7 @@ describe Gem::Tasks::Project do
       directory = PROJECT_DIRS['rubygems-project']
       project   = described_class.directories[directory]
 
-      project.root.should == directory
+      expect(project.root).to eq(directory)
     end
   end
 
@@ -27,7 +27,7 @@ describe Gem::Tasks::Project do
     subject { rubygems_project }
 
     it "should use the name of the directory" do
-      subject.name.should == 'rubygems-project'
+      expect(subject.name).to eq('rubygems-project')
     end
   end
 
@@ -35,7 +35,7 @@ describe Gem::Tasks::Project do
     subject { bundler_project }
 
     it "should detect the SCM used" do
-      subject.scm.should == :git
+      expect(subject.scm).to eq(:git)
     end
   end
 
@@ -44,7 +44,7 @@ describe Gem::Tasks::Project do
       subject { rubygems_project }
 
       it "should load the single-gemspec" do
-        subject.gemspecs.values.map(&:name).should == %w[rubygems-project]
+        expect(subject.gemspecs.values.map(&:name)).to eq(%w[rubygems-project])
       end
     end
 
@@ -52,10 +52,10 @@ describe Gem::Tasks::Project do
       subject { rubygems_multi_project }
 
       it "should load all gemspecs" do
-        subject.gemspecs.values.map(&:name).should =~ %w[
+        expect(subject.gemspecs.values.map(&:name)).to match_array(%w[
           rubygems-project
           rubygems-project-lite
-        ]
+        ])
       end
     end
   end
@@ -65,7 +65,7 @@ describe Gem::Tasks::Project do
       subject { rubygems_project }
 
       it "should match the directory name to the gemspec" do
-        subject.primary_gemspec.should == subject.name
+        expect(subject.primary_gemspec).to eq(subject.name)
       end
     end
 
@@ -73,7 +73,7 @@ describe Gem::Tasks::Project do
       subject { rubygems_multi_project }
 
       it "should pick the first gemspec" do
-        subject.primary_gemspec.should == 'rubygems-project'
+        expect(subject.primary_gemspec).to eq('rubygems-project')
       end
     end
   end
@@ -83,11 +83,11 @@ describe Gem::Tasks::Project do
       subject { rubygems_project }
 
       it "should default the directory name to the gemspec" do
-        subject.gemspec.name.should == subject.name
+        expect(subject.gemspec.name).to eq(subject.name)
       end
 
       it "should raise an ArgumentError for unknown gemspec names" do
-        lambda { subject.gemspec('foo') }.should raise_error(ArgumentError)
+        expect { subject.gemspec('foo') }.to raise_error(ArgumentError)
       end
     end
 
@@ -95,13 +95,13 @@ describe Gem::Tasks::Project do
       subject { rubygems_multi_project }
 
       it "should default the first gemspec" do
-        subject.gemspec.name.should == 'rubygems-project'
+        expect(subject.gemspec.name).to eq('rubygems-project')
       end
 
       it "should allow accessing alternate gemspecs" do
         alternate = 'rubygems-project-lite'
 
-        subject.gemspec(alternate).name.should == alternate
+        expect(subject.gemspec(alternate).name).to eq(alternate)
       end
     end
   end
@@ -110,20 +110,20 @@ describe Gem::Tasks::Project do
     subject { rubygems_multi_project }
 
     it "should group builds by gemspec name" do
-      subject.builds.keys.should =~ subject.gemspecs.keys
+      expect(subject.builds.keys).to be == subject.gemspecs.keys
     end
 
     it "should map a package format to a pkg/ path" do
       packages = subject.builds['rubygems-project']
 
-      packages['tar.gz'].should == 'pkg/rubygems-project-1.2.3.tar.gz'
+      expect(packages['tar.gz']).to eq('pkg/rubygems-project-1.2.3.tar.gz')
     end
 
     context "with single-gemspec project" do
       subject { rubygems_project }
 
       it "should only have a key for the single-gemspec" do
-        subject.builds.keys.should == %w[rubygems-project]
+        expect(subject.builds.keys).to eq(%w[rubygems-project])
       end
     end
 
@@ -131,10 +131,10 @@ describe Gem::Tasks::Project do
       subject { rubygems_multi_project }
 
       it "should have keys for each gemspec" do
-        subject.builds.keys.should =~ %w[
+        expect(subject.builds.keys).to match_array(%w[
           rubygems-project
           rubygems-project-lite
-        ]
+        ])
       end
     end
   end
@@ -144,7 +144,7 @@ describe Gem::Tasks::Project do
       subject { bundler_project }
 
       it "should detect the 'Gemfile' file" do
-        subject.bundler?.should be_true
+        expect(subject.bundler?).to be_truthy
       end
     end
 
@@ -152,7 +152,7 @@ describe Gem::Tasks::Project do
       subject { rubygems_project }
 
       it "should be false" do
-        subject.bundler?.should be_false
+        expect(subject.bundler?).to be_falsey
       end
     end
   end

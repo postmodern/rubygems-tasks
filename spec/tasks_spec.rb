@@ -8,24 +8,104 @@ describe Gem::Tasks do
     context "default options" do
       include_context "rake"
 
-      its(:build)      { should be_kind_of(OpenStruct)             }
-      its('build.gem') { should be_kind_of(Gem::Tasks::Build::Gem) }
-      its('build.tar') { should be_nil                             }
-      its('build.zip') { should be_nil                             }
+      describe '#build' do
+        subject { super().build }
+        it { is_expected.to be_kind_of(OpenStruct)             }
+      end
 
-      its(:scm)         { should be_kind_of(OpenStruct)              }
-      its('scm.status') { should be_kind_of(Gem::Tasks::SCM::Status) }
-      its('scm.push')   { should be_kind_of(Gem::Tasks::SCM::Push)   }
-      its('scm.tag')    { should be_kind_of(Gem::Tasks::SCM::Tag)    }
+      describe '#build' do
+        subject { super().build }
+        describe '#gem' do
+          subject { super().gem }
+          it { is_expected.to be_kind_of(Gem::Tasks::Build::Gem) }
+        end
+      end
 
-      its(:sign)           { should be_kind_of(OpenStruct) }
-      its('sign.checksum') { should be_nil                 }
-      its('sign.pgp')      { should be_nil                 }
+      describe '#build' do
+        subject { super().build }
+        describe '#tar' do
+          subject { super().tar }
+          it { is_expected.to be_nil                             }
+        end
+      end
 
-      its(:console) { should be_kind_of(Gem::Tasks::Console) }
-      its(:install) { should be_kind_of(Gem::Tasks::Install) }
-      its(:push)    { should be_kind_of(Gem::Tasks::Push)    }
-      its(:release) { should be_kind_of(Gem::Tasks::Release) }
+      describe '#build' do
+        subject { super().build }
+        describe '#zip' do
+          subject { super().zip }
+          it { is_expected.to be_nil                             }
+        end
+      end
+
+      describe '#scm' do
+        subject { super().scm }
+        it { is_expected.to be_kind_of(OpenStruct)              }
+      end
+
+      describe '#scm' do
+        subject { super().scm }
+        describe '#status' do
+          subject { super().status }
+          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Status) }
+        end
+      end
+
+      describe '#scm' do
+        subject { super().scm }
+        describe '#push' do
+          subject { super().push }
+          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Push)   }
+        end
+      end
+
+      describe '#scm' do
+        subject { super().scm }
+        describe '#tag' do
+          subject { super().tag }
+          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Tag)    }
+        end
+      end
+
+      describe '#sign' do
+        subject { super().sign }
+        it { is_expected.to be_kind_of(OpenStruct) }
+      end
+
+      describe '#sign' do
+        subject { super().sign }
+        describe '#checksum' do
+          subject { super().checksum }
+          it { is_expected.to be_nil                 }
+        end
+      end
+
+      describe '#sign' do
+        subject { super().sign }
+        describe '#pgp' do
+          subject { super().pgp }
+          it { is_expected.to be_nil                 }
+        end
+      end
+
+      describe '#console' do
+        subject { super().console }
+        it { is_expected.to be_kind_of(Gem::Tasks::Console) }
+      end
+
+      describe '#install' do
+        subject { super().install }
+        it { is_expected.to be_kind_of(Gem::Tasks::Install) }
+      end
+
+      describe '#push' do
+        subject { super().push }
+        it { is_expected.to be_kind_of(Gem::Tasks::Push)    }
+      end
+
+      describe '#release' do
+        subject { super().release }
+        it { is_expected.to be_kind_of(Gem::Tasks::Release) }
+      end
     end
 
     context ":build => {:gem => false}" do
@@ -33,7 +113,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:build => {:gem => false}) }
 
-      its('build.gem') { should be_nil }
+      describe '#build' do
+        subject { super().build }
+        describe '#gem' do
+          subject { super().gem }
+          it { is_expected.to be_nil }
+        end
+      end
     end
 
     context ":build => {:tar => true}" do
@@ -41,7 +127,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:build => {:tar => true}) }
 
-      its('build.tar') { should be_kind_of(Gem::Tasks::Build::Tar) }
+      describe '#build' do
+        subject { super().build }
+        describe '#tar' do
+          subject { super().tar }
+          it { is_expected.to be_kind_of(Gem::Tasks::Build::Tar) }
+        end
+      end
     end
 
     context ":build => {:zip => true}" do
@@ -49,7 +141,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:build => {:zip => true}) }
 
-      its('build.zip') { should be_kind_of(Gem::Tasks::Build::Zip) }
+      describe '#build' do
+        subject { super().build }
+        describe '#zip' do
+          subject { super().zip }
+          it { is_expected.to be_kind_of(Gem::Tasks::Build::Zip) }
+        end
+      end
     end
 
     context ":scm => {:status => false}" do
@@ -57,7 +155,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:scm => {:status => false}) }
 
-      its('scm.status') { should be_nil }
+      describe '#scm' do
+        subject { super().scm }
+        describe '#status' do
+          subject { super().status }
+          it { is_expected.to be_nil }
+        end
+      end
     end
 
     context ":scm => {:push => false}" do
@@ -65,7 +169,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:scm => {:push => false}) }
 
-      its('scm.push') { should be_nil }
+      describe '#scm' do
+        subject { super().scm }
+        describe '#push' do
+          subject { super().push }
+          it { is_expected.to be_nil }
+        end
+      end
     end
 
     context ":scm => {:tag => false}" do
@@ -73,7 +183,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:scm => {:tag => false}) }
 
-      its('scm.tag') { should be_nil }
+      describe '#scm' do
+        subject { super().scm }
+        describe '#tag' do
+          subject { super().tag }
+          it { is_expected.to be_nil }
+        end
+      end
     end
 
     context ":sign => {:checksum => true}" do
@@ -81,7 +197,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:sign => {:checksum => true}) }
 
-      its('sign.checksum') { should be_kind_of(Gem::Tasks::Sign::Checksum) }
+      describe '#sign' do
+        subject { super().sign }
+        describe '#checksum' do
+          subject { super().checksum }
+          it { is_expected.to be_kind_of(Gem::Tasks::Sign::Checksum) }
+        end
+      end
     end
 
     context ":sign => {:pgp => true}" do
@@ -89,7 +211,13 @@ describe Gem::Tasks do
 
       subject { described_class.new(:sign => {:pgp => true}) }
 
-      its('sign.pgp') { should be_kind_of(Gem::Tasks::Sign::PGP) }
+      describe '#sign' do
+        subject { super().sign }
+        describe '#pgp' do
+          subject { super().pgp }
+          it { is_expected.to be_kind_of(Gem::Tasks::Sign::PGP) }
+        end
+      end
     end
 
     context ":console => false" do
@@ -97,7 +225,10 @@ describe Gem::Tasks do
 
       subject { described_class.new(:console => false) }
 
-      its(:console) { should be_nil }
+      describe '#console' do
+        subject { super().console }
+        it { is_expected.to be_nil }
+      end
     end
 
     context ":install => false" do
@@ -105,7 +236,10 @@ describe Gem::Tasks do
 
       subject { described_class.new(:install => false) }
 
-      its(:install) { should be_nil }
+      describe '#install' do
+        subject { super().install }
+        it { is_expected.to be_nil }
+      end
     end
 
     context ":push => false" do
@@ -113,7 +247,10 @@ describe Gem::Tasks do
 
       subject { described_class.new(:push => false) }
 
-      its(:push) { should be_nil }
+      describe '#push' do
+        subject { super().push }
+        it { is_expected.to be_nil }
+      end
     end
 
     context ":release => false" do
@@ -121,7 +258,10 @@ describe Gem::Tasks do
 
       subject { described_class.new(:release => false) }
 
-      its(:release) { should be_nil }
+      describe '#release' do
+        subject { super().release }
+        it { is_expected.to be_nil }
+      end
     end
   end
 end

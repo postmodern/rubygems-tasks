@@ -7,9 +7,9 @@ describe Gem::Tasks::SCM::Push do
   describe "#push!" do
     context "git" do
       it "should run `git push --tags`" do
-        subject.project.stub!(:scm).and_return(:git)
-        subject.should_receive(:run).with('git', 'push')
-        subject.should_receive(:run).with('git', 'push', '--tags')
+        allow(subject.project).to receive(:scm).and_return(:git)
+        expect(subject).to receive(:run).with('git', 'push')
+        expect(subject).to receive(:run).with('git', 'push', '--tags')
 
         subject.push!
       end
@@ -17,8 +17,8 @@ describe Gem::Tasks::SCM::Push do
 
     context "hg" do
       it "should run `hg push`" do
-        subject.project.stub!(:scm).and_return(:hg)
-        subject.should_receive(:run).with('hg', 'push')
+        allow(subject.project).to receive(:scm).and_return(:hg)
+        expect(subject).to receive(:run).with('hg', 'push')
 
         subject.push!
       end
@@ -26,9 +26,9 @@ describe Gem::Tasks::SCM::Push do
 
     context "otherwise" do
       it "should return true" do
-        subject.project.stub!(:scm).and_return(:svn)
+        allow(subject.project).to receive(:scm).and_return(:svn)
 
-        subject.push!.should == true
+        expect(subject.push!).to eq(true)
       end
     end
   end

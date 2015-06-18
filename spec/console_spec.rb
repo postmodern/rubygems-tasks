@@ -18,15 +18,15 @@ describe Gem::Tasks::Console do
 
     context "defaults" do
       it "should run `irb`" do
-        subject.should_receive(:run).with('irb',*default_options)
+        expect(subject).to receive(:run).with('irb',*default_options)
 
         subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle exec`" do
-          subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with(
+          allow(subject.project).to receive(:bundler?).and_return(true)
+          expect(subject).to receive(:run).with(
             'bundle', 'exec', 'irb', *default_options
           )
 
@@ -39,15 +39,15 @@ describe Gem::Tasks::Console do
       subject { described_class.new(:command => custom_command) }
 
       it "should run the custom console" do
-        subject.should_receive(:run).with(custom_command,*default_options)
+        expect(subject).to receive(:run).with(custom_command,*default_options)
 
         subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle exec`" do
-          subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with(
+          allow(subject.project).to receive(:bundler?).and_return(true)
+          expect(subject).to receive(:run).with(
             'bundle', 'exec', custom_command, *default_options
           )
 
@@ -60,15 +60,15 @@ describe Gem::Tasks::Console do
       subject { described_class.new(:options => custom_options) }
 
       it "should pass custom options to `irb`" do
-        subject.should_receive(:run).with('irb', *(default_options + custom_options))
+        expect(subject).to receive(:run).with('irb', *(default_options + custom_options))
 
         subject.console
       end
 
       context "when project.bundler? == true" do
         it "should use `bundle exec ...`" do
-          subject.project.stub!(:bundler?).and_return(true)
-          subject.should_receive(:run).with('bundle', 'exec', 'irb', *(default_options + custom_options))
+          allow(subject.project).to receive(:bundler?).and_return(true)
+          expect(subject).to receive(:run).with('bundle', 'exec', 'irb', *(default_options + custom_options))
 
           subject.console
         end

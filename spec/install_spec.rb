@@ -8,7 +8,7 @@ describe Gem::Tasks::Install do
     let(:path) { 'pkg/foo-1.2.3.gem' }
 
     it "should use `gem install -q`" do
-      subject.should_receive(:run).with('gem', 'install', '-q', path)
+      expect(subject).to receive(:run).with('gem', 'install', '-q', path)
 
       subject.install(path)
     end

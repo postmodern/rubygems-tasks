@@ -11,5 +11,5 @@ homepage: https://github.com/postmodern/rubygems-tasks#readme
 has_yard: true
 
 development_dependencies:
-  rspec: ~> 2.4
+  rspec: ~> 3.0
   yard: ~> 0.7

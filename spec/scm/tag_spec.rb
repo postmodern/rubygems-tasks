@@ -11,7 +11,7 @@ describe Gem::Tasks::SCM::Tag do
       include_context "rake"
 
       it "should have a 'v' prefix" do
-        subject.version_tag(version).should == "v#{version}"
+        expect(subject.version_tag(version)).to eq("v#{version}")
       end
     end
 
@@ -23,7 +23,7 @@ describe Gem::Tasks::SCM::Tag do
       subject { described_class.new(:format => format) }
 
       it "should apply the format String to the version" do
-        subject.version_tag(version).should == "release-#{version}"
+        expect(subject.version_tag(version)).to eq("release-#{version}")
       end
     end
 
@@ -33,7 +33,7 @@ describe Gem::Tasks::SCM::Tag do
       subject { described_class.new(:format => format) }
 
       it "should call the format Proc with the version" do
-        subject.version_tag(version).should == "REL_1_2_3"
+        expect(subject.version_tag(version)).to eq("REL_1_2_3")
       end
     end
   end
@@ -49,9 +49,9 @@ describe Gem::Tasks::SCM::Tag do
         subject { described_class.new(:sign => false) }
 
         it "should run `git tag`" do
-          subject.project.stub!(:scm).and_return(:git)
+          allow(subject.project).to receive(:scm).and_return(:git)
 
-          subject.should_receive(:run).with(
+          expect(subject).to receive(:run).with(
             'git', 'tag', '-m', message, name
           )
 
@@ -65,9 +65,9 @@ describe Gem::Tasks::SCM::Tag do
         subject { described_class.new(:sign => true) }
 
         it "should run `git tag -s`" do
-          subject.project.stub!(:scm).and_return(:git)
+          allow(subject.project).to receive(:scm).and_return(:git)
 
-          subject.should_receive(:run).with(
+          expect(subject).to receive(:run).with(
             'git', 'tag', '-m', message, '-s', name
           )
 
@@ -83,9 +83,9 @@ describe Gem::Tasks::SCM::Tag do
         subject { described_class.new(:sign => false) }
 
         it "should run `hg tag`" do
-          subject.project.stub!(:scm).and_return(:hg)
+          allow(subject.project).to receive(:scm).and_return(:hg)
 
-          subject.should_receive(:run).with(
+          expect(subject).to receive(:run).with(
             'hg', 'tag', '-m', message, name
           )
 
@@ -99,12 +99,12 @@ describe Gem::Tasks::SCM::Tag do
         subject { described_class.new(:sign => true) }
 
         it "should run `hg sign` then `hg tag`" do
-          subject.project.stub!(:scm).and_return(:hg)
+          allow(subject.project).to receive(:scm).and_return(:hg)
 
-          subject.should_receive(:run).with(
+          expect(subject).to receive(:run).with(
             'hg', 'sign', '-m', "Signing #{name}"
           )
-          subject.should_receive(:run).with(
+          expect(subject).to receive(:run).with(
             'hg', 'tag', '-m', message, name
           )
 
