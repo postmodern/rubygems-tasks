@@ -5,6 +5,7 @@ description:
   Agnostic and unobtrusive Rake tasks for managing and releasing Ruby Gems.
 
 authors: Postmodern
+license: MIT
 email: postmodern.mod3@gmail.com
 homepage: https://github.com/postmodern/rubygems-tasks#readme
 has_yard: true
