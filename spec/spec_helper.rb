@@ -10,11 +10,11 @@ RSpec.configure do |rspec|
   rspec.before(:suite) do
     Dir[File.join(PROJECTS_DIR,'*')].each do |dir|
       Dir.chdir(dir) do
-        system 'git init'
+        system 'git init -q'
         system 'git config --local user.email test@example.com'
         system 'git config --local user.name Test'
         system 'git add .'
-        system 'git commit -q -m "Initial commit"'
+        system 'git commit -q -a -m "Initial commit"'
       end
     end
   end
