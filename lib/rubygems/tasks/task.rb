@@ -128,7 +128,7 @@ module Gem
       #   The names of the sub-tasks.
       #
       # @example
-      #   gemspec_tasks 'pkg:tar'
+      #   multi_task 'pkg:tar', @project.gemspecs.keys
       #
       # @api semipublic
       #
