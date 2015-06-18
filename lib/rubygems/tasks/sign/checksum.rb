@@ -84,8 +84,9 @@ module Gem
         # Defines the `sign:checksum` tasks.
         #
         def define
-          sign_task :checksum
-          task      :checksum => 'sign:checksum'
+          super(:checksum)
+
+          task :checksum => 'sign:checksum'
         end
 
         #
