@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rake_context'
 
-require 'rubygems/tasks/tasks'
+require 'rubygems/tasks'
 
 describe Gem::Tasks do
   describe "#initialize" do
