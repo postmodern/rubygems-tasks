@@ -4,7 +4,7 @@ PROJECTS_DIR = File.expand_path('../projects',__FILE__)
 PROJECT_DIRS = lambda { |name| File.join(PROJECTS_DIR,name) }
 
 # clear the $RUBYCONSOLE env variable
-ENV['RUBYCONSOLE'] = nil
+ENV.delete('RUBYCONSOLE')
 
 RSpec.configure do |rspec|
   rspec.before(:suite) do
