@@ -9,9 +9,9 @@ module Gem
 
       # Supported SCMs and their control directories.
       SCM_DIRS = {
-        :git => '.git',
-        :hg  => '.hg',
-        :svn => '.svn'
+        git: '.git',
+        hg:  '.hg',
+        svn: '.svn'
       }
 
       # The `pkg/` directory.

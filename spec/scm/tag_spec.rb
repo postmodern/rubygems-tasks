@@ -20,7 +20,7 @@ describe Gem::Tasks::SCM::Tag do
 
       let(:format) { 'release-%s' }
 
-      subject { described_class.new(:format => format) }
+      subject { described_class.new(format: format) }
 
       it "should apply the format String to the version" do
         expect(subject.version_tag(version)).to eq("release-#{version}")
@@ -30,7 +30,7 @@ describe Gem::Tasks::SCM::Tag do
     context "with format Proc" do
       let(:format) { proc { |ver| "REL_" + ver.tr('.','_') } }
 
-      subject { described_class.new(:format => format) }
+      subject { described_class.new(format: format) }
 
       it "should call the format Proc with the version" do
         expect(subject.version_tag(version)).to eq("REL_1_2_3")
@@ -46,7 +46,7 @@ describe Gem::Tasks::SCM::Tag do
       context "without signing" do
         include_context "rake"
 
-        subject { described_class.new(:sign => false) }
+        subject { described_class.new(sign: false) }
 
         it "should run `git tag`" do
           allow(subject.project).to receive(:scm).and_return(:git)
@@ -62,7 +62,7 @@ describe Gem::Tasks::SCM::Tag do
       context "signing" do
         include_context "rake"
 
-        subject { described_class.new(:sign => true) }
+        subject { described_class.new(sign: true) }
 
         it "should run `git tag -s`" do
           allow(subject.project).to receive(:scm).and_return(:git)
@@ -80,7 +80,7 @@ describe Gem::Tasks::SCM::Tag do
       context "without signing" do
         include_context "rake"
 
-        subject { described_class.new(:sign => false) }
+        subject { described_class.new(sign: false) }
 
         it "should run `hg tag`" do
           allow(subject.project).to receive(:scm).and_return(:hg)
@@ -96,7 +96,7 @@ describe Gem::Tasks::SCM::Tag do
       context "with signing" do
         include_context "rake"
 
-        subject { described_class.new(:sign => true) }
+        subject { described_class.new(sign: true) }
 
         it "should run `hg sign` then `hg tag`" do
           allow(subject.project).to receive(:scm).and_return(:hg)

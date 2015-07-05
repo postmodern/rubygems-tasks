@@ -108,10 +108,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":build => {:gem => false}" do
+    context "build: {gem: false}" do
       include_context "rake"
 
-      subject { described_class.new(:build => {:gem => false}) }
+      subject { described_class.new(build: {gem: false}) }
 
       describe '#build' do
         subject { super().build }
@@ -122,10 +122,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":build => {:tar => true}" do
+    context "build: {tar: true}" do
       include_context "rake"
 
-      subject { described_class.new(:build => {:tar => true}) }
+      subject { described_class.new(build: {tar: true}) }
 
       describe '#build' do
         subject { super().build }
@@ -136,10 +136,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":build => {:zip => true}" do
+    context "build: {zip: true}" do
       include_context "rake"
 
-      subject { described_class.new(:build => {:zip => true}) }
+      subject { described_class.new(build: {zip: true}) }
 
       describe '#build' do
         subject { super().build }
@@ -150,10 +150,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":scm => {:status => false}" do
+    context "scm: {status: false}" do
       include_context "rake"
 
-      subject { described_class.new(:scm => {:status => false}) }
+      subject { described_class.new(scm: {status: false}) }
 
       describe '#scm' do
         subject { super().scm }
@@ -164,10 +164,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":scm => {:push => false}" do
+    context "scm: {push: false}" do
       include_context "rake"
 
-      subject { described_class.new(:scm => {:push => false}) }
+      subject { described_class.new(scm: {push: false}) }
 
       describe '#scm' do
         subject { super().scm }
@@ -178,10 +178,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":scm => {:tag => false}" do
+    context "scm: {tag: false}" do
       include_context "rake"
 
-      subject { described_class.new(:scm => {:tag => false}) }
+      subject { described_class.new(scm: {tag: false}) }
 
       describe '#scm' do
         subject { super().scm }
@@ -192,10 +192,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":sign => {:checksum => true}" do
+    context "sign: {checksum: true}" do
       include_context "rake"
 
-      subject { described_class.new(:sign => {:checksum => true}) }
+      subject { described_class.new(sign: {checksum: true}) }
 
       describe '#sign' do
         subject { super().sign }
@@ -206,10 +206,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":sign => {:pgp => true}" do
+    context "sign: {pgp: true}" do
       include_context "rake"
 
-      subject { described_class.new(:sign => {:pgp => true}) }
+      subject { described_class.new(sign: {pgp: true}) }
 
       describe '#sign' do
         subject { super().sign }
@@ -220,10 +220,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":console => false" do
+    context "console: false" do
       include_context "rake"
 
-      subject { described_class.new(:console => false) }
+      subject { described_class.new(console: false) }
 
       describe '#console' do
         subject { super().console }
@@ -231,10 +231,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":install => false" do
+    context "install: false" do
       include_context "rake"
 
-      subject { described_class.new(:install => false) }
+      subject { described_class.new(install: false) }
 
       describe '#install' do
         subject { super().install }
@@ -242,10 +242,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":push => false" do
+    context "push: false" do
       include_context "rake"
 
-      subject { described_class.new(:push => false) }
+      subject { described_class.new(push: false) }
 
       describe '#push' do
         subject { super().push }
@@ -253,10 +253,10 @@ describe Gem::Tasks do
       end
     end
 
-    context ":release => false" do
+    context "release: false" do
       include_context "rake"
 
-      subject { described_class.new(:release => false) }
+      subject { described_class.new(release: false) }
 
       describe '#release' do
         subject { super().release }

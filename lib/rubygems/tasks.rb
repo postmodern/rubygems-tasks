@@ -99,10 +99,10 @@ module Gem
     #   The newly created tasks.
     #
     # @example Enables building of `.gem` and `.tar.gz` packages:
-    #   Gem::Tasks.new(:build => {:gem => true, :tar => true})
+    #   Gem::Tasks.new(build: {gem: true, tar: true})
     #
     # @example Disables pushing `.gem` packages to [rubygems.org](rubygems.org):
-    #   Gem::Tasks.new(:push => false)
+    #   Gem::Tasks.new(push: false)
     #
     # @example Configures the version tag format:
     #   Gem::Tasks.new do |tasks|
