@@ -86,11 +86,11 @@ Disable the `push` task:
 
 Enable building `.tar.gz` and `.zip` archives:
 
-    Gem::Tasks.new(:build => {tar: true, zip: true})
+    Gem::Tasks.new(build: {tar: true, zip: true})
 
 Enable Checksums and PGP signatures for built packages:
 
-    Gem::Tasks.new(sign => {checksum: true, pgp: true})
+    Gem::Tasks.new(sign: {checksum: true, pgp: true})
 
 Selectively defining tasks:
 
