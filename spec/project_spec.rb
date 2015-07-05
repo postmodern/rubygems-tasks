@@ -2,22 +2,25 @@ require 'spec_helper'
 require 'rubygems/tasks/project'
 
 describe Gem::Tasks::Project do
-  let(:rubygems_project) do
-    described_class.new(PROJECT_DIRS['rubygems-project'])
+  let(:rubygems_project_dir) { File.join(PROJECTS_DIR,'rubygems-project') }
+  let(:rubygems_project)     { described_class.new(rubygems_project_dir)   }
+
+  let(:rubygems_multi_project_dir) do
+    File.join(PROJECTS_DIR,'rubygems-multi-project')
   end
 
   let(:rubygems_multi_project) do
-    described_class.new(PROJECT_DIRS['rubygems-multi-project'])
+    described_class.new(rubygems_multi_project_dir)
   end
 
-  let(:bundler_project) do
-    described_class.new(PROJECT_DIRS['bundler-project'])
-  end
+  let(:bundler_project_dir) { File.join(PROJECTS_DIR,'bundler-project') }
+  let(:bundler_project)     { described_class.new(bundler_project_dir)   }
 
   describe "directories" do
+    let(:directory) { rubygems_project_dir }
+
     it "should map paths to #{described_class} instances" do
-      directory = PROJECT_DIRS['rubygems-project']
-      project   = described_class.directories[directory]
+      project = described_class.directories[directory]
 
       expect(project.root).to eq(directory)
     end
