@@ -57,6 +57,11 @@ This is what rubygems-tasks seeks to provide.
 * **Does not** inject dependencies into gems.
 * **Zero** dependencies.
 
+## Requirements
+
+* [ruby] >= 1.9.1
+* [rake]
+
 ## Install
 
     $ gem install rubygems-tasks
@@ -117,3 +122,6 @@ See {file:LICENSE.txt} for details.
 
 [rubygems.org]: https://rubygems.org/
 [gem server]: https://github.com/rubygems/rubygems.org#readme
+
+[ruby]: https://www.ruby-lang.org/
+[rake]: https://rubygems.org/gems/rake
