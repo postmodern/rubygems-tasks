@@ -54,7 +54,7 @@ module Gem
       # @api semipublic
       #
       def install(path)
-        run 'gem', 'install', '-q', path
+        gem 'install', '-q', path
       end
 
     end
