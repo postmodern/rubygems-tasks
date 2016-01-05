@@ -12,6 +12,13 @@ module Gem
       # @return [String, nil]
       attr_accessor :host
 
+      # The rubygems API key.
+      #
+      # @return [String, nil]
+      #
+      # @since 0.3.0
+      attr_accessor :key
+
       #
       # Initializes the `push` task.
       #
@@ -21,10 +28,14 @@ module Gem
       # @option options [String, nil] :host
       #   The rubygems host to push gems to.
       #
+      # @option options [String, nil] :key
+      #   An optional rubygems API key.
+      #
       def initialize(options={})
         super()
 
         @host = options[:host]
+        @key  = options[:key]
 
         yield self if block_given?
         define
@@ -71,6 +82,7 @@ module Gem
       #
       def push(path)
         arguments = ['gem', 'push', path]
+        arguments.push('--key',   @key) if @key
         arguments.push('--host', @host) if @host
 
         return run(*arguments)
