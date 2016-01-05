@@ -7,7 +7,7 @@ module Gem
     #
     class Push < Task
 
-      # The Gemcutter host to push gems to.
+      # The rubygems host to push gems to.
       attr_accessor :host
 
       #
@@ -17,7 +17,7 @@ module Gem
       #   Additional options.
       #
       # @option options [String] :host
-      #   The Gemcutter host to push gems to.
+      #   The rubygems host to push gems to.
       #
       def initialize(options={})
         super()
