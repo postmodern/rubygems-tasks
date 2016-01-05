@@ -28,5 +28,17 @@ describe Gem::Tasks::Push do
         subject.push(path)
       end
     end
+
+    context "with custom :key" do
+      let(:key) { '098f6bcd4621d373cade4e832627b4f6' }
+
+      subject { described_class.new(:key => key) }
+
+      it "should include the --key option" do
+        expect(subject).to receive(:run).with('gem', 'push', path, '--key', key)
+
+        subject.push(path)
+      end
+    end
   end
 end
