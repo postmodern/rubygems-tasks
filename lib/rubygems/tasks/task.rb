@@ -128,11 +128,11 @@ module Gem
       #   The names of the sub-tasks.
       #
       # @example
-      #   multi_task 'pkg:tar', @project.gemspecs.keys
+      #   namespaced_tasks 'pkg:tar', @project.gemspecs.keys
       #
       # @api semipublic
       #
-      def multi_task(prefix,subtasks)
+      def namespaced_tasks(prefix,subtasks)
         task prefix => subtasks.map { |subtask| "#{prefix}:#{subtask}" }
       end
 
@@ -145,7 +145,7 @@ module Gem
       # @api semipublic
       #
       def gemspec_tasks(prefix)
-        multi_task prefix, @project.gemspecs.keys
+        namespaced_tasks prefix, @project.gemspecs.keys
       end
 
     end
