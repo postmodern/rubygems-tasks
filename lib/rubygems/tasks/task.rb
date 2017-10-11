@@ -124,7 +124,7 @@ module Gem
       # @param [String] prefix
       #   The namespace of the sub-tasks to call.
       #
-      # @param [Array<Symbol>] names
+      # @param [Array<Symbol>] subtasks
       #   The names of the sub-tasks.
       #
       # @example
@@ -132,20 +132,20 @@ module Gem
       #
       # @api semipublic
       #
-      def multi_task(prefix,names)
-        task prefix => names.map { |name| "#{prefix}:#{name}" }
+      def multi_task(prefix,subtasks)
+        task prefix => subtasks.map { |subtask| "#{prefix}:#{subtask}" }
       end
 
       #
       # Defines a task that will execute tasks for each gemspec.
       #
-      # @param [Symbol, String] name
+      # @param [Symbol, String] prefix
       #   The name for the task.
       #
       # @api semipublic
       #
-      def gemspec_tasks(name)
-        multi_task name, @project.gemspecs.keys
+      def gemspec_tasks(prefix)
+        multi_task prefix, @project.gemspecs.keys
       end
 
     end
