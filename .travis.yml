@@ -3,7 +3,8 @@ before_install:
   - sudo apt-get install git subversion mercurial
   - gem install rspec -v "~> 3.0"
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.5
+  - 2.6
+  - 2.7
   - jruby
   - rbx-2

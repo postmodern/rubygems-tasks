@@ -59,7 +59,7 @@ This is what rubygems-tasks seeks to provide.
 
 ## Requirements
 
-* [ruby] >= 1.9.1
+* [ruby] >= 2.0.0
 * [rake]
 
 ## Install
