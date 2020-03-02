@@ -10,6 +10,12 @@ email: postmodern.mod3@gmail.com
 homepage: https://github.com/postmodern/rubygems-tasks#readme
 has_yard: true
 
+metadata:
+  documentation_uri: https://rubydoc.info/gems/rubygems-tasks
+  source_code_uri: https://github.com/postmodern/rubygems-tasks
+  bug_tracker_uri: https://github.com/postmodern/rubygems-tasks/issues
+  changelog_uri: https://github.com/postmodern/rubygems-tasks/blob/master/ChangeLog.md
+
 required_ruby_version: ">= 2.0.0"
 
 dependencies:
