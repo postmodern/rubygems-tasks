@@ -7,11 +7,7 @@ describe Gem::Tasks::Console do
   describe "#console" do
     include_context "rake"
 
-    if RUBY_VERSION < '1.9'
-      let(:default_options) { %w[-Ilib -rrubygems -rrubygems/tasks] }
-    else
-      let(:default_options) { %w[-Ilib -rrubygems/tasks]            }
-    end
+    let(:default_options) { %w[-Ilib -rrubygems/tasks] }
 
     let(:custom_command)  { 'ripl'             }
     let(:custom_options)  { %w[-Ivendor -rfoo] }
