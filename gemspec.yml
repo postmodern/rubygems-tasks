@@ -19,6 +19,7 @@ metadata:
 required_ruby_version: ">= 2.0.0"
 
 dependencies:
+  rake: ">= 10.0.0"
   irb: ~> 1.0
 
 development_dependencies:
