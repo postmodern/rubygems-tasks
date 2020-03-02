@@ -1,3 +1,10 @@
+### 0.2.5 / 2020-03-02
+
+* Require Ruby >= 2.0.0.
+* Fixed issue where `file` tasks were defined in namespaces resulting in task
+  names such as `namespace:path/to/file` instead of simply `path/to/file`.
+* Set gemspec license to MIT.
+
 ### 0.2.4 / 2013-04-8
 
 * Use the new `Gem::Package` class when running under Ruby 2.0.0.
