@@ -12,6 +12,9 @@ has_yard: true
 
 required_ruby_version: ">= 2.0.0"
 
+dependencies:
+  irb: ~> 1.0
+
 development_dependencies:
   rspec: ~> 3.0
   yard: ~> 0.8

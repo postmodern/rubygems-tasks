@@ -1,6 +1,7 @@
 ### 0.2.5 / 2020-03-02
 
 * Require Ruby >= 2.0.0.
+* Added irb as a dependencies.
 * Fixed issue where `file` tasks were defined in namespaces resulting in task
   names such as `namespace:path/to/file` instead of simply `path/to/file`.
 * Set gemspec license to MIT.
