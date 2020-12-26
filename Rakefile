@@ -1,3 +1,5 @@
+require 'rubygems'
+
 require 'rake'
 
 lib_dir = File.expand_path('lib',File.dirname(__FILE__))
@@ -9,26 +11,10 @@ Gem::Tasks.new(
   sign:  {checksum: true, pgp: true}
 )
 
-begin
-  gem 'rspec', '~> 3.0'
-  require 'rspec/core/rake_task'
-  
-  RSpec::Core::RakeTask.new
-rescue LoadError
-  task :spec do
-    abort "Please run `gem install rspec` to install RSpec."
-  end
-end
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
 task :test => :spec
 task :default => :spec
 
-begin
-  gem 'yard', '~> 0.8'
-  require 'yard'
-
-  YARD::Rake::YardocTask.new  
-rescue LoadError => e
-  task :yard do
-    abort 'Please run `gem install yard` to install YARD.'
-  end
-end
+require 'yard'
+YARD::Rake::YardocTask.new

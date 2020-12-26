@@ -23,5 +23,4 @@ dependencies:
   irb: ~> 1.0
 
 development_dependencies:
-  rspec: ~> 3.0
-  yard: ~> 0.8
+  bundler: ~> 2.0
