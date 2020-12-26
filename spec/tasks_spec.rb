@@ -11,27 +11,18 @@ describe Gem::Tasks do
       describe '#build' do
         subject { super().build }
         it { is_expected.to be_kind_of(OpenStruct)             }
-      end
 
-      describe '#build' do
-        subject { super().build }
-        describe '#gem' do
+        describe '#build.gem' do
           subject { super().gem }
           it { is_expected.to be_kind_of(Gem::Tasks::Build::Gem) }
         end
-      end
 
-      describe '#build' do
-        subject { super().build }
-        describe '#tar' do
+        describe '#build.tar' do
           subject { super().tar }
           it { is_expected.to be_nil                             }
         end
-      end
 
-      describe '#build' do
-        subject { super().build }
-        describe '#zip' do
+        describe '#build.zip' do
           subject { super().zip }
           it { is_expected.to be_nil                             }
         end
@@ -40,27 +31,18 @@ describe Gem::Tasks do
       describe '#scm' do
         subject { super().scm }
         it { is_expected.to be_kind_of(OpenStruct)              }
-      end
 
-      describe '#scm' do
-        subject { super().scm }
-        describe '#status' do
+        describe '#scm.status' do
           subject { super().status }
           it { is_expected.to be_kind_of(Gem::Tasks::SCM::Status) }
         end
-      end
 
-      describe '#scm' do
-        subject { super().scm }
-        describe '#push' do
+        describe '#scm.push' do
           subject { super().push }
           it { is_expected.to be_kind_of(Gem::Tasks::SCM::Push)   }
         end
-      end
 
-      describe '#scm' do
-        subject { super().scm }
-        describe '#tag' do
+        describe '#scm.tag' do
           subject { super().tag }
           it { is_expected.to be_kind_of(Gem::Tasks::SCM::Tag)    }
         end
@@ -69,18 +51,12 @@ describe Gem::Tasks do
       describe '#sign' do
         subject { super().sign }
         it { is_expected.to be_kind_of(OpenStruct) }
-      end
 
-      describe '#sign' do
-        subject { super().sign }
         describe '#checksum' do
           subject { super().checksum }
           it { is_expected.to be_nil                 }
         end
-      end
 
-      describe '#sign' do
-        subject { super().sign }
         describe '#pgp' do
           subject { super().pgp }
           it { is_expected.to be_nil                 }
