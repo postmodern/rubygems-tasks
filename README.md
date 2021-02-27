@@ -1,6 +1,7 @@
 # rubygems-tasks
 
 [![CI](https://github.com/postmodern/rubygems-tasks/actions/workflows/ruby.yml/badge.svg)](https://github.com/postmodern/rubygems-tasks/actions/workflows/ruby.yml)
+[![Code Climate](https://codeclimate.com/github/postmodern/rubygems-tasks.svg)](https://codeclimate.com/github/postmodern/rubygems-tasks)
 
 * [Source](https://github.com/postmodern/rubygems-tasks)
 * [Issues](https://github.com/postmodern/rubygems-tasks/issues)
