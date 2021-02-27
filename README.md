@@ -1,6 +1,6 @@
 # rubygems-tasks
 
-[![Build Status](https://secure.travis-ci.org/postmodern/rubygems-tasks.png?branch=master)](https://travis-ci.org/postmodern/rubygems-tasks)
+[![CI](https://github.com/postmodern/rubygems-tasks/actions/workflows/ruby.yml/badge.svg)](https://github.com/postmodern/rubygems-tasks/actions/workflows/ruby.yml)
 
 * [Source](https://github.com/postmodern/rubygems-tasks)
 * [Issues](https://github.com/postmodern/rubygems-tasks/issues)
