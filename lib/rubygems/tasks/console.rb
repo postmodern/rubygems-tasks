@@ -78,7 +78,7 @@ module Gem
         arguments.push(*require_paths.map { |dir| "-I#{dir}" })
 
         # add an -r option to require the library
-        arguments.push('-r' + require_file)
+        arguments.push("-r#{require_file}")
 
         # push on additional options
         arguments.push(*@options)
