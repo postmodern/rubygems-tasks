@@ -67,7 +67,13 @@ module Gem
       # @api semipublic
       #
       def gem(command,*arguments)
-        run 'gem', command, *arguments
+        if defined?(Bundler)
+          Bundler.with_original_env do
+            run 'gem', command, *arguments
+          end
+        else
+          run 'gem', command, *arguments
+        end
       end
 
       #
