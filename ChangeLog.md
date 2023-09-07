@@ -1,3 +1,8 @@
+### 0.2.6 / 2023-09-07
+
+* Fixed `rake install` so that it runs `gem install -q pkg/...` outside of the
+  Bundler environment, if currently running under Bundler.
+
 ### 0.2.5 / 2020-03-02
 
 * Require Ruby >= 2.0.0.
