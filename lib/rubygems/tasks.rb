@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'tasks/console'
 require_relative 'tasks/build'
 require_relative 'tasks/install'
