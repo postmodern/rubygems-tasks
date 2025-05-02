@@ -10,10 +10,7 @@ module Gem
       #
       # Initializes the `install` task.
       #
-      # @param [Hash] options
-      #   Additional options.
-      #
-      def initialize(options={})
+      def initialize
         super()
 
         yield self if block_given?

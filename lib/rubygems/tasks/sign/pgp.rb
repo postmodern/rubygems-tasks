@@ -11,10 +11,7 @@ module Gem
         #
         # Initializes the `sign` task.
         #
-        # @param [Hash] options
-        #   Digest options.
-        #
-        def initialize(options={})
+        def initialize
           super()
 
           yield self if block_given?

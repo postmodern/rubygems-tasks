@@ -10,10 +10,7 @@ module Gem
       #
       # Initializes the `release` task.
       #
-      # @param [Hash] options
-      #   Additional options for the `release` task.
-      #
-      def initialize(options={})
+      def initialize
         super()
 
         yield self if block_given?
