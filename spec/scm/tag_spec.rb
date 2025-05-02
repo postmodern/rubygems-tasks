@@ -4,20 +4,18 @@ require 'rake_context'
 require 'rubygems/tasks/scm/tag'
 
 describe Gem::Tasks::SCM::Tag do
+  include_context "rake"
+
   let(:version) { '1.2.3' }
 
   describe "#version_tag" do
     context "when #format is #{described_class}::DEFAULT_FORMAT" do
-      include_context "rake"
-
       it "must have a 'v' prefix" do
         expect(subject.version_tag(version)).to eq("v#{version}")
       end
     end
 
     context "when #format is a format String" do
-      include_context "rake"
-
       let(:format) { 'release-%s' }
 
       subject { described_class.new(format: format) }
@@ -44,8 +42,6 @@ describe Gem::Tasks::SCM::Tag do
 
     context "when the project's SCM type is :git" do
       context "but signing is disabled" do
-        include_context "rake"
-
         subject { described_class.new(sign: false) }
 
         it "must run `git tag`" do
@@ -60,8 +56,6 @@ describe Gem::Tasks::SCM::Tag do
       end
 
       context "and signing is enabled" do
-        include_context "rake"
-
         subject { described_class.new(sign: true) }
 
         it "must run `git tag -s`" do
@@ -78,8 +72,6 @@ describe Gem::Tasks::SCM::Tag do
 
     context "when the project's SCM type is :hg" do
       context "but signing is disabled" do
-        include_context "rake"
-
         subject { described_class.new(sign: false) }
 
         it "must run `hg tag`" do
@@ -94,8 +86,6 @@ describe Gem::Tasks::SCM::Tag do
       end
 
       context "and signing is enabled" do
-        include_context "rake"
-
         subject { described_class.new(sign: true) }
 
         it "must run `hg sign` then `hg tag`" do
