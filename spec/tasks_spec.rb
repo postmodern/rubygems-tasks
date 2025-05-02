@@ -17,25 +17,7 @@ describe Gem::Tasks do
       describe '#scm' do
         subject { super().scm }
 
-        it { is_expected.to be_kind_of(OpenStruct) }
-
-        describe '#scm.status' do
-          subject { super().status }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Status) }
-        end
-
-        describe '#scm.push' do
-          subject { super().push }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Push) }
-        end
-
-        describe '#scm.tag' do
-          subject { super().tag }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Tag) }
-        end
+        it { is_expected.to be_a(Gem::Tasks::SCM) }
       end
 
       describe '#sign' do
@@ -77,48 +59,6 @@ describe Gem::Tasks do
         subject { super().release }
 
         it { is_expected.to be_kind_of(Gem::Tasks::Release) }
-      end
-    end
-
-    context "when given `scm: {status: false}`" do
-      subject { described_class.new(scm: {status: false}) }
-
-      describe '#scm' do
-        subject { super().scm }
-
-        describe '#status' do
-          subject { super().status }
-
-          it { is_expected.to be_nil }
-        end
-      end
-    end
-
-    context "when given `scm: {push: false}`" do
-      subject { described_class.new(scm: {push: false}) }
-
-      describe '#scm' do
-        subject { super().scm }
-
-        describe '#push' do
-          subject { super().push }
-
-          it { is_expected.to be_nil }
-        end
-      end
-    end
-
-    context "when given `scm: {tag: false}`" do
-      subject { described_class.new(scm: {tag: false}) }
-
-      describe '#scm' do
-        subject { super().scm }
-
-        describe '#tag' do
-          subject { super().tag }
-
-          it { is_expected.to be_nil }
-        end
       end
     end
 
