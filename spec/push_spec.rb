@@ -20,7 +20,7 @@ describe Gem::Tasks::Push do
     context "with custom :host" do
       let(:host) { 'internal.company.com' }
 
-      subject { described_class.new(:host => host) }
+      subject { described_class.new(host: host) }
 
       it "must include the --host option" do
         expect(subject).to receive(:run).with('gem', 'push', path, '--host', host)
@@ -32,7 +32,7 @@ describe Gem::Tasks::Push do
     context "with custom :key" do
       let(:key) { '098f6bcd4621d373cade4e832627b4f6' }
 
-      subject { described_class.new(:key => key) }
+      subject { described_class.new(key: key) }
 
       it "should include the --key option" do
         expect(subject).to receive(:run).with('gem', 'push', path, '--key', key)

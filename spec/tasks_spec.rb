@@ -7,7 +7,7 @@ describe Gem::Tasks do
   include_context "rake"
 
   describe "#initialize" do
-    context "when given no options" do
+    context "when given no keyword arguments" do
       describe '#build' do
         subject { super().build }
 

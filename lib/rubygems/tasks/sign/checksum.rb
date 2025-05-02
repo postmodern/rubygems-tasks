@@ -33,28 +33,25 @@ module Gem
         #
         # Initializes the `sign:checksum` task.
         #
-        # @param [Hash] options
-        #   Digest options.
-        #
-        # @option options [Boolean] :md5 (true)
+        # @param [Boolean] md5
         #   Specifies whether MD5 checksums are enabled.
         #
-        # @option options [Boolean] :sha1 (true)
+        # @param [Boolean] sha1
         #   Specifies whether SHA1 checksums are enabled.
         #
-        # @option options [Boolean] :sha2 (false)
+        # @param [Boolean] sha2
         #   Specifies whether SHA2 checksums are enabled.
         #
-        # @option options [Boolean] :sha512 (false)
+        # @param [Boolean] sha512
         #   Specifies whether SHA512 checksums are enabled.
         #
-        def initialize(options={})
+        def initialize(md5: true, sha1: true, sha2: false, sha512: false)
           super()
 
-          @md5    = options.fetch(:md5,   true)
-          @sha1   = options.fetch(:sha1,  true)
-          @sha2   = options.fetch(:sha2,  false)
-          @sha512 = options.fetch(:sha512,false)
+          @md5    = md5
+          @sha1   = sha1
+          @sha2   = sha2
+          @sha512 = sha512
 
           yield self if block_given?
           define

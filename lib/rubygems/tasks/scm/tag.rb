@@ -28,20 +28,17 @@ module Gem
         #
         # Initializes the `scm:tag` task.
         #
-        # @param [Hash] options
-        #   Additional options.
-        #
-        # @option options [String, Proc] :format (DEFAULT_FORMAT)
+        # @param [String, Proc] format
         #   The format String or Proc for version tags.
         #
-        # @option options [Boolean] :sign
+        # @param [Boolean] sign
         #   Enables PGP signing of tags.
         #
-        def initialize(options={})
+        def initialize(format: DEFAULT_FORMAT, sign: nil)
           super()
 
-          @format = options.fetch(:format,DEFAULT_FORMAT)
-          @sign   = options[:sign]
+          @format = format
+          @sign   = sign
 
           yield self if block_given?
           define

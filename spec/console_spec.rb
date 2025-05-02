@@ -41,7 +41,7 @@ describe Gem::Tasks::Console do
     end
 
     context "with a custom command" do
-      subject { described_class.new(:command => custom_command) }
+      subject { described_class.new(command: custom_command) }
 
       context "when the project does not use Bundler" do
         before do
@@ -71,7 +71,7 @@ describe Gem::Tasks::Console do
     end
 
     context "with custom options" do
-      subject { described_class.new(:options => custom_options) }
+      subject { described_class.new(options: custom_options) }
 
       context "when the project does not use Bundler" do
         before do
