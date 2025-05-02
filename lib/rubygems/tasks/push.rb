@@ -8,6 +8,8 @@ module Gem
     class Push < Task
 
       # The rubygems host to push gems to.
+      #
+      # @return [String, nil]
       attr_accessor :host
 
       #
@@ -16,7 +18,7 @@ module Gem
       # @param [Hash] options
       #   Additional options.
       #
-      # @option options [String] :host
+      # @option options [String, nil] :host
       #   The rubygems host to push gems to.
       #
       def initialize(options={})

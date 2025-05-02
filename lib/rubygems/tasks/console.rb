@@ -14,9 +14,13 @@ module Gem
       DEFAULT_COMMAND = (ENV['RUBYCONSOLE'] || DEFAULT_CONSOLE)
 
       # The Ruby Console command
+      #
+      # @return [String]
       attr_accessor :command
 
       # Additional options for the Ruby Console
+      #
+      # @return [Array<String>]
       attr_accessor :options
 
       #
@@ -28,7 +32,7 @@ module Gem
       # @option options [String] :command (DEFAULT_COMMAND)
       #   The Ruby Console command to run.
       #
-      # @option options [Array] :options
+      # @option options [Array<String>] :options
       #   Additional options for the Ruby Console.
       #
       def initialize(options={})

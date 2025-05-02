@@ -11,15 +11,23 @@ module Gem
       class Checksum < Task
 
         # Enables or disables MD5 checksums.
+        #
+        # @return [Boolean]
         attr_writer :md5
 
         # Enables or disables SHA1 checksums.
+        #
+        # @return [Boolean]
         attr_writer :sha1
 
         # Enables or disables SHA2 checksums.
+        #
+        # @return [Boolean]
         attr_writer :sha2
 
         # Enables or disables SHA512 checksums.
+        #
+        # @return [Boolean]
         attr_writer :sha512
 
         #
