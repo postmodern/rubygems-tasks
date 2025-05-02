@@ -13,7 +13,7 @@ describe Gem::Tasks::Console do
     let(:custom_options)  { %w[-Ivendor -rfoo] }
 
     context "defaults" do
-      context "when project.bundler? == false" do
+      context "when the project does not use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
@@ -25,7 +25,7 @@ describe Gem::Tasks::Console do
         end
       end
 
-      context "when project.bundler? == true" do
+      context "when the project does use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end
@@ -40,10 +40,10 @@ describe Gem::Tasks::Console do
       end
     end
 
-    context "with custom command" do
+    context "with a custom command" do
       subject { described_class.new(:command => custom_command) }
 
-      context "when project.bundler? == false" do
+      context "when the project does not use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
@@ -55,7 +55,7 @@ describe Gem::Tasks::Console do
         end
       end
 
-      context "when project.bundler? == true" do
+      context "when the project does use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end
@@ -73,7 +73,7 @@ describe Gem::Tasks::Console do
     context "with custom options" do
       subject { described_class.new(:options => custom_options) }
 
-      context "when project.bundler? == false" do
+      context "when the project does not use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
@@ -85,7 +85,7 @@ describe Gem::Tasks::Console do
         end
       end
 
-      context "when project.bundler? == true" do
+      context "when the project does use Bundler" do
         before do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end

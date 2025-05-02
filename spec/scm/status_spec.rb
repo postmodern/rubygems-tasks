@@ -5,7 +5,7 @@ require 'rubygems/tasks/scm/status'
 
 describe Gem::Tasks::SCM::Status do
   describe "#status" do
-    context "git" do
+    context "when the project's SCM type is :git" do
       include_context "rake"
 
       it "should run `git status --untracked-files=no`" do
@@ -19,7 +19,7 @@ describe Gem::Tasks::SCM::Status do
       end
     end
 
-    context "hg" do
+    context "when the project's SCM type is :hg" do
       include_context "rake"
 
       it "should run `hg status --quiet`" do
@@ -33,7 +33,7 @@ describe Gem::Tasks::SCM::Status do
       end
     end
 
-    context "svn" do
+    context "when the project's SCM type is :svn" do
       include_context "rake"
 
       it "should run `svn status --quiet`" do

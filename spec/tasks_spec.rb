@@ -5,7 +5,7 @@ require 'rubygems/tasks'
 
 describe Gem::Tasks do
   describe "#initialize" do
-    context "default options" do
+    context "when given no options" do
       include_context "rake"
 
       describe '#build' do
@@ -84,7 +84,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "build: {gem: false}" do
+    context "when given `build: {gem: false}`" do
       include_context "rake"
 
       subject { described_class.new(build: {gem: false}) }
@@ -98,7 +98,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "build: {tar: true}" do
+    context "when given `build: {tar: true}`" do
       include_context "rake"
 
       subject { described_class.new(build: {tar: true}) }
@@ -112,7 +112,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "build: {zip: true}" do
+    context "when given `build: {zip: true}`" do
       include_context "rake"
 
       subject { described_class.new(build: {zip: true}) }
@@ -126,7 +126,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "scm: {status: false}" do
+    context "when given `scm: {status: false}`" do
       include_context "rake"
 
       subject { described_class.new(scm: {status: false}) }
@@ -140,7 +140,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "scm: {push: false}" do
+    context "when given `scm: {push: false}`" do
       include_context "rake"
 
       subject { described_class.new(scm: {push: false}) }
@@ -154,7 +154,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "scm: {tag: false}" do
+    context "when given `scm: {tag: false}`" do
       include_context "rake"
 
       subject { described_class.new(scm: {tag: false}) }
@@ -168,7 +168,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "sign: {checksum: true}" do
+    context "when given `sign: {checksum: true}`" do
       include_context "rake"
 
       subject { described_class.new(sign: {checksum: true}) }
@@ -182,7 +182,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "sign: {pgp: true}" do
+    context "when given `sign: {pgp: true}`" do
       include_context "rake"
 
       subject { described_class.new(sign: {pgp: true}) }
@@ -196,7 +196,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "console: false" do
+    context "when given `console: false`" do
       include_context "rake"
 
       subject { described_class.new(console: false) }
@@ -207,7 +207,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "install: false" do
+    context "when given `install: false`" do
       include_context "rake"
 
       subject { described_class.new(install: false) }
@@ -218,7 +218,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "push: false" do
+    context "when given `push: false`" do
       include_context "rake"
 
       subject { described_class.new(push: false) }
@@ -229,7 +229,7 @@ describe Gem::Tasks do
       end
     end
 
-    context "release: false" do
+    context "when given `release: false`" do
       include_context "rake"
 
       subject { described_class.new(release: false) }

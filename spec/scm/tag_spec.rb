@@ -7,7 +7,7 @@ describe Gem::Tasks::SCM::Tag do
   let(:version) { '1.2.3' }
 
   describe "#version_tag" do
-    context "defaults" do
+    context "when #format is #{described_class}::DEFAULT_FORMAT" do
       include_context "rake"
 
       it "should have a 'v' prefix" do
@@ -15,7 +15,7 @@ describe Gem::Tasks::SCM::Tag do
       end
     end
 
-    context "with format String" do
+    context "when #format is a format String" do
       include_context "rake"
 
       let(:format) { 'release-%s' }
@@ -27,7 +27,7 @@ describe Gem::Tasks::SCM::Tag do
       end
     end
 
-    context "with format Proc" do
+    context "when #format is a Proc" do
       let(:format) { proc { |ver| "REL_" + ver.tr('.','_') } }
 
       subject { described_class.new(format: format) }
@@ -42,8 +42,8 @@ describe Gem::Tasks::SCM::Tag do
     let(:name)    { "v#{version}"        }
     let(:message) { "Tagging #{name}"    }
 
-    context "git" do
-      context "without signing" do
+    context "when the project's SCM type is :git" do
+      context "but signing is disabled" do
         include_context "rake"
 
         subject { described_class.new(sign: false) }
@@ -59,7 +59,7 @@ describe Gem::Tasks::SCM::Tag do
         end
       end
 
-      context "signing" do
+      context "and signing is enabled" do
         include_context "rake"
 
         subject { described_class.new(sign: true) }
@@ -76,8 +76,8 @@ describe Gem::Tasks::SCM::Tag do
       end
     end
 
-    context "hg" do
-      context "without signing" do
+    context "when the project's SCM type is :hg" do
+      context "but signing is disabled" do
         include_context "rake"
 
         subject { described_class.new(sign: false) }
@@ -93,7 +93,7 @@ describe Gem::Tasks::SCM::Tag do
         end
       end
 
-      context "with signing" do
+      context "and signing is enabled" do
         include_context "rake"
 
         subject { described_class.new(sign: true) }

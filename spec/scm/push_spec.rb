@@ -5,7 +5,7 @@ require 'rubygems/tasks/scm/push'
 
 describe Gem::Tasks::SCM::Push do
   describe "#push!" do
-    context "git" do
+    context "when the project's SCM type is :git" do
       it "should run `git push --tags`" do
         allow(subject.project).to receive(:scm).and_return(:git)
         expect(subject).to receive(:run).with('git', 'push')
@@ -15,7 +15,7 @@ describe Gem::Tasks::SCM::Push do
       end
     end
 
-    context "hg" do
+    context "when the project's SCM type is :hg" do
       it "should run `hg push`" do
         allow(subject.project).to receive(:scm).and_return(:hg)
         expect(subject).to receive(:run).with('hg', 'push')
@@ -24,7 +24,7 @@ describe Gem::Tasks::SCM::Push do
       end
     end
 
-    context "otherwise" do
+    context "when the project's SCM type is :svn" do
       it "should return true" do
         allow(subject.project).to receive(:scm).and_return(:svn)
 
