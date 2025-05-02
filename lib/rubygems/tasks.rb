@@ -33,12 +33,9 @@ module Gem
     # @return [Build]
     attr_reader :build
 
+    # The {SCM scm:\*} tasks.
     #
-    # The `scm` tasks.
-    #
-    # @return [OpenStruct]
-    #   The collection of `scm` tasks.
-    #
+    # @return [SCM]
     attr_reader :scm
 
     #
@@ -137,15 +134,9 @@ module Gem
                    install: true,
                    push:    true,
                    release: true)
-      @scm   = OpenStruct.new
+      @scm   = SCM.new(**scm)
       @build = Build.new(**build)
       @sign  = OpenStruct.new
-
-      if scm
-        @scm.status = (SCM::Status.new if scm.fetch(:status,true))
-        @scm.tag    = (SCM::Tag.new    if scm.fetch(:tag,true))
-        @scm.push   = (SCM::Push.new   if scm.fetch(:push,true))
-      end
 
       if sign
         @sign.checksum = (Sign::Checksum.new if sign[:checksum])

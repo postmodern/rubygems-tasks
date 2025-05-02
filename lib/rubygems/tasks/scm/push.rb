@@ -2,7 +2,7 @@ require 'rubygems/tasks/task'
 
 module Gem
   class Tasks
-    module SCM
+    class SCM
       #
       # The `scm:push` task.
       #
