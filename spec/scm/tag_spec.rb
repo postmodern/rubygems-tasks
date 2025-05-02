@@ -10,7 +10,7 @@ describe Gem::Tasks::SCM::Tag do
     context "when #format is #{described_class}::DEFAULT_FORMAT" do
       include_context "rake"
 
-      it "should have a 'v' prefix" do
+      it "must have a 'v' prefix" do
         expect(subject.version_tag(version)).to eq("v#{version}")
       end
     end
@@ -22,7 +22,7 @@ describe Gem::Tasks::SCM::Tag do
 
       subject { described_class.new(format: format) }
 
-      it "should apply the format String to the version" do
+      it "must apply the format String to the version" do
         expect(subject.version_tag(version)).to eq("release-#{version}")
       end
     end
@@ -32,7 +32,7 @@ describe Gem::Tasks::SCM::Tag do
 
       subject { described_class.new(format: format) }
 
-      it "should call the format Proc with the version" do
+      it "must call the format Proc with the version" do
         expect(subject.version_tag(version)).to eq("REL_1_2_3")
       end
     end
@@ -48,7 +48,7 @@ describe Gem::Tasks::SCM::Tag do
 
         subject { described_class.new(sign: false) }
 
-        it "should run `git tag`" do
+        it "must run `git tag`" do
           allow(subject.project).to receive(:scm).and_return(:git)
 
           expect(subject).to receive(:run).with(
@@ -64,7 +64,7 @@ describe Gem::Tasks::SCM::Tag do
 
         subject { described_class.new(sign: true) }
 
-        it "should run `git tag -s`" do
+        it "must run `git tag -s`" do
           allow(subject.project).to receive(:scm).and_return(:git)
 
           expect(subject).to receive(:run).with(
@@ -82,7 +82,7 @@ describe Gem::Tasks::SCM::Tag do
 
         subject { described_class.new(sign: false) }
 
-        it "should run `hg tag`" do
+        it "must run `hg tag`" do
           allow(subject.project).to receive(:scm).and_return(:hg)
 
           expect(subject).to receive(:run).with(
@@ -98,7 +98,7 @@ describe Gem::Tasks::SCM::Tag do
 
         subject { described_class.new(sign: true) }
 
-        it "should run `hg sign` then `hg tag`" do
+        it "must run `hg sign` then `hg tag`" do
           allow(subject.project).to receive(:scm).and_return(:hg)
 
           expect(subject).to receive(:run).with(

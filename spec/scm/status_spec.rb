@@ -8,7 +8,7 @@ describe Gem::Tasks::SCM::Status do
     context "when the project's SCM type is :git" do
       include_context "rake"
 
-      it "should run `git status --untracked-files=no`" do
+      it "must run `git status --untracked-files=no`" do
         allow(subject.project).to receive(:scm).and_return(:git)
 
         expect(subject).to receive(:run).with(
@@ -22,7 +22,7 @@ describe Gem::Tasks::SCM::Status do
     context "when the project's SCM type is :hg" do
       include_context "rake"
 
-      it "should run `hg status --quiet`" do
+      it "must run `hg status --quiet`" do
         allow(subject.project).to receive(:scm).and_return(:hg)
 
         expect(subject).to receive(:run).with(
@@ -36,7 +36,7 @@ describe Gem::Tasks::SCM::Status do
     context "when the project's SCM type is :svn" do
       include_context "rake"
 
-      it "should run `svn status --quiet`" do
+      it "must run `svn status --quiet`" do
         allow(subject.project).to receive(:scm).and_return(:svn)
 
         expect(subject).to receive(:run).with(

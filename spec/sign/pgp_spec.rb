@@ -9,7 +9,7 @@ describe Gem::Tasks::Sign::PGP do
 
     let(:path) { File.join('pkg','foo-1.2.3.gem') }
 
-    it "should run `gpg --sign --detach-sign --armor ...`" do
+    it "must run `gpg --sign --detach-sign --armor ...`" do
       expect(subject).to receive(:run).with(
         'gpg', '--sign', '--detach-sign', '--armor', path
       )

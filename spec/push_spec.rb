@@ -10,7 +10,7 @@ describe Gem::Tasks::Push do
     let(:path) { 'pkg/foo-1.2.3.gem' }
 
     context "defaults" do
-      it "should use `gem push`" do
+      it "must use `gem push`" do
         expect(subject).to receive(:run).with('gem', 'push', path)
 
         subject.push(path)
@@ -22,7 +22,7 @@ describe Gem::Tasks::Push do
 
       subject { described_class.new(:host => host) }
 
-      it "should include the --host option" do
+      it "must include the --host option" do
         expect(subject).to receive(:run).with('gem', 'push', path, '--host', host)
 
         subject.push(path)

@@ -18,7 +18,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
 
-        it "should run `irb`" do
+        it "must run `irb`" do
           expect(subject).to receive(:run).with('irb',*default_options)
 
           subject.console
@@ -30,7 +30,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end
 
-        it "should use `bundle exec`" do
+        it "must use `bundle exec`" do
           expect(subject).to receive(:run).with(
             'bundle', 'exec', 'irb', *default_options
           )
@@ -48,7 +48,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
 
-        it "should run the custom console" do
+        it "must run the custom console" do
           expect(subject).to receive(:run).with(custom_command,*default_options)
 
           subject.console
@@ -60,7 +60,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end
 
-        it "should use `bundle exec`" do
+        it "must use `bundle exec`" do
           expect(subject).to receive(:run).with(
             'bundle', 'exec', custom_command, *default_options
           )
@@ -78,7 +78,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(false)
         end
 
-        it "should pass custom options to `irb`" do
+        it "must pass custom options to `irb`" do
           expect(subject).to receive(:run).with('irb', *(default_options + custom_options))
 
           subject.console
@@ -90,7 +90,7 @@ describe Gem::Tasks::Console do
           allow(subject.project).to receive(:bundler?).and_return(true)
         end
 
-        it "should use `bundle exec ...`" do
+        it "must use `bundle exec ...`" do
           expect(subject).to receive(:run).with('bundle', 'exec', 'irb', *(default_options + custom_options))
 
           subject.console
