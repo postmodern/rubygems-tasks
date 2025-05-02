@@ -1,4 +1,4 @@
-require 'rubygems/tasks/sign/task'
+require_relative 'task'
 
 module Gem
   class Tasks

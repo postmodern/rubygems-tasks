@@ -1,5 +1,5 @@
-require 'rubygems/tasks/sign/checksum'
-require 'rubygems/tasks/sign/pgp'
+require_relative 'sign/checksum'
+require_relative 'sign/pgp'
 
 module Gem
   class Tasks

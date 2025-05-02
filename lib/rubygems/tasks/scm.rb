@@ -1,6 +1,6 @@
-require 'rubygems/tasks/scm/status'
-require 'rubygems/tasks/scm/tag'
-require 'rubygems/tasks/scm/push'
+require_relative 'scm/status'
+require_relative 'scm/tag'
+require_relative 'scm/push'
 
 module Gem
   class Tasks
