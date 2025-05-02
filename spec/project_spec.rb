@@ -3,7 +3,7 @@ require 'rubygems/tasks/project'
 
 describe Gem::Tasks::Project do
   let(:rubygems_project_dir) { File.join(PROJECTS_DIR,'rubygems-project') }
-  let(:rubygems_project)     { described_class.new(rubygems_project_dir)   }
+  let(:rubygems_project)     { described_class.new(rubygems_project_dir)  }
 
   let(:rubygems_multi_project_dir) do
     File.join(PROJECTS_DIR,'rubygems-multi-project')
@@ -14,7 +14,7 @@ describe Gem::Tasks::Project do
   end
 
   let(:bundler_project_dir) { File.join(PROJECTS_DIR,'bundler-project') }
-  let(:bundler_project)     { described_class.new(bundler_project_dir)   }
+  let(:bundler_project)     { described_class.new(bundler_project_dir)  }
 
   describe "directories" do
     let(:directory) { rubygems_project_dir }

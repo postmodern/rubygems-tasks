@@ -10,7 +10,8 @@ describe Gem::Tasks do
 
       describe '#build' do
         subject { super().build }
-        it { is_expected.to be_kind_of(OpenStruct)             }
+
+        it { is_expected.to be_kind_of(OpenStruct) }
 
         describe '#build.gem' do
           subject { super().gem }
@@ -19,32 +20,38 @@ describe Gem::Tasks do
 
         describe '#build.tar' do
           subject { super().tar }
-          it { is_expected.to be_nil                             }
+
+          it { is_expected.to be_nil }
         end
 
         describe '#build.zip' do
           subject { super().zip }
-          it { is_expected.to be_nil                             }
+
+          it { is_expected.to be_nil }
         end
       end
 
       describe '#scm' do
         subject { super().scm }
-        it { is_expected.to be_kind_of(OpenStruct)              }
+
+        it { is_expected.to be_kind_of(OpenStruct) }
 
         describe '#scm.status' do
           subject { super().status }
+
           it { is_expected.to be_kind_of(Gem::Tasks::SCM::Status) }
         end
 
         describe '#scm.push' do
           subject { super().push }
-          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Push)   }
+
+          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Push) }
         end
 
         describe '#scm.tag' do
           subject { super().tag }
-          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Tag)    }
+
+          it { is_expected.to be_kind_of(Gem::Tasks::SCM::Tag) }
         end
       end
 
@@ -54,32 +61,38 @@ describe Gem::Tasks do
 
         describe '#checksum' do
           subject { super().checksum }
-          it { is_expected.to be_nil                 }
+
+          it { is_expected.to be_nil }
         end
 
         describe '#pgp' do
           subject { super().pgp }
-          it { is_expected.to be_nil                 }
+
+          it { is_expected.to be_nil }
         end
       end
 
       describe '#console' do
         subject { super().console }
+
         it { is_expected.to be_kind_of(Gem::Tasks::Console) }
       end
 
       describe '#install' do
         subject { super().install }
+
         it { is_expected.to be_kind_of(Gem::Tasks::Install) }
       end
 
       describe '#push' do
         subject { super().push }
+
         it { is_expected.to be_kind_of(Gem::Tasks::Push)    }
       end
 
       describe '#release' do
         subject { super().release }
+
         it { is_expected.to be_kind_of(Gem::Tasks::Release) }
       end
     end
@@ -91,8 +104,10 @@ describe Gem::Tasks do
 
       describe '#build' do
         subject { super().build }
+
         describe '#gem' do
           subject { super().gem }
+
           it { is_expected.to be_nil }
         end
       end
@@ -105,8 +120,10 @@ describe Gem::Tasks do
 
       describe '#build' do
         subject { super().build }
+
         describe '#tar' do
           subject { super().tar }
+
           it { is_expected.to be_kind_of(Gem::Tasks::Build::Tar) }
         end
       end
@@ -119,8 +136,10 @@ describe Gem::Tasks do
 
       describe '#build' do
         subject { super().build }
+
         describe '#zip' do
           subject { super().zip }
+
           it { is_expected.to be_kind_of(Gem::Tasks::Build::Zip) }
         end
       end
@@ -133,8 +152,10 @@ describe Gem::Tasks do
 
       describe '#scm' do
         subject { super().scm }
+
         describe '#status' do
           subject { super().status }
+
           it { is_expected.to be_nil }
         end
       end
@@ -147,8 +168,10 @@ describe Gem::Tasks do
 
       describe '#scm' do
         subject { super().scm }
+
         describe '#push' do
           subject { super().push }
+
           it { is_expected.to be_nil }
         end
       end
@@ -161,8 +184,10 @@ describe Gem::Tasks do
 
       describe '#scm' do
         subject { super().scm }
+
         describe '#tag' do
           subject { super().tag }
+
           it { is_expected.to be_nil }
         end
       end
@@ -175,8 +200,10 @@ describe Gem::Tasks do
 
       describe '#sign' do
         subject { super().sign }
+
         describe '#checksum' do
           subject { super().checksum }
+
           it { is_expected.to be_kind_of(Gem::Tasks::Sign::Checksum) }
         end
       end
@@ -189,8 +216,10 @@ describe Gem::Tasks do
 
       describe '#sign' do
         subject { super().sign }
+
         describe '#pgp' do
           subject { super().pgp }
+
           it { is_expected.to be_kind_of(Gem::Tasks::Sign::PGP) }
         end
       end
@@ -203,6 +232,7 @@ describe Gem::Tasks do
 
       describe '#console' do
         subject { super().console }
+
         it { is_expected.to be_nil }
       end
     end
@@ -214,6 +244,7 @@ describe Gem::Tasks do
 
       describe '#install' do
         subject { super().install }
+
         it { is_expected.to be_nil }
       end
     end
@@ -225,6 +256,7 @@ describe Gem::Tasks do
 
       describe '#push' do
         subject { super().push }
+
         it { is_expected.to be_nil }
       end
     end
@@ -236,6 +268,7 @@ describe Gem::Tasks do
 
       describe '#release' do
         subject { super().release }
+
         it { is_expected.to be_nil }
       end
     end
