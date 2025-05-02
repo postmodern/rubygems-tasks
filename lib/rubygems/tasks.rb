@@ -28,12 +28,9 @@ module Gem
   #
   class Tasks
 
+    # The {Build build:\*} tasks.
     #
-    # The `build` tasks.
-    #
-    # @return [OpenStruct]
-    #   The collection of `build` tasks.
-    #
+    # @return [Build]
     attr_reader :build
 
     #
@@ -141,14 +138,8 @@ module Gem
                    push:    true,
                    release: true)
       @scm   = OpenStruct.new
-      @build = OpenStruct.new
+      @build = Build.new(**build)
       @sign  = OpenStruct.new
-
-      if build
-        @build.gem = (Build::Gem.new if build.fetch(:gem,true))
-        @build.tar = (Build::Tar.new if build[:tar])
-        @build.zip = (Build::Zip.new if build[:zip])
-      end
 
       if scm
         @scm.status = (SCM::Status.new if scm.fetch(:status,true))

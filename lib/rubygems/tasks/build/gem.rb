@@ -6,7 +6,7 @@ end
 
 module Gem
   class Tasks
-    module Build
+    class Build
       #
       # The `build:gem` task.
       #

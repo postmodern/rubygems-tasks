@@ -2,7 +2,7 @@ require 'rubygems/tasks/build/task'
 
 module Gem
   class Tasks
-    module Build
+    class Build
       #
       # The `build:zip` task.
       #

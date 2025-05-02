@@ -2,7 +2,7 @@ require 'rubygems/tasks/task'
 
 module Gem
   class Tasks
-    module Build
+    class Build
       class Task < Tasks::Task
 
         #
