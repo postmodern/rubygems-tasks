@@ -22,20 +22,17 @@ module Gem
       #
       # Initializes the `push` task.
       #
-      # @param [Hash] options
-      #   Additional options.
-      #
-      # @option options [String, nil] :host
+      # @param [String, nil] host
       #   The rubygems host to push gems to.
       #
-      # @option options [String, nil] :key
+      # @param [String, nil] key
       #   An optional rubygems API key.
       #
-      def initialize(options={})
+      def initialize(host: nil, key: nil)
         super()
 
-        @host = options[:host]
-        @key  = options[:key]
+        @host = host
+        @key  = key
 
         yield self if block_given?
         define

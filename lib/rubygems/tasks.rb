@@ -67,29 +67,53 @@ module Gem
     #
     # Initializes the project tasks.
     #
-    # @param [Hash{Symbol => Hash}] options
-    #   Enables or disables individual tasks.
+    # @param [Hash{Symbol => Boolean}] build
+    #   Enables or disables the `build` tasks. Additional keyword arguments
+    #   can be passed to the individual build tasks via a Hash.
     #
-    # @option options [Hash{Symbol => Boolean}] :build
-    #   Enables or disables the `build` tasks.
+    # @option build [Boolean] :gem (true)
+    #   Enables or disables the {Build::Gem build:gem} task.
     #
-    # @option options [Hash{Symbol => Boolean}] :scm
-    #   Enables or disables the `scm` tasks.
+    # @option build [Boolean] :tar
+    #   Enables or disables the {Build::Tar build:tar} task.
     #
-    # @option options [Boolean] :console (true)
+    # @option build [Boolean] :zip
+    #   Enables or disables the {Build::Zip build:zip} task.
+    #
+    # @param [Hash{Symbol => Boolean}] scm
+    #   Enables or disables the `scm` tasks. Additional keyword arguments
+    #   can be passed to the individual scm tasks via a Hash.
+    #
+    # @option scm [Boolean] :status (true)
+    #   Enables or disables the {SCM::Status scm:status} task.
+    #
+    # @option scm [Boolean] :tag (true)
+    #   Enables or disables the {SCM::Tag scm:tag} task.
+    #
+    # @option scm [Boolean] :push (true)
+    #   Enables or disables the {SCM::Push scm:push} task.
+    #
+    # @param [Hash{Symbol => Boolean}] sign
+    #   Enables or disables the `sign` tasks. Additional keyword arguments
+    #   can be passed to the individual sign tasks via a Hash.
+    #
+    # @option sign [Boolean] :checksum
+    #   Enables or disables the {Sign::Checksum sign:checksum} task.
+    #
+    # @option sign [Boolean] :pgp
+    #   Enables or disables the {Sign::PGP sign:pgp} task.
+    #
+    # @param [Boolean] console
     #   Enables or disables the {Console console} task.
     #
-    # @option options [Boolean] :install (true)
+    # @param [Boolean] install
     #   Enables or disables the {Install install} task.
     #
-    # @option options [Boolean] :push (true)
+    # @param [Boolean] push
     #   Enables or disables the {Push push} task.
     #
-    # @option options [Boolean] :release (true)
+    # @param [Boolean] release
     #   Enables or disables the {Release release} task.
-    #
-    # @option options [Hash{Symbol => Boolean}] :sign
-    #   Enables or disables the `sign` tasks.
     #
     # @yield [tasks]
     #   If a block is given, it will be passed the newly created tasks,
@@ -109,36 +133,38 @@ module Gem
     #     tasks.scm.tag.format = "release-%s"
     #   end
     #
-    def initialize(options={})
-      build_options = options.fetch(:build,{})
-      scm_options   = options.fetch(:scm,{})
-      sign_options  = options.fetch(:sign,{})
-
+    def initialize(build:   {},
+                   scm:     {},
+                   sign:    {},
+                   console: true,
+                   install: true,
+                   push:    true,
+                   release: true)
       @scm   = OpenStruct.new
       @build = OpenStruct.new
       @sign  = OpenStruct.new
 
-      if build_options
-        @build.gem = (Build::Gem.new if build_options.fetch(:gem,true))
-        @build.tar = (Build::Tar.new if build_options[:tar])
-        @build.zip = (Build::Zip.new if build_options[:zip])
+      if build
+        @build.gem = (Build::Gem.new if build.fetch(:gem,true))
+        @build.tar = (Build::Tar.new if build[:tar])
+        @build.zip = (Build::Zip.new if build[:zip])
       end
 
-      if scm_options
-        @scm.status = (SCM::Status.new if scm_options.fetch(:status,true))
-        @scm.tag    = (SCM::Tag.new    if scm_options.fetch(:tag,true))
-        @scm.push   = (SCM::Push.new   if scm_options.fetch(:push,true))
+      if scm
+        @scm.status = (SCM::Status.new if scm.fetch(:status,true))
+        @scm.tag    = (SCM::Tag.new    if scm.fetch(:tag,true))
+        @scm.push   = (SCM::Push.new   if scm.fetch(:push,true))
       end
 
-      if sign_options
-        @sign.checksum = (Sign::Checksum.new if sign_options[:checksum])
-        @sign.pgp      = (Sign::PGP.new      if sign_options[:pgp])
+      if sign
+        @sign.checksum = (Sign::Checksum.new if sign[:checksum])
+        @sign.pgp      = (Sign::PGP.new      if sign[:pgp])
       end
 
-      @console = (Console.new if options.fetch(:console,true))
-      @install = (Install.new if options.fetch(:install,true))
-      @push    = (Push.new    if options.fetch(:push,true))
-      @release = (Release.new if options.fetch(:release,true))
+      @console = (Console.new if console)
+      @install = (Install.new if install)
+      @push    = (Push.new    if push)
+      @release = (Release.new if release)
 
       yield self if block_given?
     end

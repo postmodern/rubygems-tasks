@@ -26,20 +26,17 @@ module Gem
       #
       # Initializes the `console` task.
       #
-      # @param [Hash] options
-      #   Additional options.
-      #
-      # @option options [String] :command (DEFAULT_COMMAND)
+      # @param [String] command
       #   The Ruby Console command to run.
       #
-      # @option options [Array<String>] :options
+      # @param [Array<String>] options
       #   Additional options for the Ruby Console.
       #
-      def initialize(options={})
+      def initialize(command: DEFAULT_COMMAND, options: [])
         super()
 
-        @command = options.fetch(:command,DEFAULT_COMMAND)
-        @options = Array(options[:options])
+        @command = command
+        @options = options
 
         yield self if block_given?
         define
