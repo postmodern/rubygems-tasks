@@ -4,7 +4,7 @@ require 'digest'
 
 module Gem
   class Tasks
-    module Sign
+    class Sign
       #
       # The `sign:checksum` task.
       #

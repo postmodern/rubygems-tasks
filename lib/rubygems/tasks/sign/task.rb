@@ -4,7 +4,7 @@ require 'digest'
 
 module Gem
   class Tasks
-    module Sign
+    class Sign
       class Task < Tasks::Task
 
         #

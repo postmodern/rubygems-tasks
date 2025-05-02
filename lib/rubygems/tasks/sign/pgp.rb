@@ -2,7 +2,7 @@ require 'rubygems/tasks/sign/task'
 
 module Gem
   class Tasks
-    module Sign
+    class Sign
       #
       # The `sign:pgp` task.
       #
