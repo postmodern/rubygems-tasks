@@ -15,7 +15,6 @@ module Gem
         #
         # @return [String, Proc]
         #   The format String or Proc.
-        #
         attr_accessor :format
 
         # Enables or disables PGP signing of tags.
@@ -24,7 +23,6 @@ module Gem
         #   The new value.
         #
         # @since 0.2.0
-        #
         attr_writer :sign
 
         #
