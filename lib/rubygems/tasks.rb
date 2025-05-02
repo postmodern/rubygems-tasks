@@ -38,12 +38,9 @@ module Gem
     # @return [SCM]
     attr_reader :scm
 
+    # The {Sign sign:\*} tasks.
     #
-    # The `sign` tasks.
-    #
-    # @return [OpenStruct]
-    #   The collection of `sign` tasks.
-    #
+    # @return [Sign]
     attr_reader :sign
 
     # The {Console console} task.
@@ -136,12 +133,7 @@ module Gem
                    release: true)
       @scm   = SCM.new(**scm)
       @build = Build.new(**build)
-      @sign  = OpenStruct.new
-
-      if sign
-        @sign.checksum = (Sign::Checksum.new if sign[:checksum])
-        @sign.pgp      = (Sign::PGP.new      if sign[:pgp])
-      end
+      @sign  = Sign.new(**sign)
 
       @console = (Console.new if console)
       @install = (Install.new if install)

@@ -22,19 +22,8 @@ describe Gem::Tasks do
 
       describe '#sign' do
         subject { super().sign }
-        it { is_expected.to be_kind_of(OpenStruct) }
 
-        describe '#checksum' do
-          subject { super().checksum }
-
-          it { is_expected.to be_nil }
-        end
-
-        describe '#pgp' do
-          subject { super().pgp }
-
-          it { is_expected.to be_nil }
-        end
+        it { is_expected.to be_a(Gem::Tasks::Sign) }
       end
 
       describe '#console' do
@@ -59,34 +48,6 @@ describe Gem::Tasks do
         subject { super().release }
 
         it { is_expected.to be_kind_of(Gem::Tasks::Release) }
-      end
-    end
-
-    context "when given `sign: {checksum: true}`" do
-      subject { described_class.new(sign: {checksum: true}) }
-
-      describe '#sign' do
-        subject { super().sign }
-
-        describe '#checksum' do
-          subject { super().checksum }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::Sign::Checksum) }
-        end
-      end
-    end
-
-    context "when given `sign: {pgp: true}`" do
-      subject { described_class.new(sign: {pgp: true}) }
-
-      describe '#sign' do
-        subject { super().sign }
-
-        describe '#pgp' do
-          subject { super().pgp }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::Sign::PGP) }
-        end
       end
     end
 
