@@ -1,5 +1,5 @@
-require 'rubygems/tasks/project'
-require 'rubygems/tasks/printing'
+require_relative 'project'
+require_relative 'printing'
 
 require 'rake/tasklib'
 

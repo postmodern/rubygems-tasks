@@ -1,4 +1,4 @@
-require 'rubygems/tasks/task'
+require_relative '../task'
 
 require 'digest'
 

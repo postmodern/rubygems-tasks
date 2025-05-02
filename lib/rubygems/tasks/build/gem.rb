@@ -1,4 +1,4 @@
-require 'rubygems/tasks/build/task'
+require_relative 'task'
 
 if Gem::VERSION > '2.' then require 'rubygems/package'
 else                        require 'rubygems/builder'

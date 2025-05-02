@@ -1,10 +1,10 @@
-require 'rubygems/tasks/console'
-require 'rubygems/tasks/build'
-require 'rubygems/tasks/install'
-require 'rubygems/tasks/scm'
-require 'rubygems/tasks/push'
-require 'rubygems/tasks/release'
-require 'rubygems/tasks/sign'
+require_relative 'tasks/console'
+require_relative 'tasks/build'
+require_relative 'tasks/install'
+require_relative 'tasks/scm'
+require_relative 'tasks/push'
+require_relative 'tasks/release'
+require_relative 'tasks/sign'
 
 require 'rake/tasklib'
 

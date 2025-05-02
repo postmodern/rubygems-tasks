@@ -1,6 +1,6 @@
-require 'rubygems/tasks/build/tar'
-require 'rubygems/tasks/build/gem'
-require 'rubygems/tasks/build/zip'
+require_relative 'build/tar'
+require_relative 'build/gem'
+require_relative 'build/zip'
 
 module Gem
   class Tasks
