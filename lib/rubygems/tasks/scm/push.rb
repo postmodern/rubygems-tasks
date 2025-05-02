@@ -11,10 +11,7 @@ module Gem
         #
         # Initializes the `scm:push` task.
         #
-        # @param [Hash] options
-        #   Additional options.
-        #
-        def initialize(options={})
+        def initialize
           super()
 
           yield self if block_given?
