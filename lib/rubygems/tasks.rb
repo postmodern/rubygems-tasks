@@ -7,7 +7,6 @@ require 'rubygems/tasks/release'
 require 'rubygems/tasks/sign'
 
 require 'rake/tasklib'
-require 'ostruct'
 
 module Gem
   #
