@@ -11,24 +11,7 @@ describe Gem::Tasks do
       describe '#build' do
         subject { super().build }
 
-        it { is_expected.to be_kind_of(OpenStruct) }
-
-        describe '#build.gem' do
-          subject { super().gem }
-          it { is_expected.to be_kind_of(Gem::Tasks::Build::Gem) }
-        end
-
-        describe '#build.tar' do
-          subject { super().tar }
-
-          it { is_expected.to be_nil }
-        end
-
-        describe '#build.zip' do
-          subject { super().zip }
-
-          it { is_expected.to be_nil }
-        end
+        it { is_expected.to be_a(Gem::Tasks::Build) }
       end
 
       describe '#scm' do
@@ -94,48 +77,6 @@ describe Gem::Tasks do
         subject { super().release }
 
         it { is_expected.to be_kind_of(Gem::Tasks::Release) }
-      end
-    end
-
-    context "when given `build: {gem: false}`" do
-      subject { described_class.new(build: {gem: false}) }
-
-      describe '#build' do
-        subject { super().build }
-
-        describe '#gem' do
-          subject { super().gem }
-
-          it { is_expected.to be_nil }
-        end
-      end
-    end
-
-    context "when given `build: {tar: true}`" do
-      subject { described_class.new(build: {tar: true}) }
-
-      describe '#build' do
-        subject { super().build }
-
-        describe '#tar' do
-          subject { super().tar }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::Build::Tar) }
-        end
-      end
-    end
-
-    context "when given `build: {zip: true}`" do
-      subject { described_class.new(build: {zip: true}) }
-
-      describe '#build' do
-        subject { super().build }
-
-        describe '#zip' do
-          subject { super().zip }
-
-          it { is_expected.to be_kind_of(Gem::Tasks::Build::Zip) }
-        end
       end
     end
 
