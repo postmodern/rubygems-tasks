@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'scm/status'
 require_relative 'scm/tag'
 require_relative 'scm/push'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'build/tar'
 require_relative 'build/gem'
 require_relative 'build/zip'
