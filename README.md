@@ -110,7 +110,7 @@ Selectively defining tasks:
 
 ## Copyright
 
-Copyright (c) 2011-2020 Hal Brodigan
+Copyright (c) 2011-2025 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
