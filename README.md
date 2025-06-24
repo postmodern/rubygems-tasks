@@ -4,7 +4,8 @@
 [![Code Climate](https://codeclimate.com/github/postmodern/rubygems-tasks.svg)](https://codeclimate.com/github/postmodern/rubygems-tasks)
 
 * [Source](https://github.com/postmodern/rubygems-tasks)
-* [Issues](https://github.com/postmodern/rubygems-tasks/issues)
+* [Forum](https://github.com/postmodern/rubygems-tasks/discussions) |
+  [Issues](https://github.com/postmodern/rubygems-tasks/issues)
 
 ## Description
 
