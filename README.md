@@ -63,7 +63,8 @@ This is what rubygems-tasks seeks to provide.
 ## Requirements
 
 * [ruby] >= 2.0.0
-* [rake]
+* [rake] >= 10.0.0
+* [irb] ~> 1.0
 
 ## Install
 
@@ -144,3 +145,4 @@ See {file:LICENSE.txt} for details.
 
 [ruby]: https://www.ruby-lang.org/
 [rake]: https://rubygems.org/gems/rake
+[irb]: https://rubygems.org/gems/irb
