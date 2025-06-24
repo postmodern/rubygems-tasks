@@ -135,7 +135,7 @@ Copyright (c) 2011-2025 Hal Brodigan
 See {file:LICENSE.txt} for details.
 
 [Git]: http://git-scm.com/
-[Mercurial]: http://mercurial.selenic.com/
+[Mercurial]: https://www.mercurial-scm.org/
 [SubVersion]: https://subversion.apache.org/
 
 [Jeweler]: https://github.com/technicalpickles/jeweler#readme
