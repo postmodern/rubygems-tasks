@@ -134,7 +134,7 @@ Copyright (c) 2011-2025 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
-[Git]: http://git-scm.com/
+[Git]: https://git-scm.com/
 [Mercurial]: https://www.mercurial-scm.org/
 [SubVersion]: https://subversion.apache.org/
 
