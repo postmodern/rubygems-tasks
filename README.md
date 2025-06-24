@@ -5,7 +5,6 @@
 
 * [Source](https://github.com/postmodern/rubygems-tasks)
 * [Issues](https://github.com/postmodern/rubygems-tasks/issues)
-* [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
