@@ -6,6 +6,7 @@
 * [Source](https://github.com/postmodern/rubygems-tasks)
 * [Forum](https://github.com/postmodern/rubygems-tasks/discussions) |
   [Issues](https://github.com/postmodern/rubygems-tasks/issues)
+* [Documentation](https://rubydoc.info/gems/rubygems-tasks)
 
 ## Description
 
