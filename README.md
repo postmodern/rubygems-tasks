@@ -136,7 +136,7 @@ See {file:LICENSE.txt} for details.
 
 [Git]: http://git-scm.com/
 [Mercurial]: http://mercurial.selenic.com/
-[SubVersion]: http://subversion.tigris.org/
+[SubVersion]: https://subversion.apache.org/
 
 [Jeweler]: https://github.com/technicalpickles/jeweler#readme
 [Hoe]: https://github.com/seattlerb/hoe#readme
