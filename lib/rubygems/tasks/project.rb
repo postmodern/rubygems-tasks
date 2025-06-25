@@ -5,7 +5,7 @@ require 'set'
 module Gem
   class Tasks
     #
-    # @api semipublic
+    # @api private
     #
     class Project
 
