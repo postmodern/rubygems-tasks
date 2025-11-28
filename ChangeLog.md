@@ -1,3 +1,18 @@
+### 0.3.0 / 2025-11-28
+
+* Added support for Ruby 3.5 and 4.0.
+* Fixed `ostruct` warnings by refactoring code to use plain-Ruby classes
+  instead of `OpenStruct`.
+* {Gem::Tasks::Build} is now a class that can be initialized and will
+  define all `build:` sub-tasks.
+* {Gem::Tasks::SCM} is now a class that can be initialized and will define
+  all `scm:` sub-tasks.
+* {Gem::Tasks::Sign} is now a class that can be initialized and will define
+  all `sign:` sub-tasks.
+* {Gem::Tasks::Push#initialize} now accepts the `key:` keyword argument.
+* Switched to keyword arguments.
+* Added `frozen_string_literal: true` to all files.
+
 ### 0.2.6 / 2023-09-07
 
 * Fixed `rake install` so that it runs `gem install -q pkg/...` outside of the
