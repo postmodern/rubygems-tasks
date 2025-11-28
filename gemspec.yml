@@ -1,8 +1,10 @@
 name: rubygems-tasks
 version: 0.3.0
-summary: Rake tasks for managing and releasing Ruby Gems.
+summary: Rake tasks for building and releasing Ruby Gems.
 description: |
-  Agnostic and unobtrusive Rake tasks for managing and releasing Ruby Gems.
+  rubygems-tasks provides agnostic and unobtrusive Rake tasks for building and
+  releasing Ruby Gems. rubygems-tasks can be used in any existing Ruby project
+  that has a .gemspec file.
 
 authors: Postmodern
 license: MIT
